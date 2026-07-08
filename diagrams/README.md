@@ -1,6 +1,7 @@
 # Diagrams
 
 Diagrams preserve architecture and timing knowledge in reviewable form. Prefer editable source formats such as Mermaid, draw.io XML, or SVG over only exported images.
+Diagrams preserve architecture and timing knowledge in reviewable form.
 
 | Directory | Diagram type |
 | --- | --- |
@@ -14,3 +15,9 @@ Diagrams preserve architecture and timing knowledge in reviewable form. Prefer e
 | `data_flow/` | Sensor, DMA, queues, telemetry, storage, and cloud data paths. |
 
 Required diagram topics include boot flow, ADC pipeline, FreeRTOS task topology, MQTT state machine, OTA lifecycle, memory layout, interrupt flow, DMA pipeline, power architecture, and signal path.
+| `state_machine/` | Boot, recovery, OTA, telemetry, and fault state machines. |
+| `data_flow/` | Sensor, DMA, queues, telemetry, storage, and cloud data paths. |
+| `timing/` | Sampling, ISR, task, bus, and power timing diagrams. |
+| `pcb/` | Board-level topology, connector maps, power trees, and layout notes. |
+
+Use consistent names such as `<feature>_architecture.md`, `<feature>_state_machine.md`, and `<feature>_timing.md`.

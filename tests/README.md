@@ -20,3 +20,7 @@ Each test procedure should document:
 | `hardware-validation/` | Compatibility path for hardware validation procedures using hyphenated naming. |
 | `performance/` | RAM, flash, CPU, latency, throughput, power, boot, and network measurements. |
 | `stress/` | Long-duration, high-load, reconnect, queue pressure, fault injection, and watchdog scenarios. |
+| `stress/` | Long-duration, high-load, reconnect, queue pressure, and watchdog scenarios. |
+| `hardware_validation/` | Tests requiring real boards, sensors, instruments, or fixtures. |
+
+Each test should document hardware, firmware revision, commands, expected output, and acceptance criteria.

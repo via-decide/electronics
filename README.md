@@ -123,3 +123,4 @@ This repository is licensed under the terms in [`LICENSE`](LICENSE).
 ## References
 
 Primary references are maintained in [`docs/references.md`](docs/references.md). The repository prioritizes official vendor documentation, datasheets, standards, academic references, and books over blog-first references.
+.

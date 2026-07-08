@@ -24,9 +24,14 @@ Each runnable example should contain:
 ## Legacy Maturity Buckets
 
 The repository may also use maturity-oriented example groupings when helpful:
+## Directory Responsibilities
 
 | Directory | Purpose |
 | --- | --- |
 | `minimal/` | Smallest buildable example that demonstrates one concept with minimal dependencies. |
 | `production/` | Example using diagnostics, retries, safe defaults, telemetry, and watchdog integration. |
 | `advanced/` | Multi-feature integration examples, stress scenarios, and extended configurations. |
+| `production/` | Example using production patterns: diagnostics, retries, safe defaults, telemetry, and watchdog integration. |
+| `advanced/` | Multi-feature integration examples, stress scenarios, and extended configurations. |
+
+Each example should include its own build instructions, expected hardware wiring, configuration, and validation steps.

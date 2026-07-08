@@ -21,6 +21,9 @@ examples/
   raspberry-pi/
   linux/
   power-electronics/
+  minimal/
+  production/
+  advanced/
 tests/
   unit/
   integration/
@@ -32,6 +35,11 @@ diagrams/
   architecture/
   state-machines/
   signal-flow/
+  hardware_validation/
+diagrams/
+  architecture/
+  state_machine/
+  data_flow/
   timing/
   pcb/
 assets/
@@ -41,6 +49,9 @@ assets/
   thermal/
   pcb/
   photos/
+  logic_analyzer/
+  datasheets/
+  captures/
 ```
 
 ## Implementation Documentation Responsibilities
