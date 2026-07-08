@@ -217,7 +217,7 @@ esp_err_t adc_dma_continuous_stop(void)
     return ESP_OK;
 }
 
-void app_main(void)
+void __attribute__((weak)) app_main(void)
 {
     /* Radio/network work may run concurrently; ADC sample timing remains peripheral-owned. */
     if (app_wifi_start != NULL) {
