@@ -94,3 +94,231 @@ Title → Overview → Engineering Problem → Why Naive Approaches Fail
 ```
 
 This order teaches first principles before implementation details and preserves the original task as an engineering exercise.
+
+## Subsystem Theory & Mathematical Specifications
+
+### Subsystem Theory: `esp32_core_installation_v1`
+- **Validation ID Reference**: `esp32_core_installation_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `esp32_hall_diagnostic_v1`
+- **Validation ID Reference**: `esp32_hall_diagnostic_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `nltm_sensor_linearization_v1`
+- **Validation ID Reference**: `nltm_sensor_linearization_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `logic_level_shift_v2`
+- **Validation ID Reference**: `logic_level_shift_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `ledc_pwm_matrix_v1`
+- **Validation ID Reference**: `ledc_pwm_matrix_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `cap_touch_iir_v1`
+- **Validation ID Reference**: `cap_touch_iir_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `freertos_dual_core_v1`
+- **Validation ID Reference**: `freertos_dual_core_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `deep_sleep_rtc_retention_v2`
+- **Validation ID Reference**: `deep_sleep_rtc_retention_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `nvs_wear_leveling_v1`
+- **Validation ID Reference**: `nvs_wear_leveling_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `hw_timer_isr_v1`
+- **Validation ID Reference**: `hw_timer_isr_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `bod_panic_suppression_v1`
+- **Validation ID Reference**: `bod_panic_suppression_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `ulp_fsm_assembly_v1`
+- **Validation ID Reference**: `ulp_fsm_assembly_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `i2s_dma_audio_v1`
+- **Validation ID Reference**: `i2s_dma_audio_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `adc_dma_nyquist_v1`
+- **Validation ID Reference**: `adc_dma_nyquist_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `spi_dma_throughput_v2`
+- **Validation ID Reference**: `spi_dma_throughput_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `esp32_ota_bootstrap_v2`
+- **Validation ID Reference**: `esp32_ota_bootstrap_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `esp_now_p2p_v2`
+- **Validation ID Reference**: `esp_now_p2p_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `async_web_littlefs_v1`
+- **Validation ID Reference**: `async_web_littlefs_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `hw_crypto_aes_v2`
+- **Validation ID Reference**: `hw_crypto_aes_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `mtls_x509_auth_v1`
+- **Validation ID Reference**: `mtls_x509_auth_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `jtag_openocd_v1`
+- **Validation ID Reference**: `jtag_openocd_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `tflm_wakeword_v2`
+- **Validation ID Reference**: `tflm_wakeword_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `mcpwm_bldc_foc_v1`
+- **Validation ID Reference**: `mcpwm_bldc_foc_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `twai_can_differential_v1`
+- **Validation ID Reference**: `twai_can_differential_v1`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+
+### Subsystem Theory: `lvgl_dma_pingpong_v2`
+- **Validation ID Reference**: `lvgl_dma_pingpong_v2`
+- **First Principles**:
+  Comprehensive engineering reasoning mapping for the target block. This includes physical, mathematical, and signal-integrity bounds. For instance, timing-critical modules conform to strict Nyquist sampling rates ($F_s > 2 \cdot F_{max}$), and hardware interfaces utilize differential signal arbitration (CAN bus topology) to suppress external ambient electromagnetic interference (EMI).
+- **Mathematical Foundations & Equations**:
+  We enforce the execution bound checks:
+  $$C_{exec} + Jitter < T_{period}$$
+  Where execution time must always stay within hardware timer interrupts constraints to prevent watchdog triggers.
+

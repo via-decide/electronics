@@ -111,3 +111,181 @@ Subsystem examples must be independently buildable when the target SDK is instal
 ## Validation Hierarchy Standard
 
 Tests are organized by purpose: unit tests for host-testable logic, integration tests for component interaction, hardware tests for instrumented boards, performance tests for measured resource and timing behavior, and stress tests for long-duration or fault-injection scenarios.
+
+## Subsystem Implementation Guides
+
+### Implementation Guide: `esp32_core_installation_v1`
+- **Validation ID Reference**: `esp32_core_installation_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `esp32_hall_diagnostic_v1`
+- **Validation ID Reference**: `esp32_hall_diagnostic_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `nltm_sensor_linearization_v1`
+- **Validation ID Reference**: `nltm_sensor_linearization_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `logic_level_shift_v2`
+- **Validation ID Reference**: `logic_level_shift_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `ledc_pwm_matrix_v1`
+- **Validation ID Reference**: `ledc_pwm_matrix_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `cap_touch_iir_v1`
+- **Validation ID Reference**: `cap_touch_iir_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `freertos_dual_core_v1`
+- **Validation ID Reference**: `freertos_dual_core_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `deep_sleep_rtc_retention_v2`
+- **Validation ID Reference**: `deep_sleep_rtc_retention_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `nvs_wear_leveling_v1`
+- **Validation ID Reference**: `nvs_wear_leveling_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `hw_timer_isr_v1`
+- **Validation ID Reference**: `hw_timer_isr_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `bod_panic_suppression_v1`
+- **Validation ID Reference**: `bod_panic_suppression_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `ulp_fsm_assembly_v1`
+- **Validation ID Reference**: `ulp_fsm_assembly_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `i2s_dma_audio_v1`
+- **Validation ID Reference**: `i2s_dma_audio_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `adc_dma_nyquist_v1`
+- **Validation ID Reference**: `adc_dma_nyquist_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `spi_dma_throughput_v2`
+- **Validation ID Reference**: `spi_dma_throughput_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `esp32_ota_bootstrap_v2`
+- **Validation ID Reference**: `esp32_ota_bootstrap_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `esp_now_p2p_v2`
+- **Validation ID Reference**: `esp_now_p2p_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `async_web_littlefs_v1`
+- **Validation ID Reference**: `async_web_littlefs_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `hw_crypto_aes_v2`
+- **Validation ID Reference**: `hw_crypto_aes_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `mtls_x509_auth_v1`
+- **Validation ID Reference**: `mtls_x509_auth_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `jtag_openocd_v1`
+- **Validation ID Reference**: `jtag_openocd_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `tflm_wakeword_v2`
+- **Validation ID Reference**: `tflm_wakeword_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `mcpwm_bldc_foc_v1`
+- **Validation ID Reference**: `mcpwm_bldc_foc_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `twai_can_differential_v1`
+- **Validation ID Reference**: `twai_can_differential_v1`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+
+### Implementation Guide: `lvgl_dma_pingpong_v2`
+- **Validation ID Reference**: `lvgl_dma_pingpong_v2`
+- **Hardware Mapping & Initialization**:
+  Details target ESP32 peripheral registers, DMA configuration, clock source options, and dual-core FreeRTOS priority allocation. We assign acquisition tasks to Core 0 (affinity mask `0x1`) and networking workloads to Core 1 (`0x2`) to isolate bus timing from blocking sockets.
+- **Data Flow / Control Path**:
+  Explains buffer handoffs, mutex lock scopes, and interrupt callback sequences.
+

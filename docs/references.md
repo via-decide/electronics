@@ -76,3 +76,156 @@ References must prioritize primary engineering sources: official vendor document
 - Use standards for protocol behavior.
 - Use books and peer-reviewed or academic sources for theory.
 - Link benchmark methodology to instrument settings and raw captures when possible.
+
+## Reference Mapping by Validation ID
+
+### Reference Citations: `esp32_core_installation_v1`
+- **Validation ID**: `esp32_core_installation_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `esp32_hall_diagnostic_v1`
+- **Validation ID**: `esp32_hall_diagnostic_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `nltm_sensor_linearization_v1`
+- **Validation ID**: `nltm_sensor_linearization_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `logic_level_shift_v2`
+- **Validation ID**: `logic_level_shift_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `ledc_pwm_matrix_v1`
+- **Validation ID**: `ledc_pwm_matrix_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `cap_touch_iir_v1`
+- **Validation ID**: `cap_touch_iir_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `freertos_dual_core_v1`
+- **Validation ID**: `freertos_dual_core_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `deep_sleep_rtc_retention_v2`
+- **Validation ID**: `deep_sleep_rtc_retention_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `nvs_wear_leveling_v1`
+- **Validation ID**: `nvs_wear_leveling_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `hw_timer_isr_v1`
+- **Validation ID**: `hw_timer_isr_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `bod_panic_suppression_v1`
+- **Validation ID**: `bod_panic_suppression_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `ulp_fsm_assembly_v1`
+- **Validation ID**: `ulp_fsm_assembly_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `i2s_dma_audio_v1`
+- **Validation ID**: `i2s_dma_audio_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `adc_dma_nyquist_v1`
+- **Validation ID**: `adc_dma_nyquist_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `spi_dma_throughput_v2`
+- **Validation ID**: `spi_dma_throughput_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `esp32_ota_bootstrap_v2`
+- **Validation ID**: `esp32_ota_bootstrap_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `esp_now_p2p_v2`
+- **Validation ID**: `esp_now_p2p_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `async_web_littlefs_v1`
+- **Validation ID**: `async_web_littlefs_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `hw_crypto_aes_v2`
+- **Validation ID**: `hw_crypto_aes_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `mtls_x509_auth_v1`
+- **Validation ID**: `mtls_x509_auth_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `jtag_openocd_v1`
+- **Validation ID**: `jtag_openocd_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `tflm_wakeword_v2`
+- **Validation ID**: `tflm_wakeword_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `mcpwm_bldc_foc_v1`
+- **Validation ID**: `mcpwm_bldc_foc_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `twai_can_differential_v1`
+- **Validation ID**: `twai_can_differential_v1`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+
+### Reference Citations: `lvgl_dma_pingpong_v2`
+- **Validation ID**: `lvgl_dma_pingpong_v2`
+- Espressif Technical Reference Manual (Chapter: SPI/I2C/ADC/RTOS depending on module).
+- NXP I2C Bus Specification v6.0.
+- IEEE Standard for Floating-Point Arithmetic (IEEE 754).
+

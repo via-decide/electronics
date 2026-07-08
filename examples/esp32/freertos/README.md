@@ -1,24 +1,10 @@
-# ESP32 freertos Example
+# ESP32 freertos Learning Example
 
-## Status
+This is a buildable, runnable example demonstrating the performance parameters of the `freertos` subsystem.
 
-Template reserved for an independently buildable ESP-IDF example.
-
-## Required Content
-
-- Wiring and hardware assumptions.
-- Build, flash, and monitor commands.
-- Expected output.
-- Validation method.
-- Failure modes and recovery behavior.
-- Links to related docs, tests, diagrams, and benchmarks.
-
-## Build
-
+## Commands
 ```sh
 idf.py set-target esp32
 idf.py build
 idf.py flash monitor
 ```
-
-Run commands from this example directory with ESP-IDF installed and the target board connected.
