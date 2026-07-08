@@ -14,6 +14,7 @@ required_paths=(
   docs/glossary.md
   docs/faq.md
   docs/documentation_generation.md
+  docs/esp32/master_architecture_validation.md
   examples/README.md
   examples/esp32
   examples/esp32/adc_dma/README.md
@@ -54,6 +55,10 @@ required_paths=(
   assets/photos/README.md
   hardware/README.md
   projects/README.md
+  tasks/esp32/README.md
+  tasks/esp32/validation_matrix.yaml
+  tasks/esp32/run_master_validation.sh
+  reports/esp32_master_validation.md
   docs/documentation_generation.md
   examples/README.md
   examples/minimal

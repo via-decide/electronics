@@ -1,0 +1,186 @@
+validation_id: esp32_master_architecture_validation_v1
+repo: via-decide/electronics
+status: ESP32_MASTER_STACK_READY_FOR_VALIDATION
+report: reports/esp32_master_validation.md
+domains:
+  core_environment_diagnostics:
+    - id: esp32_core_installation_v1
+      phase: 1
+      source_files: [README.md, docs/implementation.md]
+      task_file: tasks/esp32/esp32_core_installation_v1.md
+      test_method: Toolchain smoke check; verify ESP-IDF project metadata and baseline flash procedure.
+      required_hardware: ESP32 development board, USB data cable, host with ESP-IDF and optional Arduino IDE.
+      pass_metric: Clean clone can run repository validation and example build instructions are present.
+    - id: esp32_hall_diagnostic_v1
+      phase: 1
+      source_files: [firmware/esp32/power_diagnostics.c]
+      task_file: tasks/esp32/esp32_hall_diagnostic_v1.md
+      test_method: UART telemetry smoke test using silicon diagnostic fallback when Hall sensor is unavailable.
+      required_hardware: ESP32 board with serial monitor.
+      pass_metric: Diagnostic telemetry emits reset reason, boot count, and silicon status over UART or telemetry path.
+    - id: nltm_sensor_linearization_v1
+      phase: 1
+      source_files: [firmware/esp32/nvs_calibration.c]
+      task_file: tasks/esp32/nltm_sensor_linearization_v1.md
+      test_method: Apply calibrated nonlinear transfer mapping and verify stored coefficients with CRC/schema checks.
+      required_hardware: Sensor fixture or simulated calibration vectors.
+      pass_metric: Raw values convert to engineering units within declared calibration error.
+  hardware_interfacing_peripherals:
+    - id: logic_level_shift_v2
+      phase: 2
+      source_files: [hardware/README.md, docs/production.md]
+      task_file: tasks/esp32/logic_level_shift_v2.md
+      test_method: Measure 5V-to-3.3V interface levels and verify no ESP32 GPIO exceeds absolute maximum ratings.
+      required_hardware: Level shifter, 5V peripheral, oscilloscope or DMM.
+      pass_metric: GPIO input remains within 0 V to 3.3 V logic-safe range with margin.
+    - id: ledc_pwm_matrix_v1
+      phase: 2
+      source_files: [docs/implementation.md]
+      task_file: tasks/esp32/ledc_pwm_matrix_v1.md
+      test_method: Generate 5 kHz LEDC PWM and measure duty/frequency stability with logic analyzer.
+      required_hardware: ESP32 board and logic analyzer.
+      pass_metric: PWM frequency and duty remain within configured tolerance without software delay loops.
+    - id: cap_touch_iir_v1
+      phase: 2
+      source_files: [docs/theory.md]
+      task_file: tasks/esp32/cap_touch_iir_v1.md
+      test_method: Capture touch raw counts and verify dynamic IIR filter rejects noise while preserving touch response.
+      required_hardware: ESP32 touch-capable pad and optional noisy environment source.
+      pass_metric: False triggers remain below threshold while valid touches are detected.
+  memory_power_rtos:
+    - id: freertos_dual_core_v1
+      phase: 3
+      source_files: [firmware/esp32/task_topology.c]
+      task_file: tasks/esp32/freertos_dual_core_v1.md
+      test_method: Inspect task priorities/core ownership and stress Wi-Fi while acquisition remains bounded.
+      required_hardware: ESP32 board with Wi-Fi workload.
+      pass_metric: Acquisition queue does not overflow and watchdog remains healthy during network reconnect.
+    - id: deep_sleep_rtc_retention_v2
+      phase: 3
+      source_files: [firmware/esp32/deep_sleep_node.c]
+      task_file: tasks/esp32/deep_sleep_rtc_retention_v2.md
+      test_method: Verify wake reason, retained counter/state, measurement, bounded telemetry, and return to sleep.
+      required_hardware: ESP32 board and current meter.
+      pass_metric: Device always re-enters deep sleep and retained state survives timer wake.
+    - id: nvs_wear_leveling_v1
+      phase: 3
+      source_files: [firmware/esp32/nvs_calibration.c]
+      task_file: tasks/esp32/nvs_wear_leveling_v1.md
+      test_method: Validate schema, CRC, commit behavior, and bounded write policy for configuration blobs.
+      required_hardware: ESP32 board or NVS test partition.
+      pass_metric: Corrupt blobs are rejected and valid configuration survives reboot without repeated writes.
+    - id: hw_timer_isr_v1
+      phase: 3
+      source_files: [firmware/esp32/hardware_timer_scheduler.c]
+      task_file: tasks/esp32/hw_timer_isr_v1.md
+      test_method: Measure timer ISR dispatch and verify ISR only enqueues lightweight events.
+      required_hardware: ESP32 board and logic analyzer optional.
+      pass_metric: Missed deadline counter remains zero at target period under logging load.
+    - id: bod_panic_suppression_v1
+      phase: 3
+      source_files: [firmware/esp32/power_diagnostics.c]
+      task_file: tasks/esp32/bod_panic_suppression_v1.md
+      test_method: Record reset reason and correlate Wi-Fi stress with supply droop; do not blindly disable BOD.
+      required_hardware: ESP32 board, power supply, oscilloscope.
+      pass_metric: Brownout, watchdog, panic, and software resets are distinguishable in diagnostics.
+    - id: ulp_fsm_assembly_v1
+      phase: 3
+      source_files: [docs/production.md]
+      task_file: tasks/esp32/ulp_fsm_assembly_v1.md
+      test_method: Validate ULP threshold polling plan and RTC memory handoff before main-core wake.
+      required_hardware: ESP32 ULP-capable board and low-power measurement setup.
+      pass_metric: Main cores wake only when threshold condition is met.
+  high_speed_data_dsp:
+    - id: i2s_dma_audio_v1
+      phase: 4
+      source_files: [docs/benchmarks.md]
+      task_file: tasks/esp32/i2s_dma_audio_v1.md
+      test_method: Stream 44.1 kHz audio through ping-pong DMA and monitor underrun counters.
+      required_hardware: I2S codec or loopback fixture.
+      pass_metric: No underruns over declared test duration.
+    - id: adc_dma_nyquist_v1
+      phase: 4
+      source_files: [firmware/esp32/adc_dma_continuous.c, docs/esp32/adc_dma_continuous.md]
+      task_file: tasks/esp32/adc_dma_nyquist_v1.md
+      test_method: Sample sine input with ADC DMA and verify Nyquist margin, callback interval, and no loop analogRead path.
+      required_hardware: Signal generator and ESP32 ADC input fixture.
+      pass_metric: Fs > 2*Fmax and callback interval remains predictable under Wi-Fi/MQTT load.
+    - id: spi_dma_throughput_v2
+      phase: 4
+      source_files: [docs/benchmarks.md]
+      task_file: tasks/esp32/spi_dma_throughput_v2.md
+      test_method: Measure VSPI/HSPI DMA throughput and CPU utilization during async full-duplex transfer.
+      required_hardware: SPI peripheral, display, or loopback fixture.
+      pass_metric: DMA transfer meets throughput target without CPU monopolization.
+  networking_web_security:
+    - id: esp32_ota_bootstrap_v2
+      phase: 5
+      source_files: [firmware/esp32/ota_manager.c]
+      task_file: tasks/esp32/esp32_ota_bootstrap_v2.md
+      test_method: Perform OTA update, force failed health check, and verify rollback to previous image.
+      required_hardware: ESP32 board, OTA server, dual OTA partition table.
+      pass_metric: Bad image never becomes permanently active.
+    - id: esp_now_p2p_v2
+      phase: 5
+      source_files: [docs/implementation.md]
+      task_file: tasks/esp32/esp_now_p2p_v2.md
+      test_method: Send peer telemetry without router dependency and measure latency/loss.
+      required_hardware: Two ESP32 boards.
+      pass_metric: Peer transmission latency and packet loss meet target.
+    - id: async_web_littlefs_v1
+      phase: 5
+      source_files: [docs/production.md]
+      task_file: tasks/esp32/async_web_littlefs_v1.md
+      test_method: Serve compressed static LittleFS assets while acquisition task runs.
+      required_hardware: ESP32 board with Wi-Fi and LittleFS partition.
+      pass_metric: Web serving does not block acquisition or overflow queues.
+    - id: hw_crypto_aes_v2
+      phase: 5
+      source_files: [docs/production.md]
+      task_file: tasks/esp32/hw_crypto_aes_v2.md
+      test_method: Validate hardware AES against known test vectors and compare CPU load.
+      required_hardware: ESP32 board.
+      pass_metric: AES output matches known vectors.
+    - id: mtls_x509_auth_v1
+      phase: 5
+      source_files: [firmware/esp32/mqtt_telemetry.c, docs/production.md]
+      task_file: tasks/esp32/mtls_x509_auth_v1.md
+      test_method: Connect to MQTT broker with filesystem-loaded certificate and private key.
+      required_hardware: ESP32 board, broker with X.509 credentials, LittleFS partition.
+      pass_metric: mTLS succeeds without hardcoded private key in firmware source.
+  industrial_edge_systems:
+    - id: jtag_openocd_v1
+      phase: 6
+      source_files: [docs/debugging.md]
+      task_file: tasks/esp32/jtag_openocd_v1.md
+      test_method: Halt, inspect registers/memory, and resume execution through OpenOCD/GDB.
+      required_hardware: ESP32 JTAG adapter and target board.
+      pass_metric: Debugger can halt and resume without corrupting running state.
+    - id: tflm_wakeword_v2
+      phase: 6
+      source_files: [docs/benchmarks.md]
+      task_file: tasks/esp32/tflm_wakeword_v2.md
+      test_method: Run quantized 8-bit wake-word model and record RAM, flash, and inference latency.
+      required_hardware: ESP32 board and audio/input fixture.
+      pass_metric: Inference fits declared memory and latency budget.
+    - id: mcpwm_bldc_foc_v1
+      phase: 6
+      source_files: [docs/production.md]
+      task_file: tasks/esp32/mcpwm_bldc_foc_v1.md
+      test_method: Generate SVPWM with MCPWM dead-time and validate phase outputs before motor connection.
+      required_hardware: ESP32 MCPWM pins, inverter stage or isolated test fixture, oscilloscope.
+      pass_metric: Dead time is enforced and invalid shoot-through states are absent.
+    - id: twai_can_differential_v1
+      phase: 6
+      source_files: [docs/implementation.md]
+      task_file: tasks/esp32/twai_can_differential_v1.md
+      test_method: Send and receive CAN/TWAI frames through external transceiver under bus load.
+      required_hardware: ESP32, CAN transceiver, terminated CAN bus, second CAN node.
+      pass_metric: Frames transmit/receive with expected error counters under load.
+    - id: lvgl_dma_pingpong_v2
+      phase: 6
+      source_files: [docs/benchmarks.md]
+      task_file: tasks/esp32/lvgl_dma_pingpong_v2.md
+      test_method: Render LVGL partial double buffers through SPI DMA and inspect tearing/CPU load.
+      required_hardware: ESP32, SPI display, logic analyzer optional.
+      pass_metric: Display updates without tearing and DMA transfer does not starve control tasks.

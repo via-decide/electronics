@@ -115,6 +115,7 @@ Near-term roadmap:
 - Add hardware validation procedures with oscilloscope and logic-analyzer capture templates.
 - Add benchmark records for timing jitter, RAM, flash, CPU load, throughput, power, boot time, sampling accuracy, and network behavior.
 - Add editable diagrams for boot flow, ADC pipeline, task topology, MQTT state machine, OTA lifecycle, memory layout, interrupt flow, DMA pipeline, power architecture, and signal path.
+- Execute the ESP32 master validation matrix and attach hardware evidence for every validation ID.
 
 ## License
 

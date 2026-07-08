@@ -1,5 +1,6 @@
 # Assets
 
+Assets contain evidence and supporting material used by documentation, validation, and production analysis. Source code and documentation should link to assets instead of embedding large measurement artifacts directly.
 Assets contain evidence and supporting material used by documentation, validation, and production analysis.
 
 | Directory | Content |
