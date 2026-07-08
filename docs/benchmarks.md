@@ -3,6 +3,7 @@
 ## Purpose
 
 Benchmarks document measurable performance and make engineering claims reproducible. Every benchmark must include hardware configuration, firmware version, test conditions, measurement method, result, and pass/fail criteria.
+Benchmarks document measurable performance and make claims reproducible. Every benchmark must include hardware configuration, firmware version, test conditions, measurement method, and pass/fail criteria.
 
 ## Required Benchmark Fields
 
@@ -31,6 +32,18 @@ Benchmarks document measurable performance and make engineering claims reproduci
 | Boot time | Reset-to-main, reset-to-network, reset-to-first-sample. |
 | Sampling accuracy | ADC timing, quantization assumptions, calibration error, signal distortion. |
 | Network performance | Reconnect time, publish latency, drop rate, offline recovery. |
+## Benchmark Categories
+
+| Category | Measurements |
+| --- | --- |
+| CPU usage | Task runtime, ISR frequency, idle percentage. |
+| RAM usage | Heap, stack high-water marks, DMA buffers, PSRAM use. |
+| Flash usage | Binary size, partition use, OTA slot margin. |
+| Throughput | Samples/s, bytes/s, MQTT messages/s, storage writes/s. |
+| Latency | ISR-to-task latency, queue residence, publish delay, boot time. |
+| Timing | Jitter, drift, missed deadlines, timer period accuracy. |
+| Power | Active current, sleep current, radio burst dips, average current. |
+| Reliability | Long-duration uptime, fault recovery time, reset count. |
 
 ## Initial Benchmark Matrix
 
