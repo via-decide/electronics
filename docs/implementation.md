@@ -16,6 +16,11 @@ docs/
   references.md
 examples/
   README.md
+  esp32/
+  stm32/
+  raspberry-pi/
+  linux/
+  power-electronics/
   minimal/
   production/
   advanced/
@@ -23,6 +28,13 @@ tests/
   unit/
   integration/
   stress/
+  hardware/
+  hardware-validation/
+  performance/
+diagrams/
+  architecture/
+  state-machines/
+  signal-flow/
   hardware_validation/
 diagrams/
   architecture/
@@ -33,6 +45,10 @@ diagrams/
 assets/
   images/
   oscilloscope/
+  logic-analyzer/
+  thermal/
+  pcb/
+  photos/
   logic_analyzer/
   datasheets/
   captures/
@@ -86,3 +102,12 @@ Time-critical work must be owned by peripherals, hardware timers, DMA, or high-p
 ## Synchronization Requirement
 
 When implementation changes, the corresponding documentation must be updated in the same change set. Repository validation should fail when required documentation files or directories are missing.
+
+
+## Runnable Example Standard
+
+Subsystem examples must be independently buildable when the target SDK is installed. ESP32 examples use normal ESP-IDF project structure with `CMakeLists.txt`, `sdkconfig.defaults`, and a `main/` component that invokes the related repository firmware module.
+
+## Validation Hierarchy Standard
+
+Tests are organized by purpose: unit tests for host-testable logic, integration tests for component interaction, hardware tests for instrumented boards, performance tests for measured resource and timing behavior, and stress tests for long-duration or fault-injection scenarios.
