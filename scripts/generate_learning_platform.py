@@ -166,7 +166,7 @@ stateDiagram-v2
 """)
 
     # Data Flow Diagram
-    flow_path = os.path.join(REPO_ROOT, 'diagrams', 'data_flow', 'esp32_data_flows.md')
+    flow_path = os.path.join(REPO_ROOT, 'diagrams', 'data-flow', 'esp32_data_flows.md')
     with open(flow_path, 'w', encoding='utf-8') as f:
         f.write("""# ESP32 Validation Subsystems Data Flows
 

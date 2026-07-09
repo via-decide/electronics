@@ -88,3 +88,46 @@ last_error_code
 - Enable flash encryption and secure boot in production builds.
 - Validate AES output against NIST test vectors during manufacturing self-test.
 - Disable JTAG in production efuses to prevent debug-port key extraction.
+
+## Subsystem Production Guidelines
+
+### `nltm_sensor_linearization_v1` — Factory Calibration
+- Store calibration coefficients via NVS with CRC32 and schema versioning.
+- Rate-limit calibration writes to prevent flash wear during manufacturing test loops.
+- Ship safe defaults (gain=1.0, offset=0.0) for uncalibrated units.
+
+### `esp32_ota_bootstrap_v2` — Field Update Safety
+- Never allow a bad image to become permanently active.
+- Health check must validate core services (Wi-Fi, MQTT, sensor init) before confirming image.
+- OTA download must use HTTPS with server certificate pinning.
+- Rollback partition must always contain a known-good image.
+
+### `mtls_x509_auth_v1` — Certificate Provisioning
+- Private keys loaded from encrypted filesystem partition, never compiled into firmware.
+- Factory provisioning writes unique device cert + key pair during manufacturing.
+- Certificate rotation requires OTA firmware update with new cert bundle.
+
+### `mcpwm_bldc_foc_v1` — Motor Drive Safety
+- Dead-time must be validated with oscilloscope on all three phase outputs before connecting motor.
+- Shoot-through detection via current sense feedback and hardware fault pin.
+- Emergency stop: disable all PWM outputs and engage brake resistor.
+
+### `deep_sleep_rtc_retention_v2` — Battery-Powered Deployment
+- Design supply for peak Wi-Fi TX current (up to 500 mA burst).
+- Add bulk capacitors (100 µF+) near ESP32 VDD to absorb current transients.
+- Sleep interval tunable via NVS configuration without firmware update.
+
+### `bod_panic_suppression_v1` — Power Supply Design
+- Never disable BOD in production firmware.
+- Size cable gauge and trace width for peak current without violating BOD threshold.
+- Log brownout events for field diagnosis of inadequate power supplies.
+
+### `twai_can_differential_v1` — CAN Bus Deployment
+- Require 120Ω termination resistors at each physical bus end.
+- Verify differential voltage levels (CAN_H − CAN_L) with oscilloscope.
+- Set CAN bus speed to match all nodes; mismatched baud rates corrupt the bus.
+
+### `hw_crypto_aes_v2` — Security Hardening
+- Enable flash encryption and secure boot in production builds.
+- Validate AES output against NIST test vectors during manufacturing self-test.
+- Disable JTAG in production efuses to prevent debug-port key extraction.
