@@ -35,10 +35,10 @@ diagrams/
   architecture/
   state-machines/
   signal-flow/
-  hardware_validation/
+  hardware-validation/
 diagrams/
   architecture/
-  state_machine/
+  state-machines/
   data_flow/
   timing/
   pcb/
@@ -49,7 +49,7 @@ assets/
   thermal/
   pcb/
   photos/
-  logic_analyzer/
+  logic-analyzer/
   datasheets/
   captures/
 ```

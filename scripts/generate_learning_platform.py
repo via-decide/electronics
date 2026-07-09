@@ -143,13 +143,13 @@ def generate_docs():
 
 def generate_diagrams():
     # Write mermaid files for state machines, data flow, timing, and interactions
-    os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'state_machine'), exist_ok=True)
-    os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'data_flow'), exist_ok=True)
+    os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'state-machines'), exist_ok=True)
+    os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'data-flow'), exist_ok=True)
     os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'timing'), exist_ok=True)
     os.makedirs(os.path.join(REPO_ROOT, 'diagrams', 'pcb'), exist_ok=True)
 
     # State Machine Diagram
-    state_path = os.path.join(REPO_ROOT, 'diagrams', 'state_machine', 'esp32_state_machines.md')
+    state_path = os.path.join(REPO_ROOT, 'diagrams', 'state-machines', 'esp32_state_machines.md')
     with open(state_path, 'w', encoding='utf-8') as f:
         f.write("""# ESP32 Validation Subsystems State Machines
 

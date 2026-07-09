@@ -51,7 +51,7 @@ Verify fix with regression test and benchmark
 Debug evidence should be committed or referenced using the supporting asset folders:
 
 - `assets/oscilloscope/` for supply, reset, analog, and timing captures.
-- `assets/logic_analyzer/` for protocol traces.
+- `assets/logic-analyzer/` for protocol traces.
 - `assets/captures/` for logs, monitor output, traces, and benchmark raw data.
 - `diagrams/timing/` for timing reconstructions.
 

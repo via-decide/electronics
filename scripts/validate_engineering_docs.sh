@@ -16,7 +16,7 @@ required_paths=(
   docs/documentation_generation.md
   docs/esp32/master_architecture_validation.md
   examples/README.md
-  examples/esp32
+  examples/esp32/README.md
   examples/esp32/adc_dma/README.md
   examples/esp32/freertos/README.md
   examples/esp32/mqtt/README.md
@@ -44,6 +44,7 @@ required_paths=(
   diagrams/pcb/power_architecture.md
   diagrams/signal-flow/README.md
   diagrams/signal-flow/adc_dma_pipeline.md
+  diagrams/data-flow/README.md
   diagrams/state-machines/README.md
   diagrams/state-machines/ota_lifecycle.md
   assets/README.md
@@ -53,34 +54,14 @@ required_paths=(
   assets/thermal/README.md
   assets/pcb/README.md
   assets/photos/README.md
+  assets/datasheets/README.md
+  assets/captures/README.md
   hardware/README.md
   projects/README.md
   tasks/esp32/README.md
   tasks/esp32/validation_matrix.yaml
   tasks/esp32/run_master_validation.sh
   reports/esp32_master_validation.md
-  docs/documentation_generation.md
-  examples/README.md
-  examples/minimal
-  examples/production
-  examples/advanced
-  tests/README.md
-  tests/unit
-  tests/integration
-  tests/stress
-  tests/hardware_validation
-  diagrams/README.md
-  diagrams/architecture
-  diagrams/state_machine
-  diagrams/data_flow
-  diagrams/timing
-  diagrams/pcb
-  assets/README.md
-  assets/images
-  assets/oscilloscope
-  assets/logic_analyzer
-  assets/datasheets
-  assets/captures
 )
 
 missing=0
@@ -96,14 +77,13 @@ required_markers=(
   ENGINEERING_KNOWLEDGE_BASE_STANDARDIZED
 )
 for marker in "${required_markers[@]}"; do
-  if ! rg -q "$marker" docs README.md; then
-  if ! rg -q "$marker" docs; then
+  if ! grep -q "$marker" docs/*.md README.md 2>/dev/null; then
     printf 'missing required documentation marker: %s\n' "$marker" >&2
     missing=1
   fi
 done
 
-if find examples tests diagrams assets -name .gitkeep -print -quit | rg -q .; then
+if find examples tests diagrams assets -name .gitkeep -print -quit | grep -q .; then
   printf 'placeholder .gitkeep files remain under examples/tests/diagrams/assets; use meaningful README.md files instead\n' >&2
   missing=1
 fi
