@@ -19,10 +19,3 @@ The documentation tree is the primary learning interface for the repository. It 
 ## Feature Documents
 
 Feature-specific documents live below platform directories such as `docs/esp32/`. They should teach the engineering principles behind the implementation, preserve the original task, and link to examples, tests, diagrams, benchmarks, and references.
-
-## Engineering platform expansion
-
-- [Authoritative research policy](authoritative-research-policy.md) defines acceptable evidence, claim classification, and conflict resolution.
-- [Platforms](platforms/) contains platform dossiers for ESP32, ESP8266, STM32, RP2040, AVR, PIC, 8051, Arm Cortex, RISC-V, and Arduino.
-- [Peripherals](peripherals/) contains overview, theory, implementation, debugging, production, validation, and references pages for core embedded peripherals.
-- [Engineering index](../engineering-index.md) maps theory to implementation, examples, benchmarks, validation, reports, source code, and references.
