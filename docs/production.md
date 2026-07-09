@@ -45,180 +45,46 @@ heap_free_minimum
 last_error_code
 ```
 
+
 ## Subsystem Production Guidelines
 
-### Production Guidelines: `esp32_core_installation_v1`
-- **Validation ID Reference**: `esp32_core_installation_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `nltm_sensor_linearization_v1` — Factory Calibration
+- Store calibration coefficients via NVS with CRC32 and schema versioning.
+- Rate-limit calibration writes to prevent flash wear during manufacturing test loops.
+- Ship safe defaults (gain=1.0, offset=0.0) for uncalibrated units.
 
-### Production Guidelines: `esp32_hall_diagnostic_v1`
-- **Validation ID Reference**: `esp32_hall_diagnostic_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `esp32_ota_bootstrap_v2` — Field Update Safety
+- Never allow a bad image to become permanently active.
+- Health check must validate core services (Wi-Fi, MQTT, sensor init) before confirming image.
+- OTA download must use HTTPS with server certificate pinning.
+- Rollback partition must always contain a known-good image.
 
-### Production Guidelines: `nltm_sensor_linearization_v1`
-- **Validation ID Reference**: `nltm_sensor_linearization_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `mtls_x509_auth_v1` — Certificate Provisioning
+- Private keys loaded from encrypted filesystem partition, never compiled into firmware.
+- Factory provisioning writes unique device cert + key pair during manufacturing.
+- Certificate rotation requires OTA firmware update with new cert bundle.
 
-### Production Guidelines: `logic_level_shift_v2`
-- **Validation ID Reference**: `logic_level_shift_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `mcpwm_bldc_foc_v1` — Motor Drive Safety
+- Dead-time must be validated with oscilloscope on all three phase outputs before connecting motor.
+- Shoot-through detection via current sense feedback and hardware fault pin.
+- Emergency stop: disable all PWM outputs and engage brake resistor.
 
-### Production Guidelines: `ledc_pwm_matrix_v1`
-- **Validation ID Reference**: `ledc_pwm_matrix_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `deep_sleep_rtc_retention_v2` — Battery-Powered Deployment
+- Design supply for peak Wi-Fi TX current (up to 500 mA burst).
+- Add bulk capacitors (100 µF+) near ESP32 VDD to absorb current transients.
+- Sleep interval tunable via NVS configuration without firmware update.
 
-### Production Guidelines: `cap_touch_iir_v1`
-- **Validation ID Reference**: `cap_touch_iir_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `bod_panic_suppression_v1` — Power Supply Design
+- Never disable BOD in production firmware.
+- Size cable gauge and trace width for peak current without violating BOD threshold.
+- Log brownout events for field diagnosis of inadequate power supplies.
 
-### Production Guidelines: `freertos_dual_core_v1`
-- **Validation ID Reference**: `freertos_dual_core_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
+### `twai_can_differential_v1` — CAN Bus Deployment
+- Require 120Ω termination resistors at each physical bus end.
+- Verify differential voltage levels (CAN_H − CAN_L) with oscilloscope.
+- Set CAN bus speed to match all nodes; mismatched baud rates corrupt the bus.
 
-### Production Guidelines: `deep_sleep_rtc_retention_v2`
-- **Validation ID Reference**: `deep_sleep_rtc_retention_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `nvs_wear_leveling_v1`
-- **Validation ID Reference**: `nvs_wear_leveling_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `hw_timer_isr_v1`
-- **Validation ID Reference**: `hw_timer_isr_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `bod_panic_suppression_v1`
-- **Validation ID Reference**: `bod_panic_suppression_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `ulp_fsm_assembly_v1`
-- **Validation ID Reference**: `ulp_fsm_assembly_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `i2s_dma_audio_v1`
-- **Validation ID Reference**: `i2s_dma_audio_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `adc_dma_nyquist_v1`
-- **Validation ID Reference**: `adc_dma_nyquist_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `spi_dma_throughput_v2`
-- **Validation ID Reference**: `spi_dma_throughput_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `esp32_ota_bootstrap_v2`
-- **Validation ID Reference**: `esp32_ota_bootstrap_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `esp_now_p2p_v2`
-- **Validation ID Reference**: `esp_now_p2p_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `async_web_littlefs_v1`
-- **Validation ID Reference**: `async_web_littlefs_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `hw_crypto_aes_v2`
-- **Validation ID Reference**: `hw_crypto_aes_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `mtls_x509_auth_v1`
-- **Validation ID Reference**: `mtls_x509_auth_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `jtag_openocd_v1`
-- **Validation ID Reference**: `jtag_openocd_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `tflm_wakeword_v2`
-- **Validation ID Reference**: `tflm_wakeword_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `mcpwm_bldc_foc_v1`
-- **Validation ID Reference**: `mcpwm_bldc_foc_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `twai_can_differential_v1`
-- **Validation ID Reference**: `twai_can_differential_v1`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
-### Production Guidelines: `lvgl_dma_pingpong_v2`
-- **Validation ID Reference**: `lvgl_dma_pingpong_v2`
-- **Manufacturing & Calibration**:
-  Specifies NVS wear-leveling limits, factory calibration offset calculations, and firmware OTA update safety partitions.
-- **Reliability Criteria**:
-  Maintains system integrity under operational stress (e.g. brownout panic suppression levels).
-
+### `hw_crypto_aes_v2` — Security Hardening
+- Enable flash encryption and secure boot in production builds.
+- Validate AES output against NIST test vectors during manufacturing self-test.
+- Disable JTAG in production efuses to prevent debug-port key extraction.
