@@ -1,31 +1,19 @@
-# Engineering Reference Index
+# Engineering index
 
-This index traces every validation ID to its corresponding source files, task files, theory, examples, and benchmarks.
+This index links component knowledge from theory to production evidence. A component is not considered production-ready until every column has a reviewed artifact.
 
-| Validation ID | Task file | Theory reference | Implementation guide | Example folder | Source Code |
-| --- | --- | --- | --- | --- | --- |
-| `esp32_core_installation_v1` | [Task file](tasks/esp32/esp32_core_installation_v1.md) | [Theory](docs/theory.md#subsystem-theory-esp32-core-installation-v1) | [Implementation](docs/implementation.md#implementation-guide-esp32-core-installation-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `esp32_hall_diagnostic_v1` | [Task file](tasks/esp32/esp32_hall_diagnostic_v1.md) | [Theory](docs/theory.md#subsystem-theory-esp32-hall-diagnostic-v1) | [Implementation](docs/implementation.md#implementation-guide-esp32-hall-diagnostic-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `nltm_sensor_linearization_v1` | [Task file](tasks/esp32/nltm_sensor_linearization_v1.md) | [Theory](docs/theory.md#subsystem-theory-nltm-sensor-linearization-v1) | [Implementation](docs/implementation.md#implementation-guide-nltm-sensor-linearization-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `logic_level_shift_v2` | [Task file](tasks/esp32/logic_level_shift_v2.md) | [Theory](docs/theory.md#subsystem-theory-logic-level-shift-v2) | [Implementation](docs/implementation.md#implementation-guide-logic-level-shift-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `ledc_pwm_matrix_v1` | [Task file](tasks/esp32/ledc_pwm_matrix_v1.md) | [Theory](docs/theory.md#subsystem-theory-ledc-pwm-matrix-v1) | [Implementation](docs/implementation.md#implementation-guide-ledc-pwm-matrix-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `cap_touch_iir_v1` | [Task file](tasks/esp32/cap_touch_iir_v1.md) | [Theory](docs/theory.md#subsystem-theory-cap-touch-iir-v1) | [Implementation](docs/implementation.md#implementation-guide-cap-touch-iir-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `freertos_dual_core_v1` | [Task file](tasks/esp32/freertos_dual_core_v1.md) | [Theory](docs/theory.md#subsystem-theory-freertos-dual-core-v1) | [Implementation](docs/implementation.md#implementation-guide-freertos-dual-core-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `deep_sleep_rtc_retention_v2` | [Task file](tasks/esp32/deep_sleep_rtc_retention_v2.md) | [Theory](docs/theory.md#subsystem-theory-deep-sleep-rtc-retention-v2) | [Implementation](docs/implementation.md#implementation-guide-deep-sleep-rtc-retention-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `nvs_wear_leveling_v1` | [Task file](tasks/esp32/nvs_wear_leveling_v1.md) | [Theory](docs/theory.md#subsystem-theory-nvs-wear-leveling-v1) | [Implementation](docs/implementation.md#implementation-guide-nvs-wear-leveling-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `hw_timer_isr_v1` | [Task file](tasks/esp32/hw_timer_isr_v1.md) | [Theory](docs/theory.md#subsystem-theory-hw-timer-isr-v1) | [Implementation](docs/implementation.md#implementation-guide-hw-timer-isr-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `bod_panic_suppression_v1` | [Task file](tasks/esp32/bod_panic_suppression_v1.md) | [Theory](docs/theory.md#subsystem-theory-bod-panic-suppression-v1) | [Implementation](docs/implementation.md#implementation-guide-bod-panic-suppression-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `ulp_fsm_assembly_v1` | [Task file](tasks/esp32/ulp_fsm_assembly_v1.md) | [Theory](docs/theory.md#subsystem-theory-ulp-fsm-assembly-v1) | [Implementation](docs/implementation.md#implementation-guide-ulp-fsm-assembly-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `i2s_dma_audio_v1` | [Task file](tasks/esp32/i2s_dma_audio_v1.md) | [Theory](docs/theory.md#subsystem-theory-i2s-dma-audio-v1) | [Implementation](docs/implementation.md#implementation-guide-i2s-dma-audio-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `adc_dma_nyquist_v1` | [Task file](tasks/esp32/adc_dma_nyquist_v1.md) | [Theory](docs/theory.md#subsystem-theory-adc-dma-nyquist-v1) | [Implementation](docs/implementation.md#implementation-guide-adc-dma-nyquist-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `spi_dma_throughput_v2` | [Task file](tasks/esp32/spi_dma_throughput_v2.md) | [Theory](docs/theory.md#subsystem-theory-spi-dma-throughput-v2) | [Implementation](docs/implementation.md#implementation-guide-spi-dma-throughput-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `esp32_ota_bootstrap_v2` | [Task file](tasks/esp32/esp32_ota_bootstrap_v2.md) | [Theory](docs/theory.md#subsystem-theory-esp32-ota-bootstrap-v2) | [Implementation](docs/implementation.md#implementation-guide-esp32-ota-bootstrap-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `esp_now_p2p_v2` | [Task file](tasks/esp32/esp_now_p2p_v2.md) | [Theory](docs/theory.md#subsystem-theory-esp-now-p2p-v2) | [Implementation](docs/implementation.md#implementation-guide-esp-now-p2p-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `async_web_littlefs_v1` | [Task file](tasks/esp32/async_web_littlefs_v1.md) | [Theory](docs/theory.md#subsystem-theory-async-web-littlefs-v1) | [Implementation](docs/implementation.md#implementation-guide-async-web-littlefs-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `hw_crypto_aes_v2` | [Task file](tasks/esp32/hw_crypto_aes_v2.md) | [Theory](docs/theory.md#subsystem-theory-hw-crypto-aes-v2) | [Implementation](docs/implementation.md#implementation-guide-hw-crypto-aes-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `mtls_x509_auth_v1` | [Task file](tasks/esp32/mtls_x509_auth_v1.md) | [Theory](docs/theory.md#subsystem-theory-mtls-x509-auth-v1) | [Implementation](docs/implementation.md#implementation-guide-mtls-x509-auth-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `jtag_openocd_v1` | [Task file](tasks/esp32/jtag_openocd_v1.md) | [Theory](docs/theory.md#subsystem-theory-jtag-openocd-v1) | [Implementation](docs/implementation.md#implementation-guide-jtag-openocd-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `tflm_wakeword_v2` | [Task file](tasks/esp32/tflm_wakeword_v2.md) | [Theory](docs/theory.md#subsystem-theory-tflm-wakeword-v2) | [Implementation](docs/implementation.md#implementation-guide-tflm-wakeword-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `mcpwm_bldc_foc_v1` | [Task file](tasks/esp32/mcpwm_bldc_foc_v1.md) | [Theory](docs/theory.md#subsystem-theory-mcpwm-bldc-foc-v1) | [Implementation](docs/implementation.md#implementation-guide-mcpwm-bldc-foc-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `twai_can_differential_v1` | [Task file](tasks/esp32/twai_can_differential_v1.md) | [Theory](docs/theory.md#subsystem-theory-twai-can-differential-v1) | [Implementation](docs/implementation.md#implementation-guide-twai-can-differential-v1) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
-| `lvgl_dma_pingpong_v2` | [Task file](tasks/esp32/lvgl_dma_pingpong_v2.md) | [Theory](docs/theory.md#subsystem-theory-lvgl-dma-pingpong-v2) | [Implementation](docs/implementation.md#implementation-guide-lvgl-dma-pingpong-v2) | [Example](examples/esp32/) | [Code](firmware/esp32/) |
+| Component | Theory | Implementation | Example | Benchmark | Validation | Reports | Source code | References |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| ESP32 | docs/platforms/esp32/README.md | docs/implementation.md | examples/esp32/README.md | docs/benchmarks.md | tests/hardware_validation/README.md | reports/esp32_master_validation.md | examples/esp32/ | docs/references.md |
+| ADC | docs/peripherals/adc/theory.md | docs/peripherals/adc/implementation.md | examples/esp32/adc_dma/README.md | benchmarks/README.md | docs/peripherals/adc/validation.md | reports/electrical-validation/README.md | tasks/esp32/ | docs/peripherals/adc/references.md |
+| SPI DMA | docs/peripherals/spi/implementation.md | docs/peripherals/dma/implementation.md | examples/esp32/spi_dma/README.md | benchmarks/README.md | docs/peripherals/spi/validation.md | reports/benchmark-summary/README.md | examples/esp32/spi_dma/ | docs/peripherals/spi/references.md |
+| OTA | docs/peripherals/ota/theory.md | docs/peripherals/ota/implementation.md | examples/esp32/ota/README.md | benchmarks/README.md | docs/peripherals/ota/validation.md | reports/firmware-validation/README.md | examples/esp32/ota/ | docs/peripherals/ota/references.md |
+
+## Decision classification
+
+Every major engineering decision must be labelled as one of:
+
+- **Established engineering practice**: supported by textbooks, standards, mathematical derivation, or repeated measured evidence.
+- **Vendor recommendation**: supported by device vendor datasheets, reference manuals, application notes, design guidelines, or errata.
+- **Daxini implementation decision**: a repository-specific architecture, coding, validation, or production choice.
+- **Future proposal**: intentionally unimplemented or unvalidated work.
