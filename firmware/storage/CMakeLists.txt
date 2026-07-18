@@ -1,0 +1,8 @@
+add_library(storage nand/nand.c nand/nand_commands.c nand/nand_status.c nand/nand_bad_blocks.c nand/nand_hal_mock.c ftl/ftl.c ftl/ftl_mapping.c ftl/ftl_allocator.c ftl/ftl_gc.c ftl/ftl_wear.c ftl/ftl_trim.c ftl/ftl_journal.c ftl/ftl_checkpoint.c ftl/ftl_recovery.c ftl/ftl_metrics.c)
+target_include_directories(storage PUBLIC include)
+if(ENABLE_PHYSICAL_HAL)
+  target_sources(storage PRIVATE nand/nand_hal_hardware_stub.c)
+endif()
+add_executable(storage_tests tests/integration/test_storage.c)
+target_link_libraries(storage_tests PRIVATE storage)
+add_test(NAME storage_tests COMMAND storage_tests)

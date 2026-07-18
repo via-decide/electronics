@@ -1,0 +1,15 @@
+evidence_id: SYNTHETIC-POWER-001
+fixture_id: W25N01JW_LAB_FIXTURE
+board_revision: A0
+firmware_commit: '0000000'
+nand_profile_sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+instrument: {model: SYNTHETIC_EXAMPLE, calibration_status: SYNTHETIC_EXAMPLE}
+raw_artifact_path: examples/synthetic_power.txt
+sha256: 3c1e79825287ad56cf4dc687c4838d401014a0c8e911e8c039779c8e7b2baf49
+acquisition_timestamp: '2026-01-01T00:00:00Z'
+procedure: power_up
+measured_values: [{name: vcc, value: 1.8, unit: V}]
+limits: [{name: vcc, min: 1.7, max: 1.95, unit: V}]
+result: PASS
+human_reviewer: SYNTHETIC_EXAMPLE
+classification: SYNTHETIC_EXAMPLE

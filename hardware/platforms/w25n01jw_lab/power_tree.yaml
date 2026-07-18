@@ -1,0 +1,2 @@
+rails:
+  - {name: VCC_NAND, regulator: TPS7A20-1V8, voltage_v: 1.8, current_limit_ma: 150}

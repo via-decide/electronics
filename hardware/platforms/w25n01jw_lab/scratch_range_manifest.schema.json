@@ -1,0 +1,1 @@
+{"type":"object","required":["ranges"],"properties":{"ranges":{"type":"array"}}}

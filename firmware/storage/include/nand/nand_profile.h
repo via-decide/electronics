@@ -1,0 +1,8 @@
+#ifndef NAND_PROFILE_H
+#define NAND_PROFILE_H
+#define NAND_PROFILE_HASH "synthetic_1g"
+#define NAND_PAGE_SIZE 512u
+#define NAND_PAGES_PER_BLOCK 8u
+#define NAND_BLOCKS 16u
+#define NAND_REQUIRED_TIMEOUT_US 2000u
+#endif
