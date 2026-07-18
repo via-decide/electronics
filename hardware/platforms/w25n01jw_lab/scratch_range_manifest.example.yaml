@@ -1,0 +1,2 @@
+ranges:
+  - {name: scratch, first_block: 8, last_block: 15, destructive_allowed: true}

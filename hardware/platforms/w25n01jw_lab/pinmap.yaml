@@ -1,0 +1,10 @@
+connector: J1
+pins:
+  - {pin: 1, signal: CS_N, voltage: 1.8}
+  - {pin: 2, signal: MISO, voltage: 1.8}
+  - {pin: 3, signal: WP_N, voltage: 1.8}
+  - {pin: 4, signal: GND, voltage: 0}
+  - {pin: 5, signal: MOSI, voltage: 1.8}
+  - {pin: 6, signal: CLK, voltage: 1.8}
+  - {pin: 7, signal: HOLD_N, voltage: 1.8}
+  - {pin: 8, signal: VCC, voltage: 1.8}

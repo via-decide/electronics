@@ -1,0 +1,28 @@
+fixture_id: W25N01JW_LAB_FIXTURE
+board_revision: A0
+status: DESIGN_RULES_PASSED
+nand:
+  ordering_code: W25N01JWZEIQ
+  package: WSON-8
+  profile_sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  io_voltage_v: 1.8
+power:
+  regulator_part: TPS7A20-1V8
+  nand_voltage_v: 1.8
+  host_io_voltage_v: 3.3
+  current_limit_ma: 150
+  emergency_stop: true
+  independently_powered_logging: true
+interface:
+  level_shifter: true
+  direction_policy: bidirectional_validated
+  validated_logic_thresholds: true
+test_points: [VCC_NAND, GND, SPI_CLK, SPI_IO0, SPI_IO1]
+connectors: [{name: J1, pins: 8}]
+allowed_nand_ranges: [{name: scratch, first_block: 8, last_block: 15}]
+exclusions:
+  factory_bad_blocks: [0]
+  metadata_blocks: [1,2]
+  recovery_blocks: [3,4]
+evidence_status: DESIGN_RULES_PASSED
+required_evidence: [power_up, signal_integrity, read_only_bringup]

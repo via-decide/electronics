@@ -1,0 +1,7 @@
+add_library(ssd_lab_core src/status.c src/platform_host.c)
+target_include_directories(ssd_lab_core PUBLIC include)
+add_executable(ssd_lab_app app/main.c)
+target_link_libraries(ssd_lab_app PRIVATE ssd_lab_core storage)
+add_executable(ssd_lab_status_tests tests/test_status.c)
+target_link_libraries(ssd_lab_status_tests PRIVATE ssd_lab_core)
+add_test(NAME ssd_lab_status COMMAND ssd_lab_status_tests)

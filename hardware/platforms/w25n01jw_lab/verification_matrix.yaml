@@ -1,0 +1,2 @@
+required_for_bench_verified: [power_up, signal_integrity, read_only_bringup]
+synthetic_counts_for_verification: false

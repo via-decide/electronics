@@ -1,0 +1,1 @@
+{"type":"object","required":["fixture_id","board_revision","status","nand","power","interface","allowed_nand_ranges","evidence_status"],"properties":{"status":{"enum":["DESIGN_DRAFT","DESIGN_RULES_PASSED","ASSEMBLED_UNVERIFIED","BENCH_PARTIAL","BENCH_VERIFIED","REJECTED"]}}}

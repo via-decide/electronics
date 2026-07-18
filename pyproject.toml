@@ -1,0 +1,8 @@
+[project]
+name = "electronics-workspace"
+version = "0.1.0"
+requires-python = "==3.11.*"
+dependencies = ["jsonschema==4.23.0", "PyYAML==6.0.2", "pytest==8.3.3", "hypothesis==6.112.1"]
+[tool.pytest.ini_options]
+pythonpath = ["simulator/ssd/src"]
+testpaths = ["simulator/ssd/tests"]

@@ -1,0 +1,6 @@
+name: synthetic_1g
+source: synthetic_ci
+geometry: {dies: 1, blocks_per_die: 16, pages_per_block: 8, page_size: 512, spare_size: 16}
+timing_us: {read: 50, program: 300, erase: 2000}
+ecc: {corrected_threshold: 4}
+opcodes: {read_id: 159, reset: 255, write_enable: 6, program_execute: 16, block_erase: 216}

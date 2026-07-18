@@ -1,0 +1,4 @@
+python 3.11.9
+cmake 3.25.1
+gcc 12.2.0
+ninja 1.11.1

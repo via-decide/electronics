@@ -1,0 +1,1 @@
+{"type":"object","required":["evidence_id","fixture_id","board_revision","firmware_commit","nand_profile_sha256","instrument","raw_artifact_path","sha256","acquisition_timestamp","procedure","measured_values","limits","result","human_reviewer","classification"],"properties":{"classification":{"enum":["REAL_MEASUREMENT","SYNTHETIC_EXAMPLE"]},"result":{"enum":["PASS","FAIL"]}}}

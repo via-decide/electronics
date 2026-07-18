@@ -1,0 +1,1 @@
+{"version":6,"configurePresets":[{"name":"host","displayName":"Host firmware","generator":"Unix Makefiles","binaryDir":"${sourceDir}/build/host","cacheVariables":{"CMAKE_BUILD_TYPE":"Debug","ENABLE_PHYSICAL_HAL":"OFF"}}],"buildPresets":[{"name":"host","configurePreset":"host"}],"testPresets":[{"name":"host","configurePreset":"host","output":{"outputOnFailure":true}}]}

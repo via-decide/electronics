@@ -1,0 +1,8 @@
+#include <string.h>
+#include "ftl/ftl.h"
+int ftl_init(ftl_t *f, unsigned reserve){ if(!f||reserve==0) return -1; for(unsigned i=0;i<FTL_MAX_LPN;i++) f->l2p[i]=-1; for(unsigned i=0;i<FTL_MAX_PPN;i++){ f->p2l[i]=-1; f->state[i]=(i>=FTL_MAX_PPN-reserve)?PPN_RESERVED:PPN_FREE; } f->next_ppn=0; f->emergency_reserve=reserve; memset(&f->metrics,0,sizeof(f->metrics)); return 0; }
+static int alloc(ftl_t *f){ for(unsigned i=0;i<FTL_MAX_PPN-f->emergency_reserve;i++){ unsigned p=(f->next_ppn+i)%(FTL_MAX_PPN-f->emergency_reserve); if(f->state[p]==PPN_FREE){ f->next_ppn=p+1; return (int)p; }} return -1; }
+int ftl_write(ftl_t *f, uint32_t lpn, const uint8_t *data){ (void)data; if(!f||lpn>=FTL_MAX_LPN) return -1; int p=alloc(f); if(p<0) return -2; if(f->l2p[lpn]>=0){ f->state[f->l2p[lpn]]=PPN_INVALID; f->p2l[f->l2p[lpn]]=-1; } f->l2p[lpn]=p; f->p2l[p]=(int32_t)lpn; f->state[p]=PPN_VALID; f->metrics.host_writes++; f->metrics.media_writes++; return ftl_check_invariants(f); }
+int ftl_read(ftl_t *f, uint32_t lpn, uint8_t *data){ (void)data; return (!f||lpn>=FTL_MAX_LPN||f->l2p[lpn]<0)?-1:0; }
+int ftl_trim(ftl_t *f, uint32_t lpn){ if(!f||lpn>=FTL_MAX_LPN) return -1; if(f->l2p[lpn]>=0){ f->state[f->l2p[lpn]]=PPN_INVALID; f->p2l[f->l2p[lpn]]=-1; f->l2p[lpn]=-1; } f->metrics.trims++; return 0; }
+int ftl_check_invariants(const ftl_t *f){ if(!f) return -1; for(unsigned l=0;l<FTL_MAX_LPN;l++){ int p=f->l2p[l]; if(p>=0 && (p>= (int)FTL_MAX_PPN || f->p2l[p]!=(int)l || f->state[p]!=PPN_VALID)) return -2; } for(unsigned p=0;p<FTL_MAX_PPN;p++){ int l=f->p2l[p]; if(l>=0 && (l>=(int)FTL_MAX_LPN || f->l2p[l]!=(int)p)) return -3; if(f->state[p]==PPN_RESERVED && p<FTL_MAX_PPN-f->emergency_reserve) return -4; } return 0; }
