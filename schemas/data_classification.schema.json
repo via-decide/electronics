@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "data_classification.schema.json",
+  "type": "object",
+  "required": [
+    "object_id",
+    "project_id",
+    "board_revision",
+    "classification",
+    "owner",
+    "tenant",
+    "source",
+    "content_hash",
+    "redaction_state",
+    "encryption_state",
+    "retention_policy",
+    "cloud_permission",
+    "approval_record"
+  ],
+  "properties": {
+    "classification": {
+      "enum": [
+        "PUBLIC_SOURCE",
+        "PUBLIC_DERIVED",
+        "INTERNAL",
+        "CONFIDENTIAL",
+        "SECRET",
+        "HARDWARE_CONTROL",
+        "AUTHORITATIVE_EVIDENCE",
+        "RECONSTRUCTIBLE"
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cloud_result.schema.json",
+  "type": "object",
+  "required": [
+    "state",
+    "request_hash",
+    "findings"
+  ],
+  "properties": {
+    "state": {
+      "enum": [
+        "CANDIDATE",
+        "REVIEW_REQUIRED",
+        "REJECTED"
+      ]
+    },
+    "authoritative_state_changes": {
+      "maxItems": 0
+    }
+  }
+}
