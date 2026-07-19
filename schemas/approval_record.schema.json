@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "approval_record.schema.json",
+  "type": "object",
+  "required": [
+    "approval_id",
+    "approver",
+    "role",
+    "decision",
+    "timestamp",
+    "object_ids"
+  ],
+  "properties": {
+    "decision": {
+      "enum": [
+        "APPROVED",
+        "REJECTED",
+        "REVOKED"
+      ]
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cloud_job.schema.json",
+  "type": "object",
+  "required": [
+    "job_id",
+    "project_id",
+    "board_revision",
+    "requesting_user",
+    "provider",
+    "model_or_parser_id",
+    "input_object_hashes",
+    "classification_decisions",
+    "approval",
+    "request_hash",
+    "created_time",
+    "expiry",
+    "audit_events"
+  ],
+  "properties": {
+    "state": {
+      "enum": [
+        "DRAFT",
+        "AWAITING_APPROVAL",
+        "APPROVED",
+        "REDACTING",
+        "ENCRYPTING",
+        "QUEUED",
+        "RUNNING",
+        "RESULT_RECEIVED",
+        "VALIDATING",
+        "REVIEW_REQUIRED",
+        "ACCEPTED",
+        "REJECTED",
+        "CANCELLED",
+        "FAILED",
+        "EXPIRED"
+      ]
+    }
+  }
+}

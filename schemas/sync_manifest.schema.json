@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sync_manifest.schema.json",
+  "type": "object",
+  "required": [
+    "tenant",
+    "project_id",
+    "board_revision",
+    "version",
+    "encrypted_blobs",
+    "tombstones"
+  ],
+  "properties": {
+    "encrypted_blobs": {
+      "type": "object"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

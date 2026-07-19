@@ -7,7 +7,7 @@ STORAGE_BACKEND ?= simulator
 STORAGE_PROFILE ?= synthetic_1g
 STORAGE_SEED ?= 1
 
-.PHONY: bootstrap format-check lint build test verify clean ssd-sim-verify storage-verify
+.PHONY: bootstrap format-check lint build test verify clean ssd-sim-verify storage-verify cloud-test local-only-test hybrid-test security-test
 bootstrap:
 	./tools/bootstrap.sh
 format-check:
@@ -30,3 +30,15 @@ ssd-sim-verify:
 	PYTHONPATH=simulator/ssd/src $(PYTHON) -m ssd_sim.cli campaign --profile simulator/ssd/profiles/$(SSD_SIM_PROFILE).yaml --seed $(SSD_SIM_SEED) --operations 200 --out artifacts/ssd-sim-campaign.json
 storage-verify: build
 	$(PYTHON) tools/run_storage_campaign.py --backend $(STORAGE_BACKEND) --profile $(STORAGE_PROFILE) --seed $(STORAGE_SEED)
+
+cloud-test:
+	PYTHONPATH=. $(PYTHON) -m pytest tests/cloud
+
+local-only-test:
+	CLOUD_PROFILE=LOCAL_ONLY PYTHONPATH=. $(PYTHON) -m pytest tests/cloud -k "local_only or hardware"
+
+hybrid-test:
+	CLOUD_PROFILE=HYBRID_OPT_IN PYTHONPATH=. $(PYTHON) -m pytest tests/cloud -k "policy or jobs or sync or encryption"
+
+security-test:
+	PYTHONPATH=. $(PYTHON) -m pytest tests/cloud -k "denied or redaction or encryption or result_gate or hardware"
