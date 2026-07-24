@@ -2,6 +2,12 @@
 
 `via-decide/electronics` is an engineering knowledge base for embedded systems, electronics architecture, firmware design, validation, and production readiness. The repository is intended to be both a working implementation space and a learning handbook: every design should explain the engineering problem, the theoretical basis, the implementation architecture, the validation method, and the production risks.
 
+## New to physical electronics?
+
+You have an ESP32 or RP2040, a breadboard and some wires. [Start here](START-HERE.md).
+
+The breadboard-first route covers safe power-up, measurement, GPIO, ADC, UART, I²C, SPI, EEPROM, NOR integrity and crash-safe records before it links into the existing NAND, FTL, cartridge and controller work.
+
 ## Engineering Philosophy
 
 The repository follows a design-for-evidence model:

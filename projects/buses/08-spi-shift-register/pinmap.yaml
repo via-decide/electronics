@@ -1,0 +1,55 @@
+schemaVersion: 1
+projectId: 08-spi-shift-register
+nets:
+  - source: "ESP32 GPIO23/MOSI"
+    destination: "SN74HC595 SER pin 14"
+    colourConvention: blue
+    testPoint: TP1
+  - source: "ESP32 GPIO18/SCLK"
+    destination: "SN74HC595 SRCLK pin 11"
+    colourConvention: yellow
+    testPoint: TP2
+  - source: "ESP32 GPIO32"
+    destination: "SN74HC595 RCLK pin 12"
+    colourConvention: green
+    testPoint: TP3
+  - source: "ESP32 3V3"
+    destination: "VCC pin 16 and SRCLR pin 10"
+    colourConvention: red
+    testPoint: TP4
+  - source: "ESP32 GND"
+    destination: "GND pin 8 and OE# pin 13"
+    colourConvention: black
+    testPoint: TP5
+  - source: "SN74HC595 Q0 pin 15"
+    destination: "1 kohm + LED0 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP6
+  - source: "SN74HC595 Q1 pin 1"
+    destination: "1 kohm + LED1 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP7
+  - source: "SN74HC595 Q2 pin 2"
+    destination: "1 kohm + LED2 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP8
+  - source: "SN74HC595 Q3 pin 3"
+    destination: "1 kohm + LED3 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP9
+  - source: "SN74HC595 Q4 pin 4"
+    destination: "1 kohm + LED4 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP10
+  - source: "SN74HC595 Q5 pin 5"
+    destination: "1 kohm + LED5 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP11
+  - source: "SN74HC595 Q6 pin 6"
+    destination: "1 kohm + LED6 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP12
+  - source: "SN74HC595 Q7 pin 7"
+    destination: "1 kohm + LED7 anode; cathode to GND"
+    colourConvention: orange
+    testPoint: TP13

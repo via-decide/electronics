@@ -1,0 +1,19 @@
+schemaVersion: 1
+projectId: 04-mosfet-load-switch
+nets:
+  - source: "ESP32 GPIO25"
+    destination: "100 ohm then AO3400A gate"
+    colourConvention: yellow
+    testPoint: TP1
+  - source: "AO3400A gate"
+    destination: "100 kohm to GND"
+    colourConvention: blue
+    testPoint: TP2
+  - source: "AO3400A source"
+    destination: "GND"
+    colourConvention: black
+    testPoint: TP3
+  - source: "3V3"
+    destination: "1 kohm → LED anode; LED cathode → AO3400A drain"
+    colourConvention: red
+    testPoint: TP4

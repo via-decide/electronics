@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: template
+title: "{{TITLE}}"
+difficulty: beginner
+estimatedMinutes: 0
+primaryBoard: "{{BOARD}}"
+supplyVoltage: 3.3 V
+requiredTools: []
+requiredKits: []
+interfaces: []
+prerequisites: []
+learningOutcomes: []
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: []
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

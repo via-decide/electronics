@@ -1,0 +1,19 @@
+schemaVersion: 1
+projectId: 01-know-your-breadboard
+nets:
+  - source: "ESP32 3V3"
+    destination: "red rail"
+    colourConvention: red
+    testPoint: TP1
+  - source: "ESP32 GND"
+    destination: "blue rail"
+    colourConvention: black
+    testPoint: TP2
+  - source: "rail bridge +"
+    destination: "upper/lower red segments"
+    colourConvention: red
+    testPoint: TP3
+  - source: "rail bridge -"
+    destination: "upper/lower blue segments"
+    colourConvention: black
+    testPoint: TP4

@@ -1,0 +1,24 @@
+schemaVersion: 1
+constraints:
+  - id: project-rail
+    category: electrical
+    severity: blocking
+    statement: All learner-wired circuits use the ESP32 3.3 V rail.
+    expected: {operator: equal, unit: V, value: 3.3}
+  - id: power-off-rewire
+    category: safety
+    severity: blocking
+    statement: USB and all power are disconnected before rewiring or continuity tests.
+  - id: evidence-separation
+    category: validation
+    severity: blocking
+    statement: Expected values are never recorded as measured values.
+
+  - id: nor-demo-range
+    category: storage
+    severity: blocking
+    statement: Only dedicated external NOR sectors 0 and 1 may be erased by the demo.
+  - id: explicit-write-gate
+    category: safety
+    severity: blocking
+    statement: RUN_RESERVED_SECTOR_WRITE_DEMO remains zero until the learner confirms a dedicated lab part.

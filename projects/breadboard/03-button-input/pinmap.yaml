@@ -1,0 +1,11 @@
+schemaVersion: 1
+projectId: 03-button-input
+nets:
+  - source: "ESP32 GPIO27"
+    destination: "button side A"
+    colourConvention: yellow
+    testPoint: TP1
+  - source: "button side B"
+    destination: "GND"
+    colourConvention: black
+    testPoint: TP2

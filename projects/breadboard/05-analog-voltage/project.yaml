@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 05-analog-voltage
+title: "Analog Voltage Measurement"
+difficulty: beginner
+estimatedMinutes: 110
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal]
+requiredKits: [kit-00-basic-electronics]
+interfaces: [ADC]
+prerequisites: [04-mosfet-load-switch]
+learningOutcomes: ["A table contains DMM voltage, raw mean, calibrated voltage, error and measurement conditions."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/adc/adc_oneshot.html]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

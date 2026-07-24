@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 735"
+     role="img" aria-labelledby="title desc">
+  <title id="title">I2C TMP117 Register Transaction: Breadboard connection map</title>
+  <desc id="desc">Connection map; physical hole positions vary by breadboard. Verify every rail.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <style>
+    .title { font: 700 28px system-ui; fill: #0a1220; }
+    .sub { font: 16px system-ui; fill: #334155; }
+    .section { font: 700 18px system-ui; fill: #0f172a; }
+    .label { font: 14px ui-monospace, monospace; fill: #0f172a; }
+    .tp { font: 700 13px ui-monospace, monospace; fill: #b45309; }
+    .warn { font: 13px system-ui; fill: #b45309; }
+    .box { fill: #f8fafc; stroke: #0f172a; stroke-width: 2; }
+  </style>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="35" y="45" class="title">I2C TMP117 Register Transaction</text>
+  <text x="35" y="75" class="sub">Breadboard connection map. 3.3 V only. Power off before rewiring.</text>
+  <rect x="25" y="105" width="250" height="330" rx="12" class="box"/>
+  <rect x="665" y="105" width="595" height="330" rx="12" class="box"/>
+  <line x1="280" y1="145" x2="650" y2="145" stroke="red" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="151" class="label">ESP32 3V3</text><text x="675" y="151" class="label">TMP117 VIN</text><text x="455" y="135" class="tp">TP1</text><line x1="280" y1="207" x2="650" y2="207" stroke="black" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="213" class="label">ESP32 GND</text><text x="675" y="213" class="label">TMP117 GND</text><text x="455" y="197" class="tp">TP2</text><line x1="280" y1="269" x2="650" y2="269" stroke="blue" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="275" class="label">ESP32 GPIO21/SDA</text><text x="675" y="275" class="label">TMP117 SDA</text><text x="455" y="259" class="tp">TP3</text><line x1="280" y1="331" x2="650" y2="331" stroke="yellow" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="337" class="label">ESP32 GPIO22/SCL</text><text x="675" y="337" class="label">TMP117 SCL</text><text x="455" y="321" class="tp">TP4</text>
+
+      <text x="35" y="500" class="section">Conceptual rail map — verify the real breadboard with continuity</text>
+      <text x="35" y="538" class="label">3V3 rail →</text>
+      <line x1="145" y1="532" x2="545" y2="532" stroke="#dc2626" stroke-width="8" marker-end="url(#arrow)"/>
+      <line x1="335" y1="520" x2="350" y2="544" stroke="#ffffff" stroke-width="12"/>
+      <text x="270" y="564" class="warn">possible split — bridge only after continuity test</text>
+      <text x="35" y="602" class="label">GND rail →</text>
+      <line x1="145" y1="596" x2="545" y2="596" stroke="#111827" stroke-width="8" marker-end="url(#arrow)"/>
+      <line x1="335" y1="584" x2="350" y2="608" stroke="#ffffff" stroke-width="12"/>
+      <rect x="690" y="512" width="255" height="100" rx="10" class="box"/>
+      <path d="M790 512 a28 20 0 0 0 56 0" fill="none" stroke="#0f172a" stroke-width="2"/>
+      <circle cx="710" cy="592" r="7" fill="#b45309"/>
+      <text x="720" y="596" class="tp">pin 1 / polarity mark</text>
+      <text x="965" y="542" class="label">orientation: notch/dot</text>
+      <text x="965" y="567" class="label">must match datasheet</text>
+      <text x="690" y="645" class="label">C1 100 nF: place directly across target VCC-GND pins</text>
+
+  <text x="35" y="690" class="sub">Wire colour is a convention, never evidence. Confirm nodes with continuity and voltage measurements.</text>
+</svg>

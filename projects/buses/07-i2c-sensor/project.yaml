@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 07-i2c-sensor
+title: "I2C TMP117 Register Transaction"
+difficulty: intermediate
+estimatedMinutes: 130
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal, logic analyzer optional]
+requiredKits: [kit-00-basic-electronics, kit-01-digital-buses]
+interfaces: [I2C]
+prerequisites: [06-uart-conversation]
+learningOutcomes: ["Firmware shows at least one raw register transaction without a sensor abstraction library."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/i2c.html, https://www.nxp.com/documents/user_manual/UM10204.pdf, https://www.ti.com/lit/gpn/TMP117, https://github.com/adafruit/Adafruit-TMP117-PCB]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

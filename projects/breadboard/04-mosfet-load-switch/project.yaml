@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 04-mosfet-load-switch
+title: "MOSFET Low-Side Load Switch"
+difficulty: beginner
+estimatedMinutes: 100
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal]
+requiredKits: [kit-00-basic-electronics]
+interfaces: [GPIO]
+prerequisites: [03-button-input]
+learningOutcomes: ["The load follows the logged gate command and the learner identifies gate, drain and source from the datasheet and adapter labels."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://www.aosmd.com/res/data_sheets/AO3400A.pdf]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

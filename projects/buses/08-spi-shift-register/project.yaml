@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 08-spi-shift-register
+title: "SPI-Like Shift Register"
+difficulty: intermediate
+estimatedMinutes: 140
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal, logic analyzer recommended]
+requiredKits: [kit-00-basic-electronics, kit-01-digital-buses]
+interfaces: [SPI-like synchronous serial]
+prerequisites: [07-i2c-sensor]
+learningOutcomes: ["Captured or manually traced clock/data/latch transitions agree with the displayed output byte."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/spi_master.html, https://www.ti.com/lit/ds/symlink/sn74hc595.pdf]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

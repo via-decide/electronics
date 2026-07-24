@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "projectId": "04-mosfet-load-switch",
+  "hardwareValidationStatus": "HARDWARE_VALIDATION_REQUIRED",
+  "results": [
+    {
+      "id": "power",
+      "classification": "EXPECTED",
+      "expectation": "3.3 V project rail; measure actual",
+      "measured": null
+    },
+    {
+      "id": "success",
+      "classification": "EXPECTED",
+      "expectation": "The load follows the logged gate command and the learner identifies gate, drain and source from the datasheet and adapter labels.",
+      "measured": null
+    }
+  ]
+}
