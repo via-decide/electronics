@@ -1,0 +1,15 @@
+reference,net,footprint,access,status,reason
+TP1,VBUS_5V,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,Task 3 power-entry observation
+TP2,3V3,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,regulated I/O rail observation
+TP3,1V1,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,core rail observation
+TP4,GND,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture ground,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,measurement return
+TP5,RUN,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,reset and recovery
+TP6,BOOTSEL_QSPI_SS,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,boot recovery observation
+TP7,SWDIO,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,debug data
+TP8,SWCLK,TestPoint:TestPoint_Plated_Hole_D1.0mm,fixture probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,debug clock
+TP9,USB_DP,TestPoint:TestPoint_Plated_Hole_D1.0mm,high-impedance probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,USB D+ observation
+TP10,USB_DM,TestPoint:TestPoint_Plated_Hole_D1.0mm,high-impedance probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,USB D- observation
+TP11,PAYLOAD_SPI_SCK,TestPoint:TestPoint_Plated_Hole_D1.0mm,logic probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,payload clock
+TP12,PAYLOAD_SPI_COPI,TestPoint:TestPoint_Plated_Hole_D1.0mm,logic probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,payload command and data output
+TP13,PAYLOAD_SPI_CIPO,TestPoint:TestPoint_Plated_Hole_D1.0mm,logic probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,payload response input
+TP14,PAYLOAD_SPI_CS_N,TestPoint:TestPoint_Plated_Hole_D1.0mm,logic probe,CONTRACT_ASSIGNED_SOURCE_CAPTURE_PENDING,payload transaction framing

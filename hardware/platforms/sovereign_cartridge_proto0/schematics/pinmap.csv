@@ -1,0 +1,62 @@
+pin,pin_name,net,role,status
+1,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+2,GPIO0,GPIO0,development header / uncommitted GPIO,AVAILABLE
+3,GPIO1,GPIO1,development header / uncommitted GPIO,AVAILABLE
+4,GPIO2,GPIO2,development header / uncommitted GPIO,AVAILABLE
+5,GPIO3,GPIO3,development header / uncommitted GPIO,AVAILABLE
+6,DVDD,1V1,digital core supply,FACT_REFERENCE_CAPTURE
+7,GPIO4,GPIO4,development header / uncommitted GPIO,AVAILABLE
+8,GPIO5,GPIO5,development header / uncommitted GPIO,AVAILABLE
+9,GPIO6,GPIO6,development header / uncommitted GPIO,AVAILABLE
+10,GPIO7,GPIO7,development header / uncommitted GPIO,AVAILABLE
+11,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+12,GPIO8,GPIO8,development header / uncommitted GPIO,AVAILABLE
+13,GPIO9,GPIO9,development header / uncommitted GPIO,AVAILABLE
+14,GPIO10,GPIO10,development header / uncommitted GPIO,AVAILABLE
+15,GPIO11,GPIO11,development header / uncommitted GPIO,AVAILABLE
+16,GPIO12,GPIO12,development header / uncommitted GPIO,AVAILABLE
+17,GPIO13,GPIO13,development header / uncommitted GPIO,AVAILABLE
+18,GPIO14,GPIO14,development header / uncommitted GPIO,AVAILABLE
+19,GPIO15,GPIO15,development header / uncommitted GPIO,AVAILABLE
+20,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+21,XIN,XIN_12MHZ,12 MHz crystal input,FACT_REFERENCE_CAPTURE
+22,XOUT,XOUT_12MHZ,12 MHz crystal output,FACT_REFERENCE_CAPTURE
+23,DVDD,1V1,digital core supply,FACT_REFERENCE_CAPTURE
+24,SWCLK,SWCLK,SWD clock / debug connector,FACT_REFERENCE_CAPTURE
+25,SWD,SWDIO,SWD data / debug connector,FACT_REFERENCE_CAPTURE
+26,RUN,RUN,reset / debug / test access,FACT_REFERENCE_CAPTURE
+27,GPIO16,PAYLOAD_SPI_CIPO,payload NOR controller input,DECISION_TASK_02
+28,GPIO17,PAYLOAD_SPI_CS_N,payload NOR active-low chip select,DECISION_TASK_02
+29,GPIO18,PAYLOAD_SPI_SCK,payload NOR serial clock,DECISION_TASK_02
+30,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+31,GPIO19,PAYLOAD_SPI_COPI,payload NOR controller output,DECISION_TASK_02
+32,GPIO20,GPIO20,development header / uncommitted GPIO,AVAILABLE
+33,GPIO21,GPIO21,development header / uncommitted GPIO,AVAILABLE
+34,GPIO22,GPIO22,development header / uncommitted GPIO,AVAILABLE
+35,GPIO23,GPIO23,development header / uncommitted GPIO,AVAILABLE
+36,GPIO24,GPIO24,development header / uncommitted GPIO,AVAILABLE
+37,GPIO25,GPIO25,development header / uncommitted GPIO,AVAILABLE
+38,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+39,DVDD,1V1,digital core supply,FACT_REFERENCE_CAPTURE
+40,GPIO26_ADC0,GPIO26_ADC0,development header / uncommitted analogue GPIO,AVAILABLE
+41,GPIO27_ADC1,GPIO27_ADC1,development header / uncommitted analogue GPIO,AVAILABLE
+42,GPIO28_ADC2,GPIO28_ADC2,development header / uncommitted analogue GPIO,AVAILABLE
+43,GPIO29_ADC3,GPIO29_ADC3,development header / uncommitted analogue GPIO,AVAILABLE
+44,ADC_AVDD,3V3,analogue supply,FACT_REFERENCE_CAPTURE
+45,IOVDD,3V3,digital I/O supply,FACT_REFERENCE_CAPTURE
+46,VREG_AVDD,3V3,core regulator analogue supply,FACT_REFERENCE_CAPTURE
+47,VREG_PGND,GND,core regulator power ground,FACT_REFERENCE_CAPTURE
+48,VREG_LX,VREG_LX,core regulator switch node to L1,FACT_REFERENCE_CAPTURE
+49,VREG_VIN,3V3,core regulator input,FACT_REFERENCE_CAPTURE
+50,VREG_FB,1V1,core regulator feedback via 33 ohm,FACT_REFERENCE_CAPTURE
+51,USB_DM,USB_DM,USB 2.0 D- through 27 ohm,FACT_REFERENCE_CAPTURE_TASK5_ENTRY
+52,USB_DP,USB_DP,USB 2.0 D+ through 27 ohm,FACT_REFERENCE_CAPTURE_TASK5_ENTRY
+53,USB_OTP_VDD,3V3,USB PHY and OTP supply,FACT_REFERENCE_CAPTURE
+54,QSPI_IOVDD,3V3,in-package boot-flash I/O supply,FACT_REFERENCE_CAPTURE
+55,QSPI_SD3,IN_PACKAGE_BOOT_QSPI,boot flash IO3,FACT_IN_PACKAGE
+56,QSPI_SCLK,IN_PACKAGE_BOOT_QSPI,boot flash clock,FACT_IN_PACKAGE
+57,QSPI_SD0,IN_PACKAGE_BOOT_QSPI,boot flash IO0,FACT_IN_PACKAGE
+58,QSPI_SD2,IN_PACKAGE_BOOT_QSPI,boot flash IO2,FACT_IN_PACKAGE
+59,QSPI_SD1,IN_PACKAGE_BOOT_QSPI,boot flash IO1,FACT_IN_PACKAGE
+60,QSPI_SS,BOOTSEL_QSPI_SS,boot flash chip select and BOOTSEL,FACT_REFERENCE_CAPTURE
+61,GND_EP,GND,exposed-pad ground and thermal path,FACT_REFERENCE_CAPTURE

@@ -29,7 +29,9 @@ The ordered path begins only after Electronics From Zero v1:
 
 1. **Topology freeze — complete:** RP2354A A4 + W25Q256JVEIQ Proto-0 boundary,
    USB device/service role, debug/test access and no-hardware gates.
-2. Schematic.
+2. **Schematic — in progress:** pin/net contract and reference-derived KiCad
+   capture added; repository structural ERC passes. Native KiCad ERC,
+   TP1-TP14 source capture and electrical review remain blocking.
 3. Power, reset, brownout and safe shutdown.
 4. SPI ownership.
 5. USB-C service.
@@ -51,5 +53,7 @@ The ordered path begins only after Electronics From Zero v1:
 
 Task 1's contract is
 [`hardware/platforms/sovereign_cartridge_proto0/topology.json`](../hardware/platforms/sovereign_cartridge_proto0/topology.json).
+Task 2's in-progress contract is
+[`hardware/platforms/sovereign_cartridge_proto0/schematics/schematic.json`](../hardware/platforms/sovereign_cartridge_proto0/schematics/schematic.json).
 Downstream tasks must not be marked complete by documentation-only or simulated
 evidence.
