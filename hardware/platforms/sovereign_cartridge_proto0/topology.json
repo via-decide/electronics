@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "topology_id": "sovereign-cartridge-proto0",
+  "product": "Sovereign Cartridge",
+  "revision": "PROTO-0",
+  "status": "TOPOLOGY_FROZEN",
+  "evidence_status": "DESIGN_ONLY",
+  "invariant": "Never expose incomplete or corrupted data as valid committed data.",
+  "blocks": [
+    {
+      "id": "service_port",
+      "type": "usb_c_service",
+      "part": "DEFERRED_TO_TASK_05",
+      "power_domain": "VBUS_5V",
+      "responsibility": "USB 2.0 device service and the sole external power entry"
+    },
+    {
+      "id": "input_power",
+      "type": "power_conditioning",
+      "part": "DEFERRED_TO_TASK_03",
+      "power_domain": "VBUS_5V_TO_3V3",
+      "responsibility": "protect and regulate VBUS into the board 3.3 V domain"
+    },
+    {
+      "id": "controller",
+      "type": "microcontroller",
+      "part": "RP2354A",
+      "silicon_stepping": "A4",
+      "package": "QFN-60_7X7",
+      "power_domain": "3V3_AND_1V1",
+      "responsibility": "USB service, cartridge protocol, storage transaction control and recovery"
+    },
+    {
+      "id": "boot_flash",
+      "type": "boot_nor",
+      "part": "W25Q16JVWI_IN_PACKAGE",
+      "capacity_bytes": 2097152,
+      "power_domain": "3V3",
+      "responsibility": "RP2354A boot firmware only"
+    },
+    {
+      "id": "payload_flash",
+      "type": "payload_nor",
+      "part": "W25Q256JVEIQ",
+      "capacity_bytes": 33554432,
+      "package": "WSON-8_8X6",
+      "power_domain": "3V3",
+      "responsibility": "cartridge immutable objects, manifests and recovery metadata"
+    },
+    {
+      "id": "debug_access",
+      "type": "swd_debug",
+      "part": "SM03B-SRSS-TB",
+      "power_domain": "3V3",
+      "responsibility": "non-destructive SWD, RUN and recovery access"
+    },
+    {
+      "id": "test_access",
+      "type": "test_points",
+      "part": "FOOTPRINTS_DEFERRED_TO_TASK_02",
+      "power_domain": "MULTI_DOMAIN",
+      "responsibility": "bring-up, current-limited fixture and protocol observation"
+    }
+  ],
+  "connections": [
+    {
+      "from": "service_port",
+      "to": "input_power",
+      "kind": "VBUS_5V"
+    },
+    {
+      "from": "service_port",
+      "to": "controller",
+      "kind": "USB2_DP_DM"
+    },
+    {
+      "from": "input_power",
+      "to": "controller",
+      "kind": "REGULATED_3V3"
+    },
+    {
+      "from": "input_power",
+      "to": "payload_flash",
+      "kind": "REGULATED_3V3"
+    },
+    {
+      "from": "controller",
+      "to": "boot_flash",
+      "kind": "IN_PACKAGE_QSPI"
+    },
+    {
+      "from": "controller",
+      "to": "payload_flash",
+      "kind": "DEDICATED_USER_SPI"
+    },
+    {
+      "from": "debug_access",
+      "to": "controller",
+      "kind": "SWD_RUN"
+    },
+    {
+      "from": "test_access",
+      "to": "controller",
+      "kind": "OBSERVE_CONTROL"
+    },
+    {
+      "from": "test_access",
+      "to": "payload_flash",
+      "kind": "OBSERVE_ONLY"
+    }
+  ],
+  "power_domains": [
+    {
+      "id": "VBUS_5V",
+      "nominal_voltage_v": 5.0,
+      "source": "USB_C_SINK_ONLY",
+      "current_budget": "DEFERRED_TO_TASK_03"
+    },
+    {
+      "id": "3V3",
+      "nominal_voltage_v": 3.3,
+      "source": "VBUS_REGULATOR_DEFERRED_TO_TASK_03",
+      "consumers": [
+        "controller",
+        "boot_flash",
+        "payload_flash",
+        "debug_access"
+      ]
+    },
+    {
+      "id": "1V1",
+      "nominal_voltage_v": 1.1,
+      "source": "RP2354A_REFERENCE_CORE_REGULATOR",
+      "consumers": [
+        "controller"
+      ]
+    }
+  ],
+  "interfaces": {
+    "usb_service": {
+      "connector": "USB_C_RECEPTACLE_DEFERRED_TO_TASK_05",
+      "usb_generation": "USB_2_0_FULL_SPEED",
+      "data_role": "UFP_DEVICE",
+      "power_role": "SINK",
+      "host_enabled": false,
+      "source_enabled": false,
+      "power_delivery_enabled": false
+    },
+    "payload_spi": {
+      "physical_device": "W25Q256JVEIQ",
+      "controller_instance": "DEFERRED_TO_TASK_04",
+      "pin_assignment": "DEFERRED_TO_TASK_02",
+      "ownership_policy": "DEFERRED_TO_TASK_04",
+      "xip_bus_shared": false,
+      "electrical_domain": "3V3"
+    },
+    "debug": {
+      "protocol": "SWD",
+      "signals": [
+        "SWDIO",
+        "SWCLK",
+        "RUN",
+        "GND"
+      ],
+      "connector": "SM03B-SRSS-TB",
+      "production_lock_policy": "DEFERRED"
+    }
+  },
+  "required_test_nets": [
+    "VBUS_5V",
+    "3V3",
+    "1V1",
+    "GND",
+    "RUN",
+    "BOOTSEL_QSPI_SS",
+    "SWDIO",
+    "SWCLK",
+    "USB_DP",
+    "USB_DM",
+    "PAYLOAD_SPI_SCK",
+    "PAYLOAD_SPI_COPI",
+    "PAYLOAD_SPI_CIPO",
+    "PAYLOAD_SPI_CS_N"
+  ],
+  "physical_boundaries": {
+    "single_board": true,
+    "boot_and_payload_flash_are_separate_devices": true,
+    "removable_flash_socket": false,
+    "raw_nand_present": false,
+    "fpga_present": false,
+    "battery_present": false,
+    "wireless_present": false
+  },
+  "authorization": {
+    "real_hardware_enabled": false,
+    "destructive_storage_writes_enabled": false,
+    "manufacturing_release_enabled": false,
+    "required_before_hardware": [
+      "TASK_02_SCHEMATIC",
+      "TASK_03_POWER_RESET_BROWNOUT_SAFE_SHUTDOWN",
+      "TASK_04_SPI_OWNERSHIP",
+      "TASK_05_USB_C_SERVICE",
+      "TASK_06_BOM_SOURCING",
+      "ASSEMBLY_IDENTITY",
+      "CURRENT_LIMITED_BRINGUP_PLAN"
+    ]
+  },
+  "phase_gates": {
+    "task_01_topology_frozen": true,
+    "task_02_schematic_passed": false,
+    "task_03_power_safety_passed": false,
+    "task_04_spi_ownership_passed": false,
+    "task_05_usb_service_passed": false,
+    "task_06_bom_sourcing_passed": false,
+    "bench_verified": false
+  },
+  "deferred_decisions": [
+    {
+      "task": 2,
+      "owner": "SCHEMATIC",
+      "items": [
+        "RP2354A pin assignment",
+        "payload SPI pin assignment",
+        "test-point footprints",
+        "component values and net labels"
+      ]
+    },
+    {
+      "task": 3,
+      "owner": "POWER_RESET_BROWNOUT_SAFE_SHUTDOWN",
+      "items": [
+        "5 V to 3.3 V regulator",
+        "power protection",
+        "current budget",
+        "reset supervisor and safe-shutdown energy"
+      ]
+    },
+    {
+      "task": 4,
+      "owner": "SPI_OWNERSHIP",
+      "items": [
+        "SPI controller instance",
+        "exclusive owner state machine",
+        "bus recovery policy"
+      ]
+    },
+    {
+      "task": 5,
+      "owner": "USB_C_SERVICE",
+      "items": [
+        "USB-C receptacle MPN",
+        "CC terminations",
+        "ESD network",
+        "service and recovery descriptors"
+      ]
+    },
+    {
+      "task": 6,
+      "owner": "BOM_SOURCING",
+      "items": [
+        "authorized sourcing",
+        "alternates",
+        "lifecycle and counterfeit controls"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "title": "RP2350 datasheet",
+      "url": "https://pip.raspberrypi.com/documents/RP-008373-DS-rp2350-datasheet.pdf",
+      "supports": [
+        "RP2354A package",
+        "2 MiB flash-in-package",
+        "USB and SWD capabilities"
+      ],
+      "retrieved_at": "2026-07-25"
+    },
+    {
+      "title": "Hardware design with RP2350",
+      "url": "https://pip.raspberrypi.com/documents/RP-008280-DS-hardware-design-with-rp2350.pdf",
+      "supports": [
+        "power-domain topology",
+        "reference crystal",
+        "core inductor",
+        "SWD access",
+        "USB routing boundary"
+      ],
+      "retrieved_at": "2026-07-25"
+    },
+    {
+      "title": "RP2350 A4 and RP2354 announcement",
+      "url": "https://www.raspberrypi.com/news/rp2350-a4-rp2354-and-a-new-hacking-challenge/",
+      "supports": [
+        "A4 stepping requirement",
+        "RP2354 availability"
+      ],
+      "retrieved_at": "2026-07-25"
+    },
+    {
+      "title": "Winbond code-storage product selection guide",
+      "url": "https://www.winbond.com/export/sites/winbond/product-selection-guide/file/2025-Product-Selection-Guide-Winbond-Code-Storage-Flash-Memory.pdf",
+      "supports": [
+        "W25Q256JVEIQ density",
+        "voltage",
+        "package",
+        "production status"
+      ],
+      "retrieved_at": "2026-07-25"
+    },
+    {
+      "title": "W25Q256JV manufacturer datasheet",
+      "url": "https://www.winbond.com/hq/support/documentation/downloadV2022.jsp?__locale=en&xmlPath=/support/resources/.content/item/DA00-W25Q256JV.html&level=1",
+      "supports": [
+        "payload NOR electrical and protocol contract"
+      ],
+      "retrieved_at": "2026-07-25"
+    },
+    {
+      "title": "USB Type-C cable and connector specification",
+      "url": "https://www.usb.org/sites/default/files/USB%20Type-C%20Spec%20R2.0%20-%20August%202019.pdf",
+      "supports": [
+        "USB-C sink and UFP terminology",
+        "CC and connector requirements deferred to Task 5"
+      ],
+      "retrieved_at": "2026-07-25"
+    }
+  ]
+}
