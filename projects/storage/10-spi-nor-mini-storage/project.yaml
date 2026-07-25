@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 10-spi-nor-mini-storage
+title: "SPI NOR Mini-Storage"
+difficulty: advanced-beginner
+estimatedMinutes: 240
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal, logic analyzer recommended]
+requiredKits: [kit-00-basic-electronics, kit-01-digital-buses, kit-02-storage-lab]
+interfaces: [SPI, JEDEC NOR]
+prerequisites: [09-spi-eeprom]
+learningOutcomes: ["Power-on scan returns a committed record or an explicit empty/corrupt state; it never silently accepts an invalid record."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/spi_master.html, https://www.macronix.com/Lists/Datasheet/Attachments/8933/MX25L3233F%2C%203V%2C%2032Mb%2C%20v1.7.pdf, https://www.macronix.com/en-us/products/NOR-Flash/Serial-NOR-Flash/Pages/default.aspx]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

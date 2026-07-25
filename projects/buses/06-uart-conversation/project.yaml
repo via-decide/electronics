@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 06-uart-conversation
+title: "UART Framed Conversation"
+difficulty: intermediate
+estimatedMinutes: 120
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [serial terminal, logic analyzer optional]
+requiredKits: [kit-00-basic-electronics, kit-01-digital-buses]
+interfaces: [UART]
+prerequisites: [05-analog-voltage]
+learningOutcomes: ["The receiver validates magic, length and CRC before printing the payload."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/uart.html]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED

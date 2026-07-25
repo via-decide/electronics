@@ -1,0 +1,20 @@
+schemaVersion: 1
+constraints:
+  - id: project-rail
+    category: electrical
+    severity: blocking
+    statement: All learner-wired circuits use the ESP32 3.3 V rail.
+    expected: {operator: equal, unit: V, value: 3.3}
+  - id: power-off-rewire
+    category: safety
+    severity: blocking
+    statement: USB and all power are disconnected before rewiring or continuity tests.
+  - id: evidence-separation
+    category: validation
+    severity: blocking
+    statement: Expected values are never recorded as measured values.
+
+  - id: eeprom-demo-range
+    category: storage
+    severity: blocking
+    statement: The default bounded tests use only addresses 0x0100 through 0x0183 on a dedicated lab EEPROM.

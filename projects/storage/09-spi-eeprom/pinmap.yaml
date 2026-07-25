@@ -1,0 +1,27 @@
+schemaVersion: 1
+projectId: 09-spi-eeprom
+nets:
+  - source: "ESP32 GPIO23/MOSI"
+    destination: "25LC256 SI pin 5"
+    colourConvention: blue
+    testPoint: TP1
+  - source: "ESP32 GPIO19/MISO"
+    destination: "25LC256 SO pin 2"
+    colourConvention: green
+    testPoint: TP2
+  - source: "ESP32 GPIO18/SCLK"
+    destination: "25LC256 SCK pin 6"
+    colourConvention: yellow
+    testPoint: TP3
+  - source: "ESP32 GPIO32/CS"
+    destination: "25LC256 CS# pin 1 and 10 kohm pull-up to 3V3"
+    colourConvention: white
+    testPoint: TP4
+  - source: "ESP32 3V3"
+    destination: "VCC pin 8, WP# pin 3, HOLD# pin 7"
+    colourConvention: red
+    testPoint: TP5
+  - source: "ESP32 GND"
+    destination: "VSS pin 4"
+    colourConvention: black
+    testPoint: TP6

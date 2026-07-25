@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 02-led-current
+nets:
+  - source: "ESP32 3V3"
+    destination: "resistor input"
+    colourConvention: red
+    testPoint: TP1
+  - source: "resistor output"
+    destination: "LED anode"
+    colourConvention: yellow
+    testPoint: TP2
+  - source: "LED cathode"
+    destination: "GND"
+    colourConvention: black
+    testPoint: TP3

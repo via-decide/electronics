@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 735"
+     role="img" aria-labelledby="title desc">
+  <title id="title">Know Your Breadboard: Electrical net schematic</title>
+  <desc id="desc">Net-level schematic generated from pinmap.yaml. It is not a measured artifact.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+  <style>
+    .title { font: 700 28px system-ui; fill: #0a1220; }
+    .sub { font: 16px system-ui; fill: #334155; }
+    .section { font: 700 18px system-ui; fill: #0f172a; }
+    .label { font: 14px ui-monospace, monospace; fill: #0f172a; }
+    .tp { font: 700 13px ui-monospace, monospace; fill: #b45309; }
+    .warn { font: 13px system-ui; fill: #b45309; }
+    .box { fill: #f8fafc; stroke: #0f172a; stroke-width: 2; }
+  </style>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="35" y="45" class="title">Know Your Breadboard</text>
+  <text x="35" y="75" class="sub">Electrical net schematic. 3.3 V only. Power off before rewiring.</text>
+  <rect x="25" y="105" width="250" height="330" rx="12" class="box"/>
+  <rect x="665" y="105" width="595" height="330" rx="12" class="box"/>
+  <line x1="280" y1="145" x2="650" y2="145" stroke="red" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="151" class="label">ESP32 3V3</text><text x="675" y="151" class="label">red rail</text><text x="455" y="135" class="tp">TP1</text><line x1="280" y1="207" x2="650" y2="207" stroke="black" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="213" class="label">ESP32 GND</text><text x="675" y="213" class="label">blue rail</text><text x="455" y="197" class="tp">TP2</text><line x1="280" y1="269" x2="650" y2="269" stroke="red" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="275" class="label">rail bridge +</text><text x="675" y="275" class="label">upper/lower red segments</text><text x="455" y="259" class="tp">TP3</text><line x1="280" y1="331" x2="650" y2="331" stroke="black" stroke-width="5" marker-end="url(#arrow)" /><text x="35" y="337" class="label">rail bridge -</text><text x="675" y="337" class="label">upper/lower blue segments</text><text x="455" y="321" class="tp">TP4</text>
+
+      <text x="35" y="500" class="section">Schematic rules carried into the physical build</text>
+      <text x="35" y="538" class="label">→ arrow: named source to named destination; it does not imply current direction</text>
+      <text x="35" y="570" class="label">3V3 and GND are explicit nets; every signal is referenced to the shared return</text>
+      <text x="35" y="602" class="label">No external IC bypass capacitor in this primary circuit</text>
+      <text x="35" y="634" class="label">TP labels must match pinmap.yaml; verify package notch/dot before numbering pins</text>
+
+  <text x="35" y="690" class="sub">Wire colour is a convention, never evidence. Confirm nodes with continuity and voltage measurements.</text>
+</svg>

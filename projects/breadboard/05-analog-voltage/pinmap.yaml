@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 05-analog-voltage
+nets:
+  - source: "ESP32 3V3"
+    destination: "potentiometer end A"
+    colourConvention: red
+    testPoint: TP1
+  - source: "ESP32 GPIO34/ADC1_CH6"
+    destination: "potentiometer wiper"
+    colourConvention: yellow
+    testPoint: TP2
+  - source: "ESP32 GND"
+    destination: "potentiometer end B"
+    colourConvention: black
+    testPoint: TP3

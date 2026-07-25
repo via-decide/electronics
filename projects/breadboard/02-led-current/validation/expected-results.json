@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "projectId": "02-led-current",
+  "hardwareValidationStatus": "HARDWARE_VALIDATION_REQUIRED",
+  "results": [
+    {
+      "id": "power",
+      "classification": "EXPECTED",
+      "expectation": "3.3 V project rail; measure actual",
+      "measured": null
+    },
+    {
+      "id": "success",
+      "classification": "EXPECTED",
+      "expectation": "Measured V_LED plus V_R is consistent with the measured rail within instrument and contact uncertainty.",
+      "measured": null
+    }
+  ]
+}

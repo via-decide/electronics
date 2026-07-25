@@ -1,0 +1,15 @@
+schemaVersion: 1
+projectId: 03-button-input
+title: "Button Input: Floating, Pulled and Debounced"
+difficulty: beginner
+estimatedMinutes: 90
+primaryBoard: "ESP32-DEVKITC-32E"
+supplyVoltage: "3.3 V"
+requiredTools: [digital multimeter, serial terminal]
+requiredKits: [kit-00-basic-electronics]
+interfaces: [GPIO]
+prerequisites: [02-led-current]
+learningOutcomes: ["Serial output distinguishes raw and stable state and one deliberate press produces one stable transition."]
+blockingSafetyChecks: [supply, ground, short, logic-level, orientation, decoupling]
+sourceReferences: [https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html, https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf, https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/gpio.html]
+hardwareValidationStatus: HARDWARE_VALIDATION_REQUIRED
