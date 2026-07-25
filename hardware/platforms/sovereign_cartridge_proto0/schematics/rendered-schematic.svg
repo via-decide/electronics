@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Sovereign Cartridge Proto-0 Task 2 schematic overview</title>
+  <desc id="desc">Design-only review rendering of RP2354A infrastructure, payload NOR, service placeholders, debug and test access.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f5f7fb}.panel{fill:#fff;stroke:#c9d2e3;stroke-width:2}.controller{fill:#172033;stroke:#42d3a4;stroke-width:3}.flash{fill:#fff8e8;stroke:#e2a93b;stroke-width:3}.deferred{fill:#fff1f2;stroke:#e35d6a;stroke-width:2;stroke-dasharray:9 7}.support{fill:#edf5ff;stroke:#5a8dee;stroke-width:2}.debug{fill:#f1edff;stroke:#7957d5;stroke-width:2}.wire{fill:none;stroke:#384963;stroke-width:3}.payload{fill:none;stroke:#d98b18;stroke-width:4}.power{fill:none;stroke:#2c9b72;stroke-width:4}.usb{fill:none;stroke:#4d7ee8;stroke-width:3}.dash{fill:none;stroke:#9ba8bc;stroke-width:2;stroke-dasharray:8 7}.h1{font:700 34px Inter,Arial,sans-serif;fill:#172033}.h2{font:700 22px Inter,Arial,sans-serif;fill:#172033}.body{font:16px Inter,Arial,sans-serif;fill:#384963}.small{font:14px Inter,Arial,sans-serif;fill:#5d6b82}.tiny{font:12px Inter,Arial,sans-serif;fill:#5d6b82}.white{fill:#fff!important}.mono{font:14px ui-monospace,SFMono-Regular,Consolas,monospace;fill:#24324a}.tag{font:700 13px Inter,Arial,sans-serif;letter-spacing:1px}.center{text-anchor:middle}.right{text-anchor:end}
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#384963"/>
+    </marker>
+    <marker id="arrowPayload" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d98b18"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="1120"/>
+  <rect x="0" y="0" width="1600" height="88" fill="#172033"/>
+  <text class="h1 white" x="54" y="52">Sovereign Cartridge Proto-0 · Task 2 schematic capture</text>
+  <rect x="1260" y="20" width="286" height="46" rx="23" fill="#ffcf66"/>
+  <text class="tag center" x="1403" y="49" fill="#563600">DESIGN ONLY · GATE OPEN</text>
+
+  <text class="small" x="55" y="120">Review rendering · editable source: kicad/sovereign_cartridge_proto0.kicad_sch · revision TASK-02-WIP</text>
+
+  <!-- Power / service entry -->
+  <rect class="deferred" x="55" y="165" width="305" height="150" rx="12"/>
+  <text class="h2" x="82" y="202">J1 · USB-C UFP service</text>
+  <text class="body" x="82" y="235">VBUS_5V · USB_DP · USB_DM</text>
+  <text class="body" x="82" y="263">CC + ESD + receptacle: Task 5</text>
+  <text class="tag" x="82" y="294" fill="#b02d42">DNP PLACEHOLDER</text>
+
+  <rect class="deferred" x="55" y="358" width="305" height="150" rx="12"/>
+  <text class="h2" x="82" y="395">U2 · 5 V → 3.3 V</text>
+  <text class="body" x="82" y="428">Protection · rail budget · reset</text>
+  <text class="body" x="82" y="456">brownout · safe shutdown: Task 3</text>
+  <text class="tag" x="82" y="487" fill="#b02d42">DNP PLACEHOLDER</text>
+
+  <path class="power" d="M207 315 L207 358"/>
+  <text class="mono" x="218" y="344">VBUS_5V</text>
+  <path class="power" d="M360 433 L432 433" marker-end="url(#arrow)"/>
+  <text class="mono" x="375" y="420">3V3</text>
+
+  <!-- Controller -->
+  <rect class="controller" x="470" y="165" width="610" height="515" rx="18"/>
+  <text class="h1 white center" x="775" y="216">U1 · RP2354A A4</text>
+  <text class="body white center" x="775" y="247">QFN-60 7×7 exposed pad · 2 MiB boot NOR in-package</text>
+
+  <rect x="518" y="282" width="224" height="124" rx="10" fill="#24314a" stroke="#6c7d98"/>
+  <text class="h2 white" x="542" y="316">Power</text>
+  <text class="small white" x="542" y="346">IOVDD / QSPI_IOVDD / ADC_AVDD</text>
+  <text class="small white" x="542" y="371">USB_OTP_VDD / VREG_AVDD → 3V3</text>
+  <text class="small white" x="542" y="396">DVDD → 1V1 · EP + PGND → GND</text>
+
+  <rect x="808" y="282" width="224" height="124" rx="10" fill="#24314a" stroke="#6c7d98"/>
+  <text class="h2 white" x="832" y="316">Boot QSPI</text>
+  <text class="small white" x="832" y="346">pins 55–60 · in-package only</text>
+  <text class="small white" x="832" y="371">QSPI_SS = BOOTSEL_QSPI_SS</text>
+  <text class="small white" x="832" y="396">no external boot NOR</text>
+
+  <rect x="518" y="440" width="224" height="106" rx="10" fill="#24314a" stroke="#6c7d98"/>
+  <text class="h2 white" x="542" y="474">Clock</text>
+  <text class="small white" x="542" y="504">12 MHz ABM8-272-T3</text>
+  <text class="small white" x="542" y="529">1 kΩ series · 2 × 15 pF</text>
+
+  <rect x="808" y="440" width="224" height="106" rx="10" fill="#24314a" stroke="#6c7d98"/>
+  <text class="h2 white" x="832" y="474">USB 2.0 FS</text>
+  <text class="small white" x="832" y="504">pin 51 USB_DM · pin 52 USB_DP</text>
+  <text class="small white" x="832" y="529">27 Ω series on each line</text>
+
+  <text class="tag white" x="518" y="594">PAYLOAD USER-SPI · PHYSICAL PINS FROZEN</text>
+  <text class="mono white" x="518" y="624">p27 GPIO16 · CIPO · SPI0_RX</text>
+  <text class="mono white" x="518" y="648">p28 GPIO17 · CS_N · SPI0_CSn</text>
+  <text class="mono white" x="810" y="624">p29 GPIO18 · SCK · SPI0_SCK</text>
+  <text class="mono white" x="810" y="648">p31 GPIO19 · COPI · SPI0_TX</text>
+
+  <!-- Core regulator -->
+  <rect class="support" x="452" y="730" width="350" height="140" rx="12"/>
+  <text class="h2" x="478" y="768">Reference core SMPS</text>
+  <text class="body" x="478" y="801">VREG_LX → L1 3.3 µH → 1V1</text>
+  <text class="body" x="478" y="830">4.7 µF input/output · 33 Ω feedback</text>
+  <text class="small" x="478" y="854">Reference circuit retained; layout review pending</text>
+  <path class="power" d="M628 680 L628 730"/>
+
+  <!-- Debug / recovery -->
+  <rect class="debug" x="840" y="730" width="300" height="140" rx="12"/>
+  <text class="h2" x="866" y="768">J4 · SWD / recovery</text>
+  <text class="mono" x="866" y="802">p24 SWCLK · p25 SWDIO</text>
+  <text class="mono" x="866" y="829">p26 RUN · p60 BOOTSEL</text>
+  <text class="small" x="866" y="854">SM03B-SRSS-TB + test access</text>
+  <path class="wire" d="M990 680 L990 730"/>
+
+  <!-- USB wires -->
+  <path class="usb" d="M360 222 C412 222 421 478 470 478"/>
+  <path class="usb" d="M360 255 C402 255 428 516 470 516"/>
+  <text class="mono" x="370" y="207">USB_DP / 27 Ω</text>
+  <text class="mono" x="370" y="276">USB_DM / 27 Ω</text>
+
+  <!-- Payload NOR -->
+  <rect class="flash" x="1210" y="230" width="330" height="360" rx="16"/>
+  <text class="h2 center" x="1375" y="273">U3 · W25Q256JVEIQ</text>
+  <text class="body center" x="1375" y="304">32 MiB payload NOR · WSON-8 8×6</text>
+  <line x1="1250" y1="338" x2="1500" y2="338" stroke="#e2a93b" stroke-width="2"/>
+  <text class="mono" x="1252" y="375">1  CS#     ← PAYLOAD_SPI_CS_N</text>
+  <text class="mono" x="1252" y="410">2  DO/IO1  → PAYLOAD_SPI_CIPO</text>
+  <text class="mono" x="1252" y="445">5  DI/IO0  ← PAYLOAD_SPI_COPI</text>
+  <text class="mono" x="1252" y="480">6  CLK     ← PAYLOAD_SPI_SCK</text>
+  <text class="mono" x="1252" y="515">3,7  WP#/HOLD# → 3V3</text>
+  <text class="mono" x="1252" y="550">8 VCC → 3V3 · 4 + EP → GND</text>
+
+  <path class="payload" d="M1080 587 C1130 587 1152 375 1210 375" marker-end="url(#arrowPayload)"/>
+  <path class="payload" d="M1080 612 C1142 612 1155 410 1210 410" marker-end="url(#arrowPayload)"/>
+  <path class="payload" d="M1080 637 C1150 637 1160 445 1210 445" marker-end="url(#arrowPayload)"/>
+  <path class="payload" d="M1080 662 C1162 662 1170 480 1210 480" marker-end="url(#arrowPayload)"/>
+  <text class="tag center" x="1325" y="632" fill="#9b5d00">DEDICATED USER-SPI · NOT XIP/QSPI</text>
+  <text class="small center" x="1325" y="659">10 kΩ CS# pull-up · ownership policy deferred to Task 4</text>
+
+  <!-- Test access -->
+  <rect class="panel" x="55" y="920" width="1490" height="130" rx="12"/>
+  <text class="h2" x="82" y="958">TP1–TP14 test-access contract</text>
+  <text class="mono" x="82" y="994">VBUS_5V · 3V3 · 1V1 · GND · RUN · BOOTSEL_QSPI_SS · SWDIO · SWCLK</text>
+  <text class="mono" x="82" y="1025">USB_DP · USB_DM · PAYLOAD_SPI_SCK · PAYLOAD_SPI_COPI · PAYLOAD_SPI_CIPO · PAYLOAD_SPI_CS_N</text>
+  <rect x="1250" y="946" width="260" height="72" rx="8" fill="#fff1f2" stroke="#e35d6a"/>
+  <text class="tag center" x="1380" y="975" fill="#b02d42">SOURCE CAPTURE PENDING</text>
+  <text class="small center" x="1380" y="1002">footprints assigned in CSV</text>
+
+  <path class="dash" d="M207 508 L207 920"/>
+  <path class="dash" d="M775 870 L775 920"/>
+  <path class="dash" d="M1375 590 L1375 920"/>
+
+  <rect x="55" y="1070" width="1490" height="34" rx="8" fill="#172033"/>
+  <text class="tag white" x="78" y="1092">STRUCTURAL ERC: PASSED</text>
+  <text class="tag" x="410" y="1092" fill="#ffcf66">Native KiCad ERC: BLOCKED · kicad-cli unavailable</text>
+  <text class="small white right" x="1520" y="1093">Task 2 phase gate = false</text>
+</svg>

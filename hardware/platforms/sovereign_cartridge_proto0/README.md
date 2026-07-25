@@ -1,8 +1,7 @@
 # Sovereign Cartridge Proto-0
 
-This directory is the Task 1 topology freeze for the post-v1 hardware-validation
-roadmap. It defines what Proto-0 is before schematic capture assigns pins and
-values.
+This directory contains the Task 1 topology freeze and the in-progress Task 2
+schematic capture for the post-v1 hardware-validation roadmap.
 
 ## Frozen product boundary
 
@@ -25,9 +24,10 @@ functionality or USB Power Delivery.
 
 Status is `TOPOLOGY_FROZEN`; evidence status is `DESIGN_ONLY`.
 
-No schematic ERC, PCB DRC, assembly, voltage, current, timing, USB compliance,
-flash read/write, reset or brownout result is claimed here. Real-hardware and
-destructive operations remain disabled.
+Repository structural schematic ERC is available, but native KiCad ERC, PCB
+DRC, assembly, voltage, current, timing, USB compliance, flash read/write,
+reset and brownout results are not claimed. Real-hardware and destructive
+operations remain disabled.
 
 ## Artifacts
 
@@ -40,7 +40,9 @@ destructive operations remain disabled.
   outcomes and unknowns.
 - [`decisions/0001-topology-freeze.md`](decisions/0001-topology-freeze.md)
   records alternatives and consequences.
-- [`schematics/README.md`](schematics/README.md) is the explicit Task 2 handoff.
+- [`schematics/README.md`](schematics/README.md) tracks the Task 2 capture,
+  editable KiCad source, pin/test-access contracts, review rendering and ERC
+  status.
 - [`validation/task-01-checklist.md`](validation/task-01-checklist.md) defines
   the software-verifiable acceptance gate.
 
@@ -48,4 +50,5 @@ Validate with:
 
 ```sh
 python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
+python3 tools/validate_sovereign_cartridge_schematic.py --strict --self-test
 ```
