@@ -1,0 +1,51 @@
+# Sovereign Cartridge Proto-0
+
+This directory is the Task 1 topology freeze for the post-v1 hardware-validation
+roadmap. It defines what Proto-0 is before schematic capture assigns pins and
+values.
+
+## Frozen product boundary
+
+Proto-0 is one USB-powered service board containing:
+
+- an **RP2354A, A4 stepping** controller with 2 MiB flash-in-package for boot
+  firmware;
+- a physically separate **W25Q256JVEIQ** 256 Mbit NOR device for cartridge
+  payloads;
+- USB 2.0 device/service access through a USB-C receptacle;
+- SWD, RUN, BOOTSEL, rail, USB and payload-SPI test access;
+- a 5 V VBUS input domain, a regulated 3.3 V I/O/storage domain and the
+  RP2354A reference 1.1 V core-regulator domain.
+
+The boot flash and payload flash are different physical devices. Proto-0 does
+not contain raw NAND, an FPGA, wireless networking, a battery, USB host/source
+functionality or USB Power Delivery.
+
+## Evidence boundary
+
+Status is `TOPOLOGY_FROZEN`; evidence status is `DESIGN_ONLY`.
+
+No schematic ERC, PCB DRC, assembly, voltage, current, timing, USB compliance,
+flash read/write, reset or brownout result is claimed here. Real-hardware and
+destructive operations remain disabled.
+
+## Artifacts
+
+- [`topology.json`](topology.json) is the machine-readable contract.
+- [`topology.schema.json`](topology.schema.json) defines its interchange shape.
+- [`architecture.svg`](architecture.svg) shows the frozen blocks and domains.
+- [`bom/bom.csv`](bom/bom.csv) freezes only Task 1 parts and blocks premature
+  purchase of parts owned by Tasks 2-6.
+- [`assumptions.md`](assumptions.md) separates facts, decisions, expected
+  outcomes and unknowns.
+- [`decisions/0001-topology-freeze.md`](decisions/0001-topology-freeze.md)
+  records alternatives and consequences.
+- [`schematics/README.md`](schematics/README.md) is the explicit Task 2 handoff.
+- [`validation/task-01-checklist.md`](validation/task-01-checklist.md) defines
+  the software-verifiable acceptance gate.
+
+Validate with:
+
+```sh
+python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
+```

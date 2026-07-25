@@ -22,3 +22,34 @@ Evolve the repository into a reusable engineering platform that supports learnin
 3. Add hardware-validation templates for oscilloscope, logic analyzer, power analysis, and long-duration testing.
 4. Add benchmark records for RAM, flash, CPU, timing, latency, throughput, power consumption, boot time, sampling accuracy, and network performance.
 5. Expand platform support for STM32, Raspberry Pi, Linux tooling, and power electronics.
+
+## Sovereign Cartridge post-v1 hardware-validation path
+
+The ordered path begins only after Electronics From Zero v1:
+
+1. **Topology freeze — complete:** RP2354A A4 + W25Q256JVEIQ Proto-0 boundary,
+   USB device/service role, debug/test access and no-hardware gates.
+2. Schematic.
+3. Power, reset, brownout and safe shutdown.
+4. SPI ownership.
+5. USB-C service.
+6. BOM and sourcing.
+7. Identity and schema.
+8. Protocol.
+9. littlefs block device.
+10. Immutable objects.
+11. SHA-256 package identity.
+12. Dual manifests.
+13. Transaction states.
+14. Error codes.
+15. Desktop backup, restore and verify.
+16. Power-cut harness.
+17. 10,000 interruption/recovery cycles.
+18. Pogo-pad fixture.
+19. First custom PCB and enclosure.
+20. Raw-NAND and experimental FTL follow-on.
+
+Task 1's contract is
+[`hardware/platforms/sovereign_cartridge_proto0/topology.json`](../hardware/platforms/sovereign_cartridge_proto0/topology.json).
+Downstream tasks must not be marked complete by documentation-only or simulated
+evidence.

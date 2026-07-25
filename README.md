@@ -8,6 +8,11 @@ You have an ESP32 or RP2040, a breadboard and some wires. [Start here](START-HER
 
 The breadboard-first route covers safe power-up, measurement, GPIO, ADC, UART, I²C, SPI, EEPROM, NOR integrity and crash-safe records before it links into the existing NAND, FTL, cartridge and controller work.
 
+The post-v1 hardware-validation path now begins with the
+[`Sovereign Cartridge Proto-0 topology`](hardware/platforms/sovereign_cartridge_proto0/README.md):
+RP2354A A4, physically separate W25Q256JVEIQ payload NOR, USB-C device service,
+SWD/test access and explicit no-hardware authorization gates.
+
 ## Engineering Philosophy
 
 The repository follows a design-for-evidence model:
