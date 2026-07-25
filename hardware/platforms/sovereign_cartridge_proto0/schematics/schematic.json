@@ -1,0 +1,301 @@
+{
+  "schema_version": 1,
+  "schematic_id": "sovereign-cartridge-proto0-task-02",
+  "product": "Sovereign Cartridge",
+  "revision": "PROTO-0",
+  "status": "SCHEMATIC_CAPTURE_IN_PROGRESS",
+  "evidence_status": "DESIGN_ONLY",
+  "phase_gate_passed": false,
+  "invariant": "Never expose incomplete or corrupted data as valid committed data.",
+  "controller": {
+    "reference": "U1",
+    "part": "RP2354A",
+    "silicon_stepping": "A4",
+    "package": "QFN-60_7X7_EP",
+    "boot_flash": {
+      "part": "W25Q16JVWI",
+      "capacity_bytes": 2097152,
+      "location": "IN_PACKAGE",
+      "interface": "QSPI",
+      "external_boot_nor_present": false
+    },
+    "infrastructure_connections": [
+      {
+        "pins": [
+          "1",
+          "11",
+          "20",
+          "30",
+          "38",
+          "45"
+        ],
+        "pin_name": "IOVDD",
+        "net": "3V3",
+        "support": "100 nF local decoupling per supply group"
+      },
+      {
+        "pins": [
+          "6",
+          "23",
+          "39"
+        ],
+        "pin_name": "DVDD",
+        "net": "1V1",
+        "support": "100 nF local decoupling per pin"
+      },
+      {
+        "pins": [
+          "54"
+        ],
+        "pin_name": "QSPI_IOVDD",
+        "net": "3V3",
+        "support": "100 nF local decoupling"
+      },
+      {
+        "pins": [
+          "53"
+        ],
+        "pin_name": "USB_OTP_VDD",
+        "net": "3V3",
+        "support": "100 nF local decoupling"
+      },
+      {
+        "pins": [
+          "44"
+        ],
+        "pin_name": "ADC_AVDD",
+        "net": "3V3",
+        "support": "100 nF local decoupling; analogue filtering remains subject to layout review"
+      },
+      {
+        "pins": [
+          "46"
+        ],
+        "pin_name": "VREG_AVDD",
+        "net": "3V3",
+        "support": "100 nF local decoupling"
+      },
+      {
+        "pins": [
+          "47"
+        ],
+        "pin_name": "VREG_PGND",
+        "net": "GND",
+        "support": "reference SMPS power-ground return"
+      },
+      {
+        "pins": [
+          "48"
+        ],
+        "pin_name": "VREG_LX",
+        "net": "VREG_LX",
+        "support": "L1 3.3 uH to 1V1"
+      },
+      {
+        "pins": [
+          "49"
+        ],
+        "pin_name": "VREG_VIN",
+        "net": "3V3",
+        "support": "4.7 uF local input capacitance"
+      },
+      {
+        "pins": [
+          "50"
+        ],
+        "pin_name": "VREG_FB",
+        "net": "1V1",
+        "support": "33 ohm feedback connection"
+      },
+      {
+        "pins": [
+          "61"
+        ],
+        "pin_name": "GND_EP",
+        "net": "GND",
+        "support": "exposed pad; thermal-via array"
+      },
+      {
+        "pins": [
+          "21",
+          "22"
+        ],
+        "pin_name": "XIN_XOUT",
+        "net": "XIN_XOUT_12MHZ",
+        "support": "Y1 ABM8-272-T3 12 MHz, 1 kohm series, two 15 pF load capacitors"
+      },
+      {
+        "pins": [
+          "51",
+          "52"
+        ],
+        "pin_name": "USB_DM_USB_DP",
+        "net": "USB_DM_USB_DP",
+        "support": "27 ohm series per line; receptacle, CC and ESD implementation deferred to Task 5"
+      },
+      {
+        "pins": [
+          "55",
+          "56",
+          "57",
+          "58",
+          "59",
+          "60"
+        ],
+        "pin_name": "QSPI_SD3_SCLK_SD0_SD2_SD1_SS",
+        "net": "IN_PACKAGE_BOOT_QSPI",
+        "support": "RP2354A boot NOR only; QSPI_SS also provides BOOTSEL"
+      },
+      {
+        "pins": [
+          "24",
+          "25",
+          "26"
+        ],
+        "pin_name": "SWCLK_SWDIO_RUN",
+        "net": "SWCLK_SWDIO_RUN",
+        "support": "J4 SM03B-SRSS-TB debug/recovery connector"
+      }
+    ]
+  },
+  "payload_spi": {
+    "device": {
+      "reference": "U3",
+      "part": "W25Q256JVEIQ",
+      "capacity_bytes": 33554432,
+      "package": "WSON-8_8X6_EP",
+      "mode": "SINGLE_SPI",
+      "vcc_net": "3V3",
+      "ground_net": "GND",
+      "wp_io2_net": "3V3",
+      "hold_io3_net": "3V3",
+      "cs_pullup_ohms": 10000
+    },
+    "controller_instance": "DEFERRED_TO_TASK_04",
+    "ownership_policy": "DEFERRED_TO_TASK_04",
+    "xip_bus_shared": false,
+    "pin_assignment": [
+      {
+        "controller_pin": "27",
+        "gpio": "GPIO16",
+        "alternate_function": "SPI0_RX",
+        "net": "PAYLOAD_SPI_CIPO",
+        "flash_pin": "2",
+        "flash_pin_name": "DO_IO1"
+      },
+      {
+        "controller_pin": "28",
+        "gpio": "GPIO17",
+        "alternate_function": "SPI0_CSn",
+        "net": "PAYLOAD_SPI_CS_N",
+        "flash_pin": "1",
+        "flash_pin_name": "CS_N"
+      },
+      {
+        "controller_pin": "29",
+        "gpio": "GPIO18",
+        "alternate_function": "SPI0_SCK",
+        "net": "PAYLOAD_SPI_SCK",
+        "flash_pin": "6",
+        "flash_pin_name": "CLK"
+      },
+      {
+        "controller_pin": "31",
+        "gpio": "GPIO19",
+        "alternate_function": "SPI0_TX",
+        "net": "PAYLOAD_SPI_COPI",
+        "flash_pin": "5",
+        "flash_pin_name": "DI_IO0"
+      }
+    ]
+  },
+  "recovery": {
+    "bootsel": {
+      "controller_pin": "60",
+      "net": "BOOTSEL_QSPI_SS",
+      "action": "momentary switch to GND",
+      "constraint": "switch must not be asserted during normal QSPI transactions"
+    },
+    "reset": {
+      "controller_pin": "26",
+      "net": "RUN",
+      "action": "debug connector and test access; supervisor behavior deferred to Task 3"
+    },
+    "debug_connector": {
+      "reference": "J4",
+      "part": "SM03B-SRSS-TB",
+      "signals": [
+        "SWDIO",
+        "SWCLK",
+        "RUN",
+        "GND"
+      ]
+    }
+  },
+  "deferred_placeholders": [
+    {
+      "reference": "U2",
+      "visible_value": "3V3_REGULATOR_TASK3_PLACEHOLDER",
+      "owner_task": 3,
+      "dnp": true,
+      "reason": "power protection, regulator, current budget, reset, brownout and safe-shutdown design are not selected"
+    },
+    {
+      "reference": "J1",
+      "visible_value": "USB_C_UFP_TASK5_PLACEHOLDER",
+      "owner_task": 5,
+      "dnp": true,
+      "reason": "USB-C receptacle, CC terminations and ESD network are not selected"
+    }
+  ],
+  "test_access_file": "test-access.csv",
+  "pinmap_file": "pinmap.csv",
+  "native_kicad_erc": {
+    "status": "BLOCKED_TOOL_UNAVAILABLE",
+    "required_before_phase_gate": true,
+    "output_file": "native-kicad-erc.json"
+  },
+  "structural_erc": {
+    "status": "PASSED",
+    "engine": "repository-structural-erc-v1",
+    "output_file": "erc-report.json"
+  },
+  "evidence_claims": {
+    "FACT": "The cited datasheets and official Raspberry Pi reference design support the captured pinout and reference circuits.",
+    "EXPECTED": "The captured design is expected to be electrically reviewable after native KiCad ERC and downstream Task 3/5 circuits are completed.",
+    "MEASURED": "NONE",
+    "UNKNOWN": "Native ERC, PCB layout parasitics, rail behavior, USB compliance, flash timing and all physical behavior."
+  },
+  "sources": [
+    {
+      "title": "RP2350 Datasheet",
+      "url": "https://pip.raspberrypi.com/documents/RP-008373-DS-rp2350-datasheet.pdf",
+      "supports": "RP2354A package, pinout, alternate functions and electrical integration",
+      "retrieved": "2026-07-25"
+    },
+    {
+      "title": "Hardware design with RP2350",
+      "url": "https://pip.raspberrypi.com/documents/RP-008280-DS-hardware-design-with-rp2350.pdf",
+      "supports": "power, core regulator, clock, USB, QSPI, BOOTSEL and debug reference circuits",
+      "retrieved": "2026-07-25"
+    },
+    {
+      "title": "RP2350A Minimal KiCad reference design",
+      "url": "https://pip-assets.raspberrypi.com/categories/1214-rp2350/documents/RP-008295-DS-1-Minimal-KiCAD%20rp2350.zip",
+      "supports": "editable reference schematic, symbols and footprints used as the capture baseline",
+      "retrieved": "2026-07-25"
+    },
+    {
+      "title": "Winbond W25Q256JV product documentation",
+      "url": "https://www.winbond.com/hq/support/documentation/?__locale=en&category=%2F.categories%2Fresources%2Fdatasheet%2F&family=%2Fproduct%2Fcode-storage-flash%2Fqspi-nor%2Findex.html&line=%2Fproduct%2Fcode-storage-flash%2Findex.html&pno=W25Q256JV",
+      "supports": "payload NOR identity, capacity, package and pin functions",
+      "retrieved": "2026-07-25"
+    },
+    {
+      "title": "KiCad 9 command-line interface",
+      "url": "https://docs.kicad.org/9.0/en/cli/cli.html",
+      "supports": "native ERC and schematic export command contract",
+      "retrieved": "2026-07-25"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "engine": "repository-structural-erc-v1",
+  "generated": "2026-07-25",
+  "status": "PASSED",
+  "error_count": 0,
+  "phase_gate_passed": false,
+  "native_kicad_erc": "BLOCKED_TOOL_UNAVAILABLE",
+  "checks": [
+    "RP2354A identity, stepping and QFN-60 exposed-pad package",
+    "all power, ground, core-regulator, clock, USB, QSPI, SWD and RUN pins assigned",
+    "2 MiB boot NOR retained in-package with no external boot NOR",
+    "W25Q256JVEIQ payload NOR identity, capacity and single-SPI support",
+    "GPIO16-GPIO19 payload-SPI physical pin and net assignment",
+    "payload NOR prohibited from sharing the QSPI/XIP bus",
+    "BOOTSEL, RUN and SWD recovery assignments",
+    "Task 3 power and Task 5 USB-C placeholders remain DNP and unresolved",
+    "TP1-TP14 footprint and net contract present with source-capture-pending status",
+    "FACT, DECISION, EXPECTED, MEASURED and UNKNOWN evidence language",
+    "no physical measurement claim",
+    "KiCad source structure and required visible values/net labels",
+    "rendered schematic is valid SVG with gate status",
+    "primary source provenance and retrieval dates"
+  ],
+  "limitations": [
+    "This is repository structural ERC, not KiCad electrical-rule checking.",
+    "kicad-cli is unavailable in the current workspace.",
+    "TP1-TP14 are assigned in the contract but not yet captured as symbols in the KiCad source.",
+    "Task 3 and Task 5 circuits remain downstream-owned DNP placeholders."
+  ],
+  "required_to_close_task_02": [
+    "capture TP1-TP14 symbols and assigned footprints in the KiCad source",
+    "replace downstream placeholder circuits when their owning tasks resolve them",
+    "run native KiCad ERC and commit its machine-readable output",
+    "complete electrical review of the editable sheet and native rendered export"
+  ]
+}
