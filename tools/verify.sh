@@ -6,6 +6,7 @@ while [[ $# -gt 0 ]]; do case "$1" in --emit-manifest) manifest="$2"; shift 2;; 
 [[ $clean == 1 ]] && rm -rf build artifacts
 mkdir -p "$(dirname "$manifest")"
 python3 tools/check_repository.py --strict
+python3 tools/generate_project_discovery.py --check
 python3 tools/validate_electronics_from_zero.py
 python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_schematic.py --strict --self-test

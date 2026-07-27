@@ -27,6 +27,7 @@ EXPECTED_PROJECTS = {
 }
 FIRMWARE_PROJECTS = EXPECTED_PROJECTS - {"01-know-your-breadboard", "02-led-current"}
 CONTRACT = {
+    "README.md",
     "PROJECT.md",
     "WHY.md",
     "BUY.md",
@@ -267,6 +268,21 @@ def validate() -> list[str]:
             svg = (asset / svg_name).read_text(encoding="utf-8")
             if not test_points or not test_points.issubset(set(re.findall(r"TP\d+", svg))):
                 errors.append(f"{asset.relative_to(ROOT)}/{svg_name} disagrees with pinmap test points")
+        landing = (project / "README.md").read_text(encoding="utf-8")
+        for required_link in [
+            "](BUILD.md)",
+            "](CODE/)",
+            "](WIRING.md)",
+            "](EXPECTED.md)",
+            "](validation/checklist.md)",
+            f"../../../assets/projects/{project.name}/breadboard.svg",
+            f"../../../assets/projects/{project.name}/schematic.svg",
+        ]:
+            if required_link not in landing:
+                errors.append(
+                    f"{project.relative_to(ROOT)}/README.md missing discovery link: "
+                    f"{required_link}"
+                )
         for fake in ["assembled-front.jpg", "assembled-top.jpg", "logic-capture.png", "meter-reading.jpg"]:
             if (asset / fake).exists():
                 errors.append(f"fabricated or unreviewed physical asset exists: {asset/fake}")
