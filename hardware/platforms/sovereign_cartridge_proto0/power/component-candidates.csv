@@ -1,0 +1,8 @@
+reference,role,manufacturer,manufacturer_part_number,package,design_value,status,source_url,procurement_gate
+U4,input eFuse,Texas Instruments,TPS25942ARVCR,WQFN-20 3x4 mm,"0.297 A nominal DMODE limit; 4.50 V UVLO; 5.70 V OVP",DESIGN_CANDIDATE,https://www.ti.com/lit/ds/slvsce9/slvsce9.pdf,DO_NOT_PURCHASE_BEFORE_TASK_06
+U2,3V3 buck,Texas Instruments,TLV62569PDDCR,SOT-23-6,3.318 V nominal; 300 mA design ceiling,DESIGN_CANDIDATE,https://www.ti.com/lit/ds/symlink/tlv62569.pdf,DO_NOT_PURCHASE_BEFORE_TASK_06
+U5,VBUS_HOLD supervisor,Texas Instruments,TLV803EA43DBZR,SOT-23-3,4.38 V threshold; 200 ms release,DESIGN_CANDIDATE,https://www.ti.com/lit/ds/symlink/tlv803e.pdf,VERIFY_ORDERABLE_BEFORE_TASK_06
+U6,3V3 supervisor,Texas Instruments,TLV803EA30DBZR,SOT-23-3,3.08 V threshold; 200 ms release,DESIGN_CANDIDATE,https://www.ti.com/lit/ds/symlink/tlv803e.pdf,VERIFY_ORDERABLE_BEFORE_TASK_06
+L2,buck inductor,Coilcraft,XAL4020-222ME,4x4 mm,2.2 uH,REFERENCE_CANDIDATE,https://www.ti.com/lit/ds/symlink/tlv62569.pdf,VERIFY_DERATING_AND_SOURCE_BEFORE_TASK_06
+C_HOLD,hold-up capacitor,DEFERRED,DEFERRED_TO_TASK_06,DEFERRED,100 uF nominal; 80 uF minimum effective,VALUE_FROZEN_PART_DEFERRED,https://www.ti.com/lit/ds/slvsce9/slvsce9.pdf,SELECT_RATED_CAPACITOR_AND_VERIFY_BIAS_TEMPERATURE
+C_OUT,buck output capacitor,DEFERRED,DEFERRED_TO_TASK_06,DEFERRED,47 uF X7R or X5R nominal,VALUE_FROZEN_PART_DEFERRED,https://www.ti.com/lit/ds/symlink/tlv62569.pdf,SELECT_RATED_CAPACITOR_AND_VERIFY_BIAS_TEMPERATURE

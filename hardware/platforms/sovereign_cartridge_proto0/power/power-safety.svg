@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="title desc">
+  <title id="title">Sovereign Cartridge Proto-0 Task 3 power safety</title>
+  <desc id="desc">Design-only power path and fail-stop state flow from USB VBUS through an eFuse, hold-up node, buck regulator, supervisors, RP2354A and payload NOR.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+    <style>
+      .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#cbd5e1;stroke-width:2}.source{fill:#e0f2fe;stroke:#0284c7;stroke-width:3}.protect{fill:#fff7ed;stroke:#ea580c;stroke-width:3}.hold{fill:#fefce8;stroke:#ca8a04;stroke-width:3}.convert{fill:#ecfdf5;stroke:#059669;stroke-width:3}.logic{fill:#eef2ff;stroke:#4f46e5;stroke-width:3}.danger{fill:#fff1f2;stroke:#e11d48;stroke-width:3}.wire{fill:none;stroke:#334155;stroke-width:4;marker-end:url(#arrow)}.reset{fill:none;stroke:#e11d48;stroke-width:4;marker-end:url(#arrow)}.h1{font:700 32px Inter,Arial,sans-serif;fill:#0f172a}.h2{font:700 21px Inter,Arial,sans-serif;fill:#0f172a}.body{font:16px Inter,Arial,sans-serif;fill:#334155}.small{font:14px Inter,Arial,sans-serif;fill:#475569}.tag{font:700 13px Inter,Arial,sans-serif;letter-spacing:1px;fill:#be123c}.center{text-anchor:middle}
+    </style>
+  </defs>
+  <rect class="bg" width="1500" height="900"/>
+  <text class="h1" x="70" y="62">Task 3 · Power, reset, brownout and safe shutdown</text>
+  <text class="tag" x="1235" y="58">DESIGN ONLY · GATE OPEN</text>
+
+  <rect class="source" x="70" y="135" width="210" height="145" rx="16"/>
+  <text class="h2 center" x="175" y="180">VBUS_5V</text>
+  <text class="body center" x="175" y="215">USB-C sink only</text>
+  <text class="small center" x="175" y="245">connector / CC / ESD: Task 5</text>
+
+  <rect class="protect" x="345" y="115" width="285" height="185" rx="16"/>
+  <text class="h2 center" x="487" y="155">U4 · TPS25942A</text>
+  <text class="body center" x="487" y="190">UVLO · OVP · 0.297 A DMODE limit</text>
+  <text class="body center" x="487" y="220">controlled inrush</text>
+  <text class="body center" x="487" y="250">reverse-current blocking</text>
+  <text class="small center" x="487" y="278">auto-retry design candidate</text>
+
+  <rect class="hold" x="695" y="135" width="240" height="145" rx="16"/>
+  <text class="h2 center" x="815" y="180">VBUS_HOLD</text>
+  <text class="body center" x="815" y="215">100 uF nominal</text>
+  <text class="small center" x="815" y="245">80 uF minimum effective</text>
+
+  <rect class="convert" x="1000" y="115" width="275" height="185" rx="16"/>
+  <text class="h2 center" x="1138" y="155">U2 · TLV62569P</text>
+  <text class="body center" x="1138" y="190">5 V → 3.318 V buck</text>
+  <text class="body center" x="1138" y="220">2.2 uH · 47 uF</text>
+  <text class="body center" x="1138" y="250">300 mA design ceiling</text>
+  <text class="small center" x="1138" y="278">power-good → RUN</text>
+
+  <path class="wire" d="M280 207 L345 207"/>
+  <path class="wire" d="M630 207 L695 207"/>
+  <path class="wire" d="M935 207 L1000 207"/>
+  <path class="wire" d="M1275 207 L1375 207 L1375 350 L1220 350 L1220 380"/>
+  <text class="small" x="1295" y="336">3V3 power</text>
+
+  <rect class="logic" x="160" y="390" width="310" height="155" rx="16"/>
+  <text class="h2 center" x="315" y="432">U5 · 4.38 V supervisor</text>
+  <text class="body center" x="315" y="468">monitors VBUS_HOLD</text>
+  <text class="body center" x="315" y="498">50 us max assert</text>
+  <text class="small center" x="315" y="524">200 ms release delay</text>
+
+  <rect class="logic" x="555" y="390" width="310" height="155" rx="16"/>
+  <text class="h2 center" x="710" y="432">U6 · 3.08 V supervisor</text>
+  <text class="body center" x="710" y="468">monitors 3V3</text>
+  <text class="body center" x="710" y="498">external rail brownout</text>
+  <text class="small center" x="710" y="524">200 ms release delay</text>
+
+  <rect class="logic" x="950" y="380" width="310" height="175" rx="16"/>
+  <text class="h2 center" x="1105" y="425">RP2354A · RUN</text>
+  <text class="body center" x="1105" y="462">wired-AND open drain</text>
+  <text class="body center" x="1105" y="492">asynchronous fail-stop</text>
+  <text class="small center" x="1105" y="522">internal DVDD BOD remains enabled</text>
+
+  <path class="reset" d="M470 467 L505 467 L505 350 L905 350 L905 467 L950 467"/>
+  <path class="reset" d="M865 505 L950 505"/>
+  <path class="reset" d="M1138 300 L1138 380"/>
+
+  <rect class="danger" x="950" y="630" width="420" height="155" rx="16"/>
+  <text class="h2 center" x="1160" y="672">W25Q256JVEIQ payload NOR</text>
+  <text class="body center" x="1160" y="708">CS_N pull-up returns bus inactive</text>
+  <text class="body center" x="1160" y="738">interrupted work remains uncommitted</text>
+  <text class="small center" x="1160" y="765">recovery validates metadata before exposure</text>
+
+  <path class="reset" d="M1105 555 L1105 630"/>
+
+  <rect class="panel" x="70" y="630" width="720" height="175" rx="16"/>
+  <text class="h2" x="100" y="674">Calculated fail-stop envelope</text>
+  <text class="body" x="100" y="710">Available hold-up: 176.6 us at 300 mA, 80% efficiency</text>
+  <text class="body" x="100" y="742">Allocated response: 50 us supervisor + 25 us bus quiescence</text>
+  <text class="body" x="100" y="774">Margin: 2.35x · must be proven on hardware</text>
+
+  <text class="small" x="70" y="855">Hold-up energy forces a deterministic reset; it does not promise completion of flash program or erase operations.</text>
+</svg>
