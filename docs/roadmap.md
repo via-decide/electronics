@@ -32,7 +32,10 @@ The ordered path begins only after Electronics From Zero v1:
 2. **Schematic — in progress:** pin/net contract and reference-derived KiCad
    capture added; repository structural ERC passes. Native KiCad ERC,
    TP1-TP14 source capture and electrical review remain blocking.
-3. Power, reset, brownout and safe shutdown.
+3. **Power safety — in progress:** protected and reverse-isolated VBUS hold-up,
+   3.3 V conversion, wired-AND reset supervision, current allocation and
+   fail-stop calculations added; KiCad capture, native ERC, simulation and
+   physical power-cut evidence remain blocking.
 4. SPI ownership.
 5. USB-C service.
 6. BOM and sourcing.
@@ -55,5 +58,7 @@ Task 1's contract is
 [`hardware/platforms/sovereign_cartridge_proto0/topology.json`](../hardware/platforms/sovereign_cartridge_proto0/topology.json).
 Task 2's in-progress contract is
 [`hardware/platforms/sovereign_cartridge_proto0/schematics/schematic.json`](../hardware/platforms/sovereign_cartridge_proto0/schematics/schematic.json).
+Task 3's in-progress contract is
+[`hardware/platforms/sovereign_cartridge_proto0/power/power-safety.json`](../hardware/platforms/sovereign_cartridge_proto0/power/power-safety.json).
 Downstream tasks must not be marked complete by documentation-only or simulated
 evidence.

@@ -1,7 +1,8 @@
 # Sovereign Cartridge Proto-0
 
 This directory contains the Task 1 topology freeze and the in-progress Task 2
-schematic capture for the post-v1 hardware-validation roadmap.
+schematic and Task 3 power-safety contracts for the post-v1
+hardware-validation roadmap.
 
 ## Frozen product boundary
 
@@ -43,6 +44,8 @@ operations remain disabled.
 - [`schematics/README.md`](schematics/README.md) tracks the Task 2 capture,
   editable KiCad source, pin/test-access contracts, review rendering and ERC
   status.
+- [`power/README.md`](power/README.md) tracks the Task 3 protected input,
+  regulator, reset, brownout, hold-up and fail-stop design.
 - [`validation/task-01-checklist.md`](validation/task-01-checklist.md) defines
   the software-verifiable acceptance gate.
 
@@ -51,4 +54,5 @@ Validate with:
 ```sh
 python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_schematic.py --strict --self-test
+python3 tools/validate_sovereign_cartridge_power_safety.py --strict --self-test
 ```

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "power_safety_id": "sovereign-cartridge-proto0-task-03",
+  "product": "Sovereign Cartridge",
+  "revision": "PROTO-0",
+  "status": "POWER_SAFETY_DESIGN_IN_PROGRESS",
+  "evidence_status": "DESIGN_ONLY",
+  "phase_gate_passed": false,
+  "invariant": "Never expose incomplete or corrupted data as valid committed data.",
+  "input_contract": {
+    "source_net": "VBUS_5V",
+    "nominal_voltage_v": 5.0,
+    "usb_role": "SINK_ONLY",
+    "usb_power_delivery_enabled": false,
+    "configured_input_ceiling_ma": 500,
+    "pre_configuration_target_ma": 100,
+    "usb_current_advertisement_owner": "TASK_05",
+    "pre_configuration_current_status": "UNKNOWN_REQUIRES_BENCH"
+  },
+  "protection": {
+    "reference": "U4",
+    "part": "TPS25942ARVCR",
+    "topology": "INTEGRATED_BACK_TO_BACK_EFUSE",
+    "mode": "AUTO_RETRY_NON_IDEAL_DIODE",
+    "input_net": "VBUS_5V",
+    "output_net": "VBUS_HOLD",
+    "reverse_current_blocking": true,
+    "dmode_net": "VBUS_HOLD",
+    "dmode_policy": "HIGH_WHILE_HOLD_UP_ENERGY_REMAINS",
+    "current_limit": {
+      "program_resistor_kohm": 150.0,
+      "normal_mode_nominal_a": 0.593333,
+      "non_ideal_diode_multiplier": 0.5,
+      "operating_mode_nominal_a": 0.296667,
+      "formula": "I_LIM_NORMAL_A = 89 / R_ILIM_KOHM; I_LIM_DMODE_A = 0.5 * I_LIM_NORMAL_A"
+    },
+    "uvlo_ovp_divider": {
+      "r1_kohm": 449.0,
+      "r2_kohm": 26.7,
+      "r3_kohm": 100.0,
+      "uvlo_rising_v": 4.498366,
+      "power_fail_falling_v": 4.1803,
+      "ovp_rising_v": 5.69943,
+      "ovp_falling_v": 5.29644
+    },
+    "inrush": {
+      "dvdt_capacitance_nf": 4.7,
+      "hold_capacitance_nominal_uf": 100.0,
+      "nominal_ramp_ms": 1.9505,
+      "capacitor_only_inrush_ma": 256.345
+    },
+    "unresolved_usb_boundary": [
+      "connector and CC implementation",
+      "VBUS and data-line ESD selection",
+      "USB attach inrush compliance"
+    ]
+  },
+  "regulator": {
+    "reference": "U2",
+    "part": "TLV62569PDDCR",
+    "topology": "SYNCHRONOUS_BUCK",
+    "input_net": "VBUS_HOLD",
+    "output_net": "3V3",
+    "input_operating_range_v": [
+      2.5,
+      5.5
+    ],
+    "rated_output_current_a": 2.0,
+    "design_output_ceiling_ma": 300,
+    "efficiency_floor_for_hold_up": 0.8,
+    "inductor_uh": 2.2,
+    "input_capacitance_uf": 4.7,
+    "output_capacitance_uf": 47.0,
+    "feedback": {
+      "top_kohm": 453.0,
+      "bottom_kohm": 100.0,
+      "feed_forward_pf": 6.8,
+      "nominal_output_v": 3.318,
+      "formula": "V_OUT = 0.6 * (1 + R_TOP / R_BOTTOM)"
+    },
+    "power_good": {
+      "topology": "OPEN_DRAIN_ACTIVE_LOW_ON_FAULT",
+      "net": "POWER_SAFE_N",
+      "wired_to_run": true
+    }
+  },
+  "supervision": {
+    "run_net": "RUN",
+    "run_policy": "WIRED_AND_OPEN_DRAIN",
+    "run_pullup_ohms": 10000,
+    "sources": [
+      {
+        "reference": "U5",
+        "part": "TLV803EA43DBZR",
+        "monitored_net": "VBUS_HOLD",
+        "falling_threshold_nominal_v": 4.38,
+        "falling_threshold_tolerance_percent": 2.0,
+        "release_delay_nominal_ms": 200,
+        "assertion_delay_max_us": 50,
+        "output_net": "POWER_SAFE_N"
+      },
+      {
+        "reference": "U6",
+        "part": "TLV803EA30DBZR",
+        "monitored_net": "3V3",
+        "falling_threshold_nominal_v": 3.08,
+        "falling_threshold_tolerance_percent": 2.0,
+        "release_delay_nominal_ms": 200,
+        "assertion_delay_max_us": 50,
+        "output_net": "POWER_SAFE_N"
+      }
+    ],
+    "rp2354_internal_bod": {
+      "supply": "DVDD_1V1",
+      "required_enabled": true,
+      "role": "SECONDARY_CORE_BROWNOUT_DEFENSE_NOT_A_REPLACEMENT_FOR_EXTERNAL_RAIL_SUPERVISION"
+    },
+    "payload_cs_fail_safe": {
+      "net": "PAYLOAD_SPI_CS_N",
+      "pullup_ohms": 10000,
+      "required_state_during_reset": "HIGH_INACTIVE"
+    }
+  },
+  "hold_up": {
+    "storage_net": "VBUS_HOLD",
+    "nominal_capacitance_uf": 100.0,
+    "minimum_effective_capacitance_uf": 80.0,
+    "supervisor_threshold_worst_low_v": 4.2924,
+    "buck_input_floor_v": 3.6,
+    "rail_current_ceiling_ma": 300,
+    "rail_voltage_v": 3.3,
+    "efficiency_floor": 0.8,
+    "available_energy_uj": 218.588,
+    "calculated_hold_up_us": 176.637,
+    "supervisor_assertion_budget_us": 50,
+    "run_to_bus_quiet_budget_us": 25,
+    "total_fail_stop_budget_us": 75,
+    "calculated_margin_ratio": 2.355,
+    "claim_boundary": "ENERGY_FOR_FAIL_STOP_ONLY_NOT_FLASH_PROGRAM_OR_ERASE_COMPLETION"
+  },
+  "current_budget_file": "power-budget.csv",
+  "component_candidates_file": "component-candidates.csv",
+  "state_machine": [
+    {
+      "state": "OFF",
+      "entry": "VBUS absent or outside the accepted window",
+      "action": "eFuse isolates VBUS_HOLD and RUN remains asserted low"
+    },
+    {
+      "state": "QUALIFY",
+      "entry": "eFuse ramps VBUS_HOLD and the buck raises 3V3",
+      "action": "supervisors hold RUN low through their release delays"
+    },
+    {
+      "state": "RUN",
+      "entry": "VBUS_HOLD, 3V3 and buck power-good remain valid",
+      "action": "RUN releases; firmware may transact only after recovery validation"
+    },
+    {
+      "state": "FAULT_STOP",
+      "entry": "input fault, hold-up undervoltage, 3V3 undervoltage or buck fault",
+      "action": "POWER_SAFE_N asserts RUN low and PAYLOAD_SPI_CS_N returns high"
+    },
+    {
+      "state": "RECOVERY",
+      "entry": "valid power returns and reset release delay expires",
+      "action": "firmware rejects or repairs incomplete transaction states before exposure"
+    }
+  ],
+  "firmware_contract": [
+    "Do not disable the RP2354 brownout detector.",
+    "Do not expose an object as committed until durable metadata says committed.",
+    "Treat every reset during erase, program or metadata update as an interrupted transaction.",
+    "Validate payload NOR identity and status before recovery.",
+    "Do not start payload mutation before the USB power contract permits the required current."
+  ],
+  "evidence_claims": {
+    "FACT": "The cited manufacturer datasheets define the candidate parts, voltage ranges, thresholds, protection functions and RUN behavior used by this contract.",
+    "DECISION": "Proto-0 uses an isolated VBUS_HOLD node, a 3.3 V buck and wired-AND external reset supervision.",
+    "EXPECTED": "The calculated hold-up interval is expected to force a fail-stop before the payload NOR leaves its valid supply range at the 300 mA design ceiling.",
+    "MEASURED": "NONE",
+    "UNKNOWN": "Native ERC, actual current, capacitance under bias and temperature, converter efficiency, power-cut timing, SPI pin quiescence, USB attach behavior, thermals and physical recovery behavior."
+  },
+  "blocking_validation": [
+    "capture the full circuit and test points in editable KiCad source",
+    "run native KiCad ERC and independent electrical review",
+    "simulate eFuse startup, buck loop/load step and abrupt input removal",
+    "measure pre-configuration and worst-case 3V3 current",
+    "measure POWER_SAFE_N, RUN, 3V3 and PAYLOAD_SPI_CS_N during repeated power cuts",
+    "prove 25 us maximum RUN-to-payload-bus-quiescent timing or revise hold-up",
+    "complete Task 5 USB-C input and inrush validation",
+    "complete Task 6 sourcing and derating review"
+  ],
+  "sources": [
+    {
+      "title": "TPS25942x/44x eFuse datasheet",
+      "url": "https://www.ti.com/lit/ds/slvsce9/slvsce9.pdf",
+      "supports": "reverse blocking, DMODE current-limit behavior, programmable UVLO/OVP, inrush equations and orderable device",
+      "retrieved": "2026-07-27"
+    },
+    {
+      "title": "TLV62569 synchronous buck datasheet",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv62569.pdf",
+      "supports": "input range, current rating, feedback equation, LC network and power-good behavior",
+      "retrieved": "2026-07-27"
+    },
+    {
+      "title": "TLV803E voltage supervisor datasheet",
+      "url": "https://www.ti.com/lit/ds/symlink/tlv803e.pdf",
+      "supports": "threshold options, tolerance, open-drain reset, assertion and release timing",
+      "retrieved": "2026-07-27"
+    },
+    {
+      "title": "RP2350 datasheet",
+      "url": "https://pip.raspberrypi.com/documents/RP-008373-DS-rp2350-datasheet.pdf",
+      "supports": "RUN behavior, supply ranges and internal core brownout detector",
+      "retrieved": "2026-07-27"
+    },
+    {
+      "title": "W25Q256JV manufacturer documentation",
+      "url": "https://www.winbond.com/hq/support/documentation/?__locale=en&category=%2F.categories%2Fresources%2Fdatasheet%2F&family=%2Fproduct%2Fcode-storage-flash%2Fqspi-nor%2Findex.html&line=%2Fproduct%2Fcode-storage-flash%2Findex.html&pno=W25Q256JV",
+      "supports": "payload NOR 2.7 V to 3.6 V operating range and power-loss recovery boundary",
+      "retrieved": "2026-07-27"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+consumer,rail,allocation_ma,basis,evidence_status,validation
+RP2354A including in-package boot NOR,3V3,200,Engineering ceiling bounded by the 200 mA on-chip core-regulator capability; not a measured board current,DECISION,Measure cold hot boot active USB and storage modes
+W25Q256JVEIQ payload NOR,3V3,40,Conservative engineering allocation covering read program and erase modes pending current waveform capture,DECISION,Measure each payload operation across voltage and temperature
+Supervisors and power-control pullups,3V3,1,Allocation exceeds cited supervisor quiescent currents and includes wired-AND pullups,DECISION,Measure static current
+SWD and test-access leakage,3V3,9,Debug connector does not source an external target; allocation covers leakage and fixture attachment,DECISION,Measure with and without fixture
+Transient and unallocated margin,3V3,50,Reserved margin rather than an assigned load,DECISION,Retire only after worst-case load-step evidence
+TOTAL,3V3,300,Task 3 design ceiling,DECISION,Must not be promoted to measured

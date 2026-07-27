@@ -19,8 +19,11 @@ KiCad ERC, test-point source capture and electrical review remain open.
 - BOOTSEL uses QSPI_SS; RUN, SWDIO and SWCLK remain accessible.
 - TP1-TP14 have a net and footprint contract in `test-access.csv`, but their
   KiCad symbols are still explicitly pending.
-- The input-power implementation remains a Task 3 DNP placeholder. The USB-C
-  receptacle, CC and ESD implementation remains a Task 5 DNP placeholder.
+- The input-power implementation remains a DNP placeholder in this editable
+  sheet. Task 3 now defines its design in
+  [`../power/power-safety.json`](../power/power-safety.json), but source
+  capture and native ERC remain open. The USB-C receptacle, CC and ESD
+  implementation remains a Task 5 DNP placeholder.
 
 Task 4 still owns the SPI controller-instance declaration, exclusive-ownership
 state machine and bus-recovery policy.
