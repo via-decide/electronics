@@ -5,6 +5,8 @@
 ## New to physical electronics?
 
 You have an ESP32 or RP2040, a breadboard and some wires. [Start here](START-HERE.md).
+Prefer to choose visually? Open the [numbered project catalog](projects/README.md)
+to preview each build before opening its code and validation record.
 
 The breadboard-first route covers safe power-up, measurement, GPIO, ADC, UART, I²C, SPI, EEPROM, NOR integrity and crash-safe records before it links into the existing NAND, FTL, cartridge and controller work.
 

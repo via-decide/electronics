@@ -2,6 +2,10 @@
 
 Pick the first statement that matches you. You do not need to understand the repository structure.
 
+If you already know what you want to build, use the
+[visual project catalog](projects/README.md) to preview the wiring, open the
+code and enter the full validation path.
+
 ## I have these parts
 
 | You have | Start |
