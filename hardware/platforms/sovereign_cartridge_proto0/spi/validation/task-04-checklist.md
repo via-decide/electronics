@@ -19,16 +19,16 @@ Status: `OPEN`.
 
 ## Firmware proof
 
-- [ ] Implement a single `PAYLOAD_STORAGE_SERVICE` owner.
+- [x] Implement a single `PAYLOAD_STORAGE_SERVICE` owner.
 - [ ] Prevent direct SPI0 SDK/register use outside the owner at review and
   link boundaries.
-- [ ] Add typed queue requests with depth and one-inflight enforcement.
-- [ ] Add unit tests for bounds, overflow, page crossing and erase alignment.
-- [ ] Add negative tests for every forbidden opcode.
-- [ ] Add state-transition, cancellation, timeout and recovery tests.
-- [ ] Prove reset recovery never replays a mutation automatically.
-- [ ] Prove full read-back verification for program and erase.
-- [ ] Preserve structured request/error counters without logging payload data.
+- [x] Add typed queue requests with depth and one-inflight enforcement.
+- [x] Add unit tests for bounds, overflow, page crossing and erase alignment.
+- [x] Add negative tests for every forbidden opcode.
+- [x] Add state-transition, cancellation, timeout and recovery tests.
+- [x] Prove reset recovery never replays a mutation automatically.
+- [x] Prove full read-back verification for program and erase.
+- [x] Preserve structured request/error counters without logging payload data.
 
 ## Physical evidence
 

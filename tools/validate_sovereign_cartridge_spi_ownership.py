@@ -32,6 +32,15 @@ CHECKLIST = SPI / "validation/task-04-checklist.md"
 TOPOLOGY = PLATFORM / "topology.json"
 SCHEMATIC = PLATFORM / "schematics/schematic.json"
 POWER = PLATFORM / "power/power-safety.json"
+SERVICE_HEADER = (
+    ROOT / "firmware/storage/include/storage/payload_storage_service.h"
+)
+SERVICE_SOURCE = ROOT / "firmware/storage/payload_storage_service.c"
+HOST_TEST = (
+    ROOT
+    / "firmware/storage/tests/host/test_payload_storage_service_negative.c"
+)
+STORAGE_CMAKE = ROOT / "firmware/storage/CMakeLists.txt"
 
 ALLOWED_SOURCE_HOSTS = {
     "pip.raspberrypi.com",
@@ -708,6 +717,37 @@ def validate_interfaces_and_evidence(
             errors,
         )
 
+    host = data.get("host_implementation", {})
+    for key, value in {
+        "status": "HOST_TESTED_TRANSPORT_AGNOSTIC",
+        "service_header": "firmware/storage/include/storage/payload_storage_service.h",
+        "service_source": "firmware/storage/payload_storage_service.c",
+        "negative_test_suite": (
+            "firmware/storage/tests/host/test_payload_storage_service_negative.c"
+        ),
+        "ctest_target": "payload_storage_service_host_tests",
+        "test_cases": 13,
+        "hardware_adapter": "NOT_IMPLEMENTED_OR_ENABLED",
+        "physical_evidence": "NONE",
+    }.items():
+        expect(host.get(key) == value, f"host_implementation.{key} drifted", errors)
+    required_host_properties = {
+        "OPAQUE_TYPED_REQUEST_BOUNDARY",
+        "QUEUE_DEPTH_8_AND_ONE_INFLIGHT",
+        "BOUNDS_OVERFLOW_ALIGNMENT_AND_PAGE_CROSS_REJECTION",
+        "EVERY_FORBIDDEN_OPCODE_REJECTED",
+        "POWER_BUSY_WEL_IDENTITY_AND_RESET_PRECONDITIONS",
+        "FULL_PROGRAM_AND_ERASE_READ_BACK",
+        "TIMEOUT_AND_RESET_UNKNOWN_OUTCOME",
+        "NO_AUTOMATIC_MUTATION_REPLAY",
+        "STRUCTURED_METADATA_WITHOUT_PAYLOAD_LOGGING",
+    }
+    expect(
+        set(host.get("verified_properties", [])) == required_host_properties,
+        "host implementation proof set drifted",
+        errors,
+    )
+
     claims = data.get("evidence_claims", {})
     for label in ("FACT", "DECISION", "EXPECTED", "MEASURED", "UNKNOWN"):
         expect(bool(claims.get(label)), f"missing {label} evidence claim", errors)
@@ -779,7 +819,8 @@ def validate_files(data: dict, errors: list[str]) -> None:
         expect(heading in assumptions, f"assumptions missing {heading}", errors)
     expect("`NONE`" in assumptions, "assumptions must state no measurements", errors)
     expect(
-        "Expected statements are design predictions" in assumptions,
+        "Expected statements are design predictions, not physical or bench evidence."
+        in assumptions,
         "assumptions lack expected-evidence boundary",
         errors,
     )
@@ -800,6 +841,8 @@ def validate_files(data: dict, errors: list[str]) -> None:
         "Chip erase",
         "never automatically",
         "DESIGN_IN_PROGRESS",
+        "Host implementation",
+        "failure-injectable NOR model",
     ):
         expect(
             token in normalized_readme,
@@ -823,6 +866,48 @@ def validate_files(data: dict, errors: list[str]) -> None:
         "FAULT",
     ):
         expect(token in diagram_text, f"SPI diagram missing {token}", errors)
+
+    header = SERVICE_HEADER.read_text(encoding="utf-8")
+    source = SERVICE_SOURCE.read_text(encoding="utf-8")
+    host_test = HOST_TEST.read_text(encoding="utf-8")
+    storage_cmake = STORAGE_CMAKE.read_text(encoding="utf-8")
+    for token in (
+        "PAYLOAD_STORAGE_QUEUE_DEPTH 8u",
+        "payload_storage_service_submit",
+        "payload_storage_service_cancel",
+        "payload_storage_service_run_once",
+        "payload_storage_service_recover",
+        "payload_storage_service_notify_reset",
+        "payload_storage_service_get_health",
+    ):
+        expect(token in header, f"service header missing {token}", errors)
+    for token in (
+        "OPCODE_READ_DATA_4_BYTE",
+        "OPCODE_PAGE_PROGRAM_4_BYTE",
+        "OPCODE_SECTOR_ERASE_4_BYTE",
+        "OPCODE_BLOCK_ERASE_4_BYTE",
+        "PAYLOAD_STORAGE_E_SPI_UNKNOWN_OUTCOME",
+        "verify_range",
+    ):
+        expect(token in source, f"service source missing {token}", errors)
+    for opcode in REQUIRED_FORBIDDEN_OPCODES:
+        expect(
+            f"0x{opcode.lower()}" in host_test,
+            f"negative host suite missing forbidden opcode {opcode}",
+            errors,
+        )
+    for token in (
+        "test_timeout_unknown_outcome_never_replays",
+        "test_reset_unknown_outcome_never_replays",
+        "test_full_erase_readback_verification",
+        "test_owner_reentrancy_and_active_cancellation",
+    ):
+        expect(token in host_test, f"negative host suite missing {token}", errors)
+    expect(
+        "payload_storage_service_host_tests" in storage_cmake,
+        "PAYLOAD_STORAGE_SERVICE host test is not registered with CTest",
+        errors,
+    )
 
     topology = read_json(TOPOLOGY)
     topology_spi = topology.get("interfaces", {}).get("payload_spi", {})
@@ -1015,6 +1100,10 @@ def main() -> int:
         TOPOLOGY,
         SCHEMATIC,
         POWER,
+        SERVICE_HEADER,
+        SERVICE_SOURCE,
+        HOST_TEST,
+        STORAGE_CMAKE,
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:
@@ -1035,8 +1124,11 @@ def main() -> int:
 
     mode = "strict" if arguments.strict else "standard"
     suffix = " with mutation self-test" if arguments.self_test else ""
-    print(f"Task 4 SPI ownership design checks passed ({mode}{suffix}).")
-    print("Firmware and physical evidence are absent; Task 4 phase gate remains false.")
+    print(f"Task 4 SPI ownership checks passed ({mode}{suffix}).")
+    print(
+        "Host owner evidence is present; RP2354A and physical evidence remain "
+        "absent, so the Task 4 phase gate remains false."
+    )
     return 0
 
 

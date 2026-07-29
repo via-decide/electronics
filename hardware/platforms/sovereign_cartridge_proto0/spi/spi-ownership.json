@@ -469,16 +469,36 @@
     "calculated_full_scan_seconds": 11.184811,
     "performance_evidence": "EXPECTED_NOT_MEASURED"
   },
+  "host_implementation": {
+    "status": "HOST_TESTED_TRANSPORT_AGNOSTIC",
+    "service_header": "firmware/storage/include/storage/payload_storage_service.h",
+    "service_source": "firmware/storage/payload_storage_service.c",
+    "negative_test_suite": "firmware/storage/tests/host/test_payload_storage_service_negative.c",
+    "ctest_target": "payload_storage_service_host_tests",
+    "test_cases": 13,
+    "verified_properties": [
+      "OPAQUE_TYPED_REQUEST_BOUNDARY",
+      "QUEUE_DEPTH_8_AND_ONE_INFLIGHT",
+      "BOUNDS_OVERFLOW_ALIGNMENT_AND_PAGE_CROSS_REJECTION",
+      "EVERY_FORBIDDEN_OPCODE_REJECTED",
+      "POWER_BUSY_WEL_IDENTITY_AND_RESET_PRECONDITIONS",
+      "FULL_PROGRAM_AND_ERASE_READ_BACK",
+      "TIMEOUT_AND_RESET_UNKNOWN_OUTCOME",
+      "NO_AUTOMATIC_MUTATION_REPLAY",
+      "STRUCTURED_METADATA_WITHOUT_PAYLOAD_LOGGING"
+    ],
+    "hardware_adapter": "NOT_IMPLEMENTED_OR_ENABLED",
+    "physical_evidence": "NONE"
+  },
   "evidence_claims": {
     "FACT": "The cited RP2350 and W25Q256JV sources define SPI0 pin functions, SPI controller behavior, flash identity, geometry, opcodes, power-up delays, status semantics and maximum program/erase times used by this contract.",
     "DECISION": "Proto-0 assigns SPI0 and manual payload chip-select exclusively to one serialized payload-storage service using standard SPI and dedicated four-byte opcodes.",
     "EXPECTED": "A single blocking owner with bounded operations and no automatic mutation retry is expected to make command framing and unknown reset outcomes deterministic enough for later transaction recovery.",
     "MEASURED": "NONE",
-    "UNKNOWN": "Actual clock, signal integrity, transfer latency, queue behavior, timeout distributions, RUN-to-bus-quiescent timing, flash behavior during power cuts and all physical recovery results."
+    "UNKNOWN": "Actual clock, signal integrity, target scheduler latency, hardware queue behavior, timeout distributions, RUN-to-bus-quiescent timing, flash behavior during power cuts and all physical recovery results."
   },
   "blocking_validation": [
-    "implement the typed owner service and prohibit direct SPI0 access at link and review boundaries",
-    "add host tests for bounds alignment page crossing opcode allowlists state transitions and timeout paths",
+    "implement the RP2354A SPI0 adapter and prohibit direct SPI0 access at link and review boundaries",
     "capture logic-analyzer traces for every allowed command and prohibited command attempt",
     "measure the actual SPI clock and verify mode zero timing at TP11 through TP14",
     "prove chip select remains high during reset boot and power-fault entry",

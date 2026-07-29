@@ -4,8 +4,10 @@ Status: `SPI_OWNERSHIP_DESIGN_IN_PROGRESS`.
 
 This directory freezes the first reviewable controller, command, ownership and
 recovery contract for the physically separate W25Q256JVEIQ payload NOR. It
-does not close Task 4. Firmware implementation, host tests, logic-analyzer
-captures and destructive fault-injection evidence remain open.
+now includes a transport-agnostic C owner and negative host-test suite. It does
+not close Task 4: the RP2354A SPI0 adapter, link-boundary enforcement,
+logic-analyzer captures and destructive physical fault-injection evidence
+remain open.
 
 ## Frozen interface
 
@@ -77,6 +79,23 @@ erase is active. Therefore `66` + `99` is recovery-only and requires
 
 See [`spi-ownership.svg`](spi-ownership.svg) for the owner and recovery flow.
 
+## Host implementation
+
+[`payload_storage_service.h`](../../../../firmware/storage/include/storage/payload_storage_service.h)
+exposes only typed operations, an opaque service allocation and structured
+health records. The implementation owns a depth-eight queue, copies page
+program input into owner memory, permits cancellation only while queued and
+executes one request at a time. Its injected transport is the future hardware
+adapter boundary; no RP2354A SDK, register or real-flash access is enabled by
+this PR.
+
+The host suite uses a failure-injectable NOR model to cover bounds and overflow,
+page crossing, erase alignment, queue saturation, active cancellation,
+re-entrancy, all forbidden opcodes, unsafe power/status/reset conditions,
+identity mismatch, read timeout, full program/erase read-back, fault locking,
+and reset/timeout mutation outcomes. It asserts that a failed mutation opcode
+is emitted once and is never replayed by recovery.
+
 ## Artifacts
 
 - [`spi-ownership.json`](spi-ownership.json) is the machine contract.
@@ -90,8 +109,10 @@ Validate with:
 
 ```sh
 python3 tools/validate_sovereign_cartridge_spi_ownership.py --strict --self-test
+cmake --preset host
+cmake --build --preset host
+ctest --preset host --output-on-failure
 ```
 
 Do not set `task_04_spi_ownership_passed` until the exclusive-owner
-implementation, negative tests, timing captures and reset/power-cut evidence
-all pass.
+hardware binding, timing captures and reset/power-cut evidence all pass.

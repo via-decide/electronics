@@ -50,14 +50,15 @@ Physical execution: not performed
 - Bounded command-specific timeouts are expected to distinguish a slow valid
   operation from a locked or electrically failed bus.
 
-Expected statements are design predictions, not firmware or bench evidence.
+Expected statements are design predictions, not physical or bench evidence.
 
 ## MEASURED
 
 `NONE`.
 
-No clock, waveform, latency, concurrency, reset, power-cut, identity,
-read-back, timeout or recovery behavior has been measured.
+No physical clock, waveform, latency, concurrency, reset, power-cut, identity,
+read-back, timeout or recovery behavior has been measured. The C host suite is
+software verification against an injected model, not a physical measurement.
 
 ## UNKNOWN
 
@@ -68,7 +69,8 @@ read-back, timeout or recovery behavior has been measured.
 - Maximum delay from `RUN` assertion to SCK/COPI/CS becoming quiescent.
 - Real page-program and erase distributions across lot, voltage and
   temperature.
-- Queue latency, starvation behavior and owner scheduling implementation.
+- Target scheduler latency, starvation behavior and RP2354A owner-task
+  integration.
 - Payload state after reset or input loss during an internal mutation.
 - Higher-level commit, journal and recovery semantics owned by later tasks.
 - Every physical result.
@@ -76,5 +78,6 @@ read-back, timeout or recovery behavior has been measured.
 ## Gate
 
 Task 4 remains open. The interface and ownership contract passes repository
-validation, but no owner implementation, host proof, logic trace or physical
-fault evidence exists.
+validation, and the transport-agnostic owner plus negative host suite provide
+software proof. The RP2354A adapter, link-boundary enforcement, logic traces
+and every physical fault result remain absent.
