@@ -131,7 +131,7 @@
         ],
         "pin_name": "USB_DM_USB_DP",
         "net": "USB_DM_USB_DP",
-        "support": "27 ohm series per line; receptacle, CC and ESD implementation deferred to Task 5"
+        "support": "27 ohm series per line; Task 5 freezes the receptacle, CC and ESD design candidates while editable capture remains open"
       },
       {
         "pins": [
@@ -245,7 +245,7 @@
       "visible_value": "USB_C_UFP_TASK5_PLACEHOLDER",
       "owner_task": 5,
       "dnp": true,
-      "reason": "USB-C receptacle, CC terminations and ESD network are not selected"
+      "reason": "Task 5 design candidates are selected but connector, CC terminations and ESD network are not yet captured in editable KiCad source"
     }
   ],
   "test_access_file": "test-access.csv",

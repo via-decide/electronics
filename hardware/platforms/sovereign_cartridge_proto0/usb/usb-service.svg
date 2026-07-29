@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <style>
+      .bg { fill: #0b1020; }
+      .panel { fill: #151d33; stroke: #60708f; stroke-width: 2; }
+      .accent { fill: #182c35; stroke: #55d6be; stroke-width: 2; }
+      .warn { fill: #302719; stroke: #f2c14e; stroke-width: 2; }
+      .text { fill: #f3f6ff; font: 18px sans-serif; }
+      .small { fill: #bac5db; font: 14px sans-serif; }
+      .title { fill: #ffffff; font: bold 28px sans-serif; }
+      .arrow { stroke: #9eb2d4; stroke-width: 3; fill: none; marker-end: url(#head); }
+      .power { stroke: #f2c14e; stroke-width: 3; fill: none; marker-end: url(#head); }
+    </style>
+    <marker id="head" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9eb2d4"/>
+    </marker>
+  </defs>
+  <rect class="bg" width="1200" height="700"/>
+  <text class="title" x="55" y="55">Task 5 USB-C service boundary</text>
+  <text class="small" x="55" y="82">DESIGN ONLY — no enumeration, current, waveform or compliance evidence</text>
+
+  <rect class="accent" x="55" y="130" width="245" height="190" rx="16"/>
+  <text class="text" x="78" y="165">J1 USB-C sink</text>
+  <text class="small" x="78" y="194">USB4105-GF-A-120</text>
+  <text class="small" x="78" y="222">CC1 → 5.1k → GND</text>
+  <text class="small" x="78" y="247">CC2 → 5.1k → GND</text>
+  <text class="small" x="78" y="272">UFP · no PD · no VCONN</text>
+  <text class="small" x="78" y="297">shield → stitched GND</text>
+
+  <rect class="panel" x="370" y="130" width="245" height="190" rx="16"/>
+  <text class="text" x="393" y="165">USB data protection</text>
+  <text class="small" x="393" y="194">TPD2EUSB30</text>
+  <text class="small" x="393" y="222">D+/D- · 0.7 pF typ</text>
+  <text class="small" x="393" y="247">R7/R8 · 27 Ω at MCU</text>
+  <text class="small" x="393" y="272">90 Ω differential target</text>
+  <text class="small" x="393" y="297">continuous GND reference</text>
+
+  <rect class="panel" x="685" y="130" width="215" height="190" rx="16"/>
+  <text class="text" x="708" y="165">RP2354A USB</text>
+  <text class="small" x="708" y="194">full speed device</text>
+  <text class="small" x="708" y="222">USB ISR: events only</text>
+  <text class="small" x="708" y="247">USB_SERVICE_TASK</text>
+  <text class="small" x="708" y="272">CDC-ACM only</text>
+  <text class="small" x="708" y="297">physical recovery only</text>
+
+  <rect class="accent" x="970" y="130" width="185" height="190" rx="16"/>
+  <text class="text" x="990" y="165">Storage owner</text>
+  <text class="small" x="990" y="205">typed requests</text>
+  <text class="small" x="990" y="230">power gated</text>
+  <text class="small" x="990" y="255">no auto replay</text>
+  <text class="small" x="990" y="287">PAYLOAD_STORAGE_SERVICE</text>
+
+  <path class="arrow" d="M300 225 H360"/>
+  <path class="arrow" d="M615 225 H675"/>
+  <path class="arrow" d="M900 225 H960"/>
+
+  <rect class="warn" x="55" y="410" width="400" height="165" rx="16"/>
+  <text class="text" x="78" y="448">VBUS power path</text>
+  <text class="small" x="78" y="478">J1 → TPD1E10B06 → Task 3 eFuse</text>
+  <text class="small" x="78" y="505">≤100 mA target before configuration</text>
+  <text class="small" x="78" y="532">300 mA configuration declaration</text>
+  <text class="small" x="78" y="557">current + inrush: UNKNOWN / bench required</text>
+
+  <rect class="panel" x="540" y="410" width="615" height="165" rx="16"/>
+  <text class="text" x="565" y="448">Blocked before Task 5 gate</text>
+  <text class="small" x="565" y="478">editable KiCad capture · native ERC · exact descriptors · VID/PID</text>
+  <text class="small" x="565" y="505">target USB-stack binding · host reset/suspend/detach matrix</text>
+  <text class="small" x="565" y="532">attach/inrush/current/waveform evidence · ESD/EMC review</text>
+  <text class="small" x="565" y="557">Task 6 sourcing, derating and footprint release</text>
+
+  <path class="power" d="M300 285 C340 360, 240 380, 240 400"/>
+</svg>

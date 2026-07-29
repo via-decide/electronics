@@ -66,7 +66,8 @@ has been measured.
 - Actual buck efficiency and loop response with the selected layout.
 - Maximum delay from `RUN` assertion to payload-SPI pins becoming quiescent.
 - Power-cut behavior while NOR program or erase is internally busy.
-- USB-C attach current, inrush, ESD and connector behavior owned by Task 5.
+- Task 5 freezes USB-C attach, current, ESD and connector design policy;
+  editable capture and every physical result remain open.
 - Part lifecycle, authorized supply, alternates and manufacturing constraints
   owned by Task 6.
 - Native ERC, PCB parasitics, rail ripple, thermals and every physical result.

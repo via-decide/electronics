@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "usb_service_id": "sovereign-cartridge-proto0-task-05",
+  "product": "Sovereign Cartridge",
+  "revision": "PROTO-0",
+  "status": "USB_SERVICE_DESIGN_IN_PROGRESS",
+  "evidence_status": "DESIGN_ONLY",
+  "phase_gate_passed": false,
+  "invariant": "Never expose incomplete or corrupted data as valid committed data.",
+  "electrical_contract": {
+    "connector": {
+      "reference": "J1",
+      "manufacturer": "GCT",
+      "part": "USB4105-GF-A-120",
+      "contact_count": 16,
+      "usb_generation": "USB_2_0_ONLY",
+      "mounting": "HORIZONTAL_TOP_MOUNT_1_20_MM_SHELL_STAKES",
+      "procurement_status": "DESIGN_CANDIDATE_TASK_06_RELEASE_REQUIRED"
+    },
+    "roles": {
+      "data_role": "UFP_DEVICE",
+      "power_role": "SINK",
+      "host_enabled": false,
+      "source_enabled": false,
+      "power_delivery_enabled": false,
+      "vconn_enabled": false
+    },
+    "configuration_channel": {
+      "cc1_rd_ohms": 5100,
+      "cc2_rd_ohms": 5100,
+      "resistor_tolerance_percent": 1,
+      "cc_pins_tied_together": false,
+      "controller_present": false,
+      "policy": "INDEPENDENT_RD_FROM_CC1_AND_CC2_TO_GND"
+    },
+    "usb2_data": {
+      "speed": "FULL_SPEED_12_MBPS",
+      "connector_dp_pins": [
+        "A6",
+        "B6"
+      ],
+      "connector_dm_pins": [
+        "A7",
+        "B7"
+      ],
+      "same_polarity_pins_joined_near_connector": true,
+      "differential_impedance_target_ohms": 90,
+      "continuous_ground_reference_required": true,
+      "series_resistor_ohms_per_line": 27,
+      "series_resistor_placement": "CLOSE_TO_RP2354A",
+      "unused_sbu_policy": "NO_CONNECT"
+    },
+    "protection": {
+      "data_esd": {
+        "logical_reference": "D_USB",
+        "manufacturer": "Texas Instruments",
+        "part": "TPD2EUSB30DRTR",
+        "channel_count": 2,
+        "typical_io_capacitance_pf": 0.7,
+        "working_voltage_v": 5.5,
+        "placement": "CONNECTOR_SIDE_OF_SERIES_RESISTORS_CLOSE_TO_J1"
+      },
+      "vbus_esd": {
+        "logical_reference": "D_VBUS",
+        "manufacturer": "Texas Instruments",
+        "part": "TPD1E10B06DPYR",
+        "working_voltage_v": 5.5,
+        "placement": "CLOSE_TO_J1_BEFORE_TASK_03_EFUSE"
+      },
+      "shield": {
+        "default_connection": "DIRECT_LOW_INDUCTANCE_TO_BOARD_GND",
+        "placement": "AT_CONNECTOR_WITH_STITCHING_VIAS",
+        "alternate_network": "NOT_POPULATED_UNLESS_EMC_EVIDENCE_REQUIRES"
+      }
+    }
+  },
+  "power_contract": {
+    "source_net": "VBUS_5V",
+    "pre_configuration_target_ma": 100,
+    "configuration_max_power_ma": 300,
+    "configuration_descriptor_bMaxPower_units": 150,
+    "usb2_configured_ceiling_ma": 500,
+    "task_03_3v3_design_ceiling_ma": 300,
+    "task_03_efuse_operating_limit_nominal_ma": 296.667,
+    "remote_wakeup_enabled": false,
+    "suspend_current_status": "UNKNOWN_REQUIRES_BENCH",
+    "attach_inrush_status": "UNKNOWN_REQUIRES_BENCH",
+    "policy": [
+      "Remain at or below 100 mA before configuration.",
+      "Do not start a payload mutation until configuration 1 is active and Task 3 reports power safe.",
+      "Keep actual configured input draw at or below the 300 mA descriptor declaration and below the physical protection limit.",
+      "Treat descriptor values and calculated budgets as design limits, not measurements."
+    ]
+  },
+  "descriptor_contract": {
+    "usb_version_bcd": "0x0200",
+    "device_class_policy": "CDC_IAD_COMPOSITE_CLASS_TRIPLET",
+    "device_class": "0xEF",
+    "device_subclass": "0x02",
+    "device_protocol": "0x01",
+    "endpoint_zero_max_packet_bytes": 64,
+    "configuration_count": 1,
+    "configuration_value": 1,
+    "configuration_attributes": [
+      "BUS_POWERED",
+      "NO_REMOTE_WAKEUP"
+    ],
+    "interface_set": [
+      {
+        "function": "CDC_ACM",
+        "control_interface": 0,
+        "data_interface": 1,
+        "notification_endpoint": "0x81",
+        "data_out_endpoint": "0x02",
+        "data_in_endpoint": "0x82",
+        "bulk_max_packet_bytes": 64
+      }
+    ],
+    "mass_storage_exposed": false,
+    "hid_exposed": false,
+    "vendor_bulk_exposed": false,
+    "dfu_runtime_exposed": false,
+    "vid_pid_status": "UNASSIGNED_BLOCKING_RELEASE",
+    "serial_number_owner": "TASK_07_IDENTITY",
+    "normal_service_transport": "CDC_ACM_FRAMED_BINARY_TASK_08",
+    "descriptor_regression_test_required": true
+  },
+  "service_contract": {
+    "usb_stack_candidate": "TinyUSB",
+    "usb_stack_dependency_added": false,
+    "owner": "USB_SERVICE_TASK",
+    "isr_policy": "POST_EVENTS_ONLY_NO_STORAGE_OR_PROTOCOL_EXECUTION",
+    "states": [
+      "DETACHED",
+      "ATTACHED_DEFAULT",
+      "ENUMERATING",
+      "CONFIGURED",
+      "SERVICE_READY",
+      "SUSPENDED",
+      "RECOVERY",
+      "FAULT_LOCKED"
+    ],
+    "storage_boundary": {
+      "only_target": "PAYLOAD_STORAGE_SERVICE",
+      "direct_spi_access": false,
+      "typed_requests_only": true,
+      "new_requests_require_service_ready": true,
+      "mutations_require_power_safe": true,
+      "automatic_mutation_replay": false,
+      "mass_storage_bypass_prohibited": true
+    },
+    "reset_suspend_detach_policy": [
+      "Reject new storage requests outside SERVICE_READY.",
+      "Return to enumeration on USB bus reset.",
+      "Block new storage requests while suspended.",
+      "Drop transport readiness on detach without replaying an interrupted mutation.",
+      "Do not convert an unknown storage outcome into success."
+    ],
+    "diagnostics": {
+      "payload_bytes_logged": false,
+      "structured_counters_required": true,
+      "plaintext_mixed_with_protocol_frames": false
+    }
+  },
+  "recovery_contract": {
+    "normal_configuration_exposes_firmware_update": false,
+    "remote_reboot_to_rom_bootloader_allowed": false,
+    "physical_bootsel_allowed": true,
+    "swd_allowed": true,
+    "entry_controls": [
+      "PHYSICAL_BOOTSEL",
+      "PHYSICAL_RUN",
+      "SWD"
+    ],
+    "signed_update_policy_owner": "LATER_SECURITY_AND_UPDATE_TASK",
+    "reason": "Proto-0 must not expose an unauthenticated remote firmware-update path before identity, protocol and update policy are frozen."
+  },
+  "host_negative_suite": {
+    "source": "firmware/usb/tests/host/test_usb_service_negative.c",
+    "required_cases": [
+      "REJECT_INCOMPLETE_ADAPTER",
+      "REJECT_CONFIGURATION_BEFORE_ATTACH",
+      "REJECT_UNSUPPORTED_CONFIGURATION",
+      "REJECT_STORAGE_BEFORE_SERVICE_READY",
+      "REJECT_MUTATION_WITHOUT_CONFIGURED_CURRENT",
+      "REJECT_MUTATION_WHEN_POWER_UNSAFE",
+      "REJECT_STORAGE_WHILE_SUSPENDED",
+      "REJECT_REMOTE_RECOVERY",
+      "BUS_RESET_DROPS_SERVICE_READY",
+      "DETACH_DROPS_SERVICE_READY",
+      "REJECT_UNDECLARED_ENDPOINT",
+      "PROPAGATE_STORAGE_REJECTION_WITHOUT_RETRY",
+      "FAULT_LOCK_REJECTS_TRAFFIC"
+    ]
+  },
+  "evidence_claims": {
+    "FACT": "The cited primary specifications and manufacturer pages define the USB-C sink termination, RP2350 USB routing, selected connector and protection candidates.",
+    "DECISION": "Proto-0 is one bus-powered USB 2.0 full-speed CDC-ACM device with independent CC pull-downs, no PD and physical-only recovery.",
+    "EXPECTED": "The selected topology and owner boundary are expected to enumerate without bypassing PAYLOAD_STORAGE_SERVICE after schematic capture, firmware binding and physical validation.",
+    "MEASURED": "NONE",
+    "UNKNOWN": "Native ERC, PCB routing, impedance, ESD and EMC behavior, attach inrush, pre-configuration and suspend current, enumeration, endpoint behavior, host compatibility and physical recovery."
+  },
+  "blocking_validation": [
+    "allocate production VID and PID before external distribution",
+    "capture J1, both CC pull-downs, data ESD and VBUS ESD in editable KiCad source",
+    "run native KiCad ERC and independent connector pinout review",
+    "route and review the 90 ohm USB differential pair with a continuous ground reference",
+    "bind the policy owner to the RP2354A USB device controller and TinyUSB or an equivalent reviewed stack",
+    "freeze and regression-test emitted descriptors byte for byte",
+    "measure attach inrush and pre-configuration current at both cable orientations",
+    "measure configured and suspend current against the declared limits",
+    "capture D+ and D- enumeration and sustained-transfer waveforms",
+    "run enumeration, reset, suspend, resume and detach tests on supported hosts",
+    "inject detach, reset and suspend during every storage operation",
+    "complete Task 6 sourcing, derating and footprint verification"
+  ],
+  "sources": [
+    {
+      "title": "USB Type-C Cable and Connector Specification Release 2.5",
+      "url": "https://www.usb.org/document-library/usb-type-cr-cable-and-connector-specification-release-25",
+      "supports": "sink-only Type-C attachment, independent CC terminations and connector requirements",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "USB 2.0 Specification",
+      "url": "https://www.usb.org/document-library/usb-20-specification",
+      "supports": "full-speed device, descriptor, configuration, endpoint and power-state requirements",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "Hardware design with RP2350",
+      "url": "https://pip.raspberrypi.com/documents/RP-008280-DS-hardware-design-with-rp2350.pdf",
+      "supports": "27 ohm USB series resistors, 90 ohm differential routing and continuous ground reference",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "GCT USB4105",
+      "url": "https://gct.co/connector/usb4105",
+      "supports": "16-contact USB 2.0 Type-C receptacle dimensions, mounting and lifecycle",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "Texas Instruments TPD2EUSB30",
+      "url": "https://www.ti.com/product/TPD2EUSB30",
+      "supports": "two-channel low-capacitance USB data-line ESD protection",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "Texas Instruments TPD1E10B06",
+      "url": "https://www.ti.com/product/TPD1E10B06",
+      "supports": "single-channel 5.5 V VBUS ESD protection",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "TinyUSB",
+      "url": "https://github.com/hathach/tinyusb",
+      "supports": "RP2350-capable device stack and deferred interrupt event model",
+      "retrieved": "2026-07-29"
+    },
+    {
+      "title": "USB Device Firmware Upgrade 1.1",
+      "url": "https://www.usb.org/document-library/device-firmware-upgrade-11-new-version-31-aug-2004",
+      "supports": "DFU class reference used to define the intentionally absent runtime update interface",
+      "retrieved": "2026-07-29"
+    }
+  ]
+}

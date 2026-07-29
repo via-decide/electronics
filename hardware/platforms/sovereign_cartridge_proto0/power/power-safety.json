@@ -50,9 +50,9 @@
       "capacitor_only_inrush_ma": 256.345
     },
     "unresolved_usb_boundary": [
-      "connector and CC implementation",
-      "VBUS and data-line ESD selection",
-      "USB attach inrush compliance"
+      "Task 5 connector, CC and ESD candidates are not captured in editable KiCad source",
+      "USB attach inrush compliance is unmeasured",
+      "pre-configuration, configured and suspend current are unmeasured"
     ]
   },
   "regulator": {

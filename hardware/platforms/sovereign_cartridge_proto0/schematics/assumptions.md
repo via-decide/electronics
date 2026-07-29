@@ -55,8 +55,8 @@ brownout behavior has been measured.
 - The final 5 V protection, 3.3 V regulator, rail budget, supervisor,
   brownout and safe-shutdown implementation: Task 3.
 - Payload-SPI ownership, isolation and recovery policy: Task 4.
-- USB-C receptacle, CC terminations, ESD network and compliance details:
-  Task 5.
+- USB-C receptacle, CC terminations and ESD candidates: selected by Task 5;
+  editable capture, layout and compliance evidence remain open.
 - Test-point physical placement, fixture clearance, controlled-impedance
   layout, decoupling placement and all PCB parasitics.
 - Physical behavior until current-limited bring-up produces measured evidence.

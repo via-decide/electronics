@@ -22,8 +22,9 @@ KiCad ERC, test-point source capture and electrical review remain open.
 - The input-power implementation remains a DNP placeholder in this editable
   sheet. Task 3 now defines its design in
   [`../power/power-safety.json`](../power/power-safety.json), but source
-  capture and native ERC remain open. The USB-C receptacle, CC and ESD
-  implementation remains a Task 5 DNP placeholder.
+  capture and native ERC remain open. Task 5 now selects the USB-C receptacle,
+  CC and ESD design candidates, but their editable source implementation
+  remains a DNP placeholder.
 
 Task 4 defines the SPI0 instance, manual chip-select framing, exclusive owner,
 opcode allowlist and recovery policy in
