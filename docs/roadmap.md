@@ -38,9 +38,14 @@ The ordered path begins only after Electronics From Zero v1:
    physical power-cut evidence remain blocking.
 4. **SPI ownership — in progress:** SPI0 instance, GPIO16-GPIO19 mapping,
    manual chip-select framing, single-owner request serialization, four-byte
-   opcode allowlist and bounded recovery contract added; firmware proof,
-   timing captures and destructive fault evidence remain blocking.
-5. USB-C service.
+   opcode allowlist and bounded recovery contract added; a transport-agnostic
+   owner and negative host suite now pass, while the target adapter, timing
+   captures and destructive fault evidence remain blocking.
+5. **USB-C service — in progress:** USB2-only sink/UFP connector, independent
+   CC pull-downs, ESD candidates, 300 mA CDC-ACM descriptor boundary,
+   physical-only recovery, service owner and negative host suite added;
+   editable capture, target-stack binding, descriptors and physical USB
+   evidence remain blocking.
 6. BOM and sourcing.
 7. Identity and schema.
 8. Protocol.
@@ -65,5 +70,7 @@ Task 3's in-progress contract is
 [`hardware/platforms/sovereign_cartridge_proto0/power/power-safety.json`](../hardware/platforms/sovereign_cartridge_proto0/power/power-safety.json).
 Task 4's in-progress contract is
 [`hardware/platforms/sovereign_cartridge_proto0/spi/spi-ownership.json`](../hardware/platforms/sovereign_cartridge_proto0/spi/spi-ownership.json).
+Task 5's in-progress contract is
+[`hardware/platforms/sovereign_cartridge_proto0/usb/usb-service.json`](../hardware/platforms/sovereign_cartridge_proto0/usb/usb-service.json).
 Downstream tasks must not be marked complete by documentation-only or simulated
 evidence.

@@ -1,8 +1,8 @@
 # Sovereign Cartridge Proto-0
 
 This directory contains the Task 1 topology freeze and the in-progress Task 2
-schematic, Task 3 power-safety and Task 4 SPI-ownership contracts for the
-post-v1 hardware-validation roadmap.
+schematic, Task 3 power-safety, Task 4 SPI-ownership and Task 5 USB-C service
+contracts for the post-v1 hardware-validation roadmap.
 
 ## Frozen product boundary
 
@@ -48,6 +48,8 @@ operations remain disabled.
   regulator, reset, brownout, hold-up and fail-stop design.
 - [`spi/README.md`](spi/README.md) tracks the Task 4 controller instance,
   exclusive owner, command allowlist, framing and recovery design.
+- [`usb/README.md`](usb/README.md) tracks the Task 5 USB-C sink, protection,
+  descriptor, service-owner, storage handoff and physical-recovery design.
 - [`validation/task-01-checklist.md`](validation/task-01-checklist.md) defines
   the software-verifiable acceptance gate.
 
@@ -58,4 +60,5 @@ python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_schematic.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_power_safety.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_spi_ownership.py --strict --self-test
+python3 tools/validate_sovereign_cartridge_usb_service.py --strict --self-test
 ```
