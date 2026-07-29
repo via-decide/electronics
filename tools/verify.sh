@@ -11,6 +11,7 @@ python3 tools/validate_electronics_from_zero.py
 python3 tools/validate_sovereign_cartridge_topology.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_schematic.py --strict --self-test
 python3 tools/validate_sovereign_cartridge_power_safety.py --strict --self-test
+python3 tools/validate_sovereign_cartridge_spi_ownership.py --strict --self-test
 python3 tools/validate_platform.py hardware/platforms/w25n01jw_lab/platform.yaml --strict
 python3 tools/validate_hardware_evidence.py assets/evidence --strict
 cmake --preset host

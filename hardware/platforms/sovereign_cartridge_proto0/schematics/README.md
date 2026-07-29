@@ -25,8 +25,10 @@ KiCad ERC, test-point source capture and electrical review remain open.
   capture and native ERC remain open. The USB-C receptacle, CC and ESD
   implementation remains a Task 5 DNP placeholder.
 
-Task 4 still owns the SPI controller-instance declaration, exclusive-ownership
-state machine and bus-recovery policy.
+Task 4 defines the SPI0 instance, manual chip-select framing, exclusive owner,
+opcode allowlist and recovery policy in
+[`../spi/spi-ownership.json`](../spi/spi-ownership.json). Firmware
+implementation and physical timing evidence remain open.
 
 ## Artifacts
 

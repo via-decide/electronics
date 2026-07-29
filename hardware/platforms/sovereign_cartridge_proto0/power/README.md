@@ -69,7 +69,9 @@ thold = E / Pinput = 176.6 us
 The design allocates 50 us for supervisor assertion and 25 us for `RUN` to
 quiescent payload-SPI behavior. The calculated margin is therefore 2.35x.
 The 25 us bus-quiescence allocation is not yet a measured or guaranteed
-RP2354A value, so it is a blocking validation item.
+RP2354A value, so it is a blocking validation item. Task 4 carries the same
+unverified limit into its
+[`../spi/spi-ownership.json`](../spi/spi-ownership.json) recovery contract.
 
 ## Artifacts
 

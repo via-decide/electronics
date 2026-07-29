@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "spi_ownership_id": "sovereign-cartridge-proto0-task-04",
+  "product": "Sovereign Cartridge",
+  "revision": "PROTO-0",
+  "status": "SPI_OWNERSHIP_DESIGN_IN_PROGRESS",
+  "evidence_status": "DESIGN_ONLY",
+  "phase_gate_passed": false,
+  "invariant": "Never expose incomplete or corrupted data as valid committed data.",
+  "physical_contract": {
+    "controller": "SPI0",
+    "controller_type": "RP2350_PRIMECELL_SSP",
+    "role": "CONTROLLER",
+    "payload_device": "W25Q256JVEIQ",
+    "boot_xip_bus": "IN_PACKAGE_BOOT_QSPI",
+    "xip_bus_shared": false,
+    "signal_map": [
+      {
+        "gpio": "GPIO16",
+        "hardware_function": "SPI0_RX",
+        "runtime_mux": "SPI0_RX",
+        "net": "PAYLOAD_SPI_CIPO",
+        "direction": "FLASH_TO_CONTROLLER"
+      },
+      {
+        "gpio": "GPIO17",
+        "hardware_function": "SPI0_CSn",
+        "runtime_mux": "SIO_GPIO_OUTPUT",
+        "net": "PAYLOAD_SPI_CS_N",
+        "direction": "CONTROLLER_TO_FLASH"
+      },
+      {
+        "gpio": "GPIO18",
+        "hardware_function": "SPI0_SCK",
+        "runtime_mux": "SPI0_SCK",
+        "net": "PAYLOAD_SPI_SCK",
+        "direction": "CONTROLLER_TO_FLASH"
+      },
+      {
+        "gpio": "GPIO19",
+        "hardware_function": "SPI0_TX",
+        "runtime_mux": "SPI0_TX",
+        "net": "PAYLOAD_SPI_COPI",
+        "direction": "CONTROLLER_TO_FLASH"
+      }
+    ],
+    "electrical_format": {
+      "spi_mode": 0,
+      "clock_polarity": 0,
+      "clock_phase": 0,
+      "bits_per_word": 8,
+      "bit_order": "MSB_FIRST",
+      "requested_clock_hz": 24000000,
+      "actual_clock_rule": "ACTUAL_MUST_BE_NONZERO_AND_NOT_EXCEED_REQUESTED",
+      "clock_idle": "LOW",
+      "chip_select_active": "LOW",
+      "chip_select_control": "OWNER_CONTROLLED_GPIO",
+      "chip_select_idle": "HIGH",
+      "minimum_chip_select_high_us": 1,
+      "wp_io2_state": "HIGH",
+      "hold_io3_state": "HIGH",
+      "transfer_engine": "POLLED_BLOCKING_PROTO0"
+    }
+  },
+  "ownership_contract": {
+    "resource": "SPI0_GPIO16_GPIO17_GPIO18_GPIO19",
+    "exclusive_owner": "PAYLOAD_STORAGE_SERVICE",
+    "access_model": "SINGLE_OWNER_SERIAL_REQUEST_QUEUE",
+    "queue_depth": 8,
+    "maximum_inflight_requests": 1,
+    "owner_execution_context": "ONE_NON_ISR_CONTEXT_NO_MIGRATION_WHILE_REQUEST_ACTIVE",
+    "direct_register_access_outside_owner": false,
+    "direct_sdk_spi_access_outside_owner": false,
+    "isr_may_start_transaction": false,
+    "other_core_may_start_transaction": false,
+    "other_clients_submit_typed_requests_only": true,
+    "transfer_engine": "POLLED_BLOCKING_PROTO0",
+    "dma_policy": "DEFERRED_UNTIL_OWNERSHIP_AND_ABORT_PATH_ARE_PROVEN",
+    "cancellation": {
+      "queued_request": "ALLOWED",
+      "after_chip_select_asserted": "NOT_ALLOWED",
+      "after_write_enable_confirmed": "NOT_ALLOWED_OWNER_MUST_SEND_WRITE_DISABLE_OR_CONTINUE_VALIDATED_MUTATION",
+      "after_mutating_opcode_accepted": "NOT_ALLOWED_AND_OUTCOME_MAY_BE_UNKNOWN"
+    },
+    "shutdown_policy": "REJECT_NEW_REQUESTS_THEN_LEAVE_CS_HIGH",
+    "automatic_mutation_retry": false
+  },
+  "flash_contract": {
+    "part": "W25Q256JVEIQ",
+    "jedec_id_hex": "EF4019",
+    "capacity_bytes": 33554432,
+    "minimum_address": 0,
+    "maximum_address": 33554431,
+    "maximum_address_hex": "01FFFFFF",
+    "page_size_bytes": 256,
+    "sector_size_bytes": 4096,
+    "block_size_bytes": 65536,
+    "address_policy": "DEDICATED_4_BYTE_OPCODES_ONLY",
+    "persistent_4_byte_mode": false,
+    "quad_mode_enabled": false,
+    "qpi_mode_enabled": false,
+    "maximum_read_request_bytes": 4096,
+    "bounds_check_rule": "CHECK_64_BIT_ADDRESS_PLUS_LENGTH_BEFORE_NARROWING",
+    "page_program_rule": "ONE_TO_256_BYTES_AND_MUST_NOT_CROSS_256_BYTE_PAGE",
+    "sector_erase_rule": "ADDRESS_ALIGNED_TO_4096",
+    "block_erase_rule": "ADDRESS_ALIGNED_TO_65536",
+    "mutation_preconditions": [
+      "POWER_SAFE_LATCHED",
+      "OWNER_HELD",
+      "DEVICE_ID_VERIFIED_FOR_RESET_GENERATION",
+      "BUSY_ZERO",
+      "WRITE_ENABLE_SENT",
+      "WEL_ONE_CONFIRMED",
+      "ADDRESS_AND_LENGTH_VALID"
+    ],
+    "mutation_completion": [
+      "BUSY_ZERO_BEFORE_OPERATION_TIMEOUT",
+      "WEL_ZERO_AFTER_COMPLETION",
+      "FULL_TARGET_RANGE_READ_BACK_VERIFIED",
+      "RESULT_REPORTED_TO_CALLER_WITHOUT_IMPLYING_HIGHER_LEVEL_COMMIT"
+    ]
+  },
+  "allowed_commands": [
+    {
+      "name": "WRITE_ENABLE",
+      "opcode_hex": "06",
+      "scope": "MUTATION_PREAMBLE",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "CONFIRM_WEL_ONE"
+    },
+    {
+      "name": "WRITE_DISABLE",
+      "opcode_hex": "04",
+      "scope": "RECOVERY_AND_CLEANUP",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "CONFIRM_WEL_ZERO"
+    },
+    {
+      "name": "READ_STATUS_REGISTER_1",
+      "opcode_hex": "05",
+      "scope": "STATUS",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "CAPTURE_BUSY_AND_WEL"
+    },
+    {
+      "name": "READ_STATUS_REGISTER_2",
+      "opcode_hex": "35",
+      "scope": "STATUS",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "CAPTURE_QE_SUS_AND_SECURITY_STATE"
+    },
+    {
+      "name": "READ_STATUS_REGISTER_3",
+      "opcode_hex": "15",
+      "scope": "STATUS",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "CAPTURE_ADDRESS_MODE_AND_WPS_STATE"
+    },
+    {
+      "name": "READ_JEDEC_ID",
+      "opcode_hex": "9F",
+      "scope": "PROBE",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "REQUIRE_EF4019"
+    },
+    {
+      "name": "READ_DATA_4_BYTE",
+      "opcode_hex": "13",
+      "scope": "READ",
+      "address_bytes": 4,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "RETURN_EXACT_REQUESTED_LENGTH"
+    },
+    {
+      "name": "PAGE_PROGRAM_4_BYTE",
+      "opcode_hex": "12",
+      "scope": "PROGRAM",
+      "address_bytes": 4,
+      "mutating": true,
+      "requires_wel": true,
+      "completion": "POLL_BUSY_THEN_FULL_READ_BACK_VERIFY"
+    },
+    {
+      "name": "SECTOR_ERASE_4_BYTE",
+      "opcode_hex": "21",
+      "scope": "ERASE_4K",
+      "address_bytes": 4,
+      "mutating": true,
+      "requires_wel": true,
+      "completion": "POLL_BUSY_THEN_VERIFY_ALL_FF"
+    },
+    {
+      "name": "BLOCK_ERASE_64K_4_BYTE",
+      "opcode_hex": "DC",
+      "scope": "ERASE_64K",
+      "address_bytes": 4,
+      "mutating": true,
+      "requires_wel": true,
+      "completion": "POLL_BUSY_THEN_VERIFY_ALL_FF"
+    },
+    {
+      "name": "ENABLE_RESET",
+      "opcode_hex": "66",
+      "scope": "RECOVERY_ONLY",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "NEXT_COMMAND_MUST_BE_RESET_DEVICE"
+    },
+    {
+      "name": "RESET_DEVICE",
+      "opcode_hex": "99",
+      "scope": "RECOVERY_ONLY",
+      "address_bytes": 0,
+      "mutating": false,
+      "requires_wel": false,
+      "completion": "WAIT_RESET_DELAY_THEN_REPROBE"
+    }
+  ],
+  "forbidden_commands": [
+    {
+      "opcode_hex": "C7",
+      "name": "CHIP_ERASE",
+      "reason": "unbounded destructive scope"
+    },
+    {
+      "opcode_hex": "60",
+      "name": "CHIP_ERASE_ALTERNATE",
+      "reason": "unbounded destructive scope"
+    },
+    {
+      "opcode_hex": "03",
+      "name": "READ_DATA_3_BYTE",
+      "reason": "cannot address the complete 32 MiB payload without mode state"
+    },
+    {
+      "opcode_hex": "02",
+      "name": "PAGE_PROGRAM_3_BYTE",
+      "reason": "cannot address the complete 32 MiB payload without mode state"
+    },
+    {
+      "opcode_hex": "20",
+      "name": "SECTOR_ERASE_3_BYTE",
+      "reason": "cannot address the complete 32 MiB payload without mode state"
+    },
+    {
+      "opcode_hex": "D8",
+      "name": "BLOCK_ERASE_64K_3_BYTE",
+      "reason": "cannot address the complete 32 MiB payload without mode state"
+    },
+    {
+      "opcode_hex": "B7",
+      "name": "ENTER_4_BYTE_ADDRESS_MODE",
+      "reason": "persistent mode creates reset and cross-command state"
+    },
+    {
+      "opcode_hex": "E9",
+      "name": "EXIT_4_BYTE_ADDRESS_MODE",
+      "reason": "persistent mode is not used"
+    },
+    {
+      "opcode_hex": "01",
+      "name": "WRITE_STATUS_REGISTER_1",
+      "reason": "runtime protection-state mutation is outside Task 4"
+    },
+    {
+      "opcode_hex": "31",
+      "name": "WRITE_STATUS_REGISTER_2",
+      "reason": "quad enable and protection-state mutation are forbidden"
+    },
+    {
+      "opcode_hex": "11",
+      "name": "WRITE_STATUS_REGISTER_3",
+      "reason": "address-mode and protection-state mutation are forbidden"
+    },
+    {
+      "opcode_hex": "32",
+      "name": "QUAD_PAGE_PROGRAM",
+      "reason": "Proto-0 is fixed to single-SPI mode"
+    },
+    {
+      "opcode_hex": "38",
+      "name": "ENTER_QPI_MODE",
+      "reason": "Proto-0 is fixed to single-SPI mode"
+    }
+  ],
+  "timeouts": {
+    "read_transfer_timeout_us": 5000,
+    "page_program_datasheet_max_ms": 3,
+    "page_program_operation_timeout_ms": 5,
+    "sector_erase_datasheet_max_ms": 400,
+    "sector_erase_operation_timeout_ms": 500,
+    "block_64k_erase_datasheet_max_ms": 2000,
+    "block_64k_erase_operation_timeout_ms": 2500,
+    "reset_datasheet_typical_us": 30,
+    "reset_operation_timeout_us": 100,
+    "power_up_read_delay_us": 20,
+    "power_up_mutation_delay_ms": 5,
+    "status_poll_interval_us": 100,
+    "timeout_policy": "DEASSERT_CS_DISABLE_NEW_MUTATIONS_AND_ENTER_RECOVERY",
+    "chip_erase_timeout": "NOT_DEFINED_COMMAND_FORBIDDEN"
+  },
+  "state_machine": [
+    {
+      "state": "UNINITIALIZED",
+      "entry": "reset generation changed or power became valid",
+      "action": "leave CS high, wait power-up delays and reject payload requests"
+    },
+    {
+      "state": "PROBING",
+      "entry": "power-safe delay elapsed",
+      "action": "read JEDEC ID and status registers through the exclusive owner"
+    },
+    {
+      "state": "IDLE",
+      "entry": "EF4019 identity confirmed, BUSY=0 and no request is active",
+      "action": "CS remains high and one typed request may be dequeued"
+    },
+    {
+      "state": "ACQUIRED",
+      "entry": "owner accepted one validated request",
+      "action": "assert CS only for one command frame and prevent cancellation"
+    },
+    {
+      "state": "WAIT_BUSY",
+      "entry": "a program or erase command was accepted",
+      "action": "poll status within the operation-specific bounded timeout"
+    },
+    {
+      "state": "VERIFY",
+      "entry": "BUSY cleared after a mutation",
+      "action": "confirm WEL=0 and read back the full target range"
+    },
+    {
+      "state": "RECOVER",
+      "entry": "reset, timeout, protocol error, identity loss or unknown operation outcome",
+      "action": "reject new mutations, leave CS high, probe status and never replay a mutation automatically"
+    },
+    {
+      "state": "FAULT_LOCKED",
+      "entry": "identity mismatch, BUSY timeout, unsafe reset precondition or verification failure",
+      "action": "permit diagnostics only until explicit service recovery or power cycle"
+    }
+  ],
+  "recovery_contract": {
+    "startup_sequence": [
+      "WAIT_20_US_BEFORE_FIRST_READ",
+      "WAIT_5_MS_BEFORE_FIRST_MUTATION",
+      "READ_JEDEC_ID_AND_REQUIRE_EF4019",
+      "READ_STATUS_1_2_3",
+      "IF_BUSY_WAIT_WITHIN_2500_MS_RECOVERY_BOUND",
+      "REJECT_MUTATIONS_IF_QE_OR_ADDRESS_MODE_STATE_VIOLATES_POLICY"
+    ],
+    "software_reset_policy": {
+      "normal_operation": "FORBIDDEN",
+      "recovery_only": true,
+      "requires_busy_zero": true,
+      "requires_suspend_zero": true,
+      "requires_power_safe": true,
+      "requires_owner_held": true,
+      "sequence": [
+        "66",
+        "99"
+      ],
+      "postcondition": "WAIT_100_US_THEN_REPROBE_ID_AND_STATUS"
+    },
+    "reset_during_mutation_result": "UNKNOWN_OPERATION_OUTCOME",
+    "automatic_mutation_retry": false,
+    "higher_layer_handoff": "TASK_13_TRANSACTION_LAYER_DECIDES_COMMIT_ABORT_OR_REPAIR",
+    "power_fault_handoff": {
+      "source": "TASK_03_POWER_SAFE_N_TO_RUN",
+      "hardware_safe_state": "RUN_ASSERTED_AND_PAYLOAD_SPI_CS_N_PULLED_HIGH",
+      "run_to_bus_quiet_budget_us": 25,
+      "evidence_status": "UNKNOWN_REQUIRES_BENCH"
+    }
+  },
+  "public_request_contract": [
+    {
+      "operation": "PROBE",
+      "mutating": false,
+      "arguments": "NONE",
+      "success": "identity and status snapshot"
+    },
+    {
+      "operation": "READ",
+      "mutating": false,
+      "arguments": "address length",
+      "success": "exact requested bytes"
+    },
+    {
+      "operation": "PROGRAM_PAGE",
+      "mutating": true,
+      "arguments": "address one_to_256_bytes",
+      "success": "full read-back match; not a higher-level commit"
+    },
+    {
+      "operation": "ERASE_SECTOR",
+      "mutating": true,
+      "arguments": "4096_aligned_address",
+      "success": "complete 4 KiB range reads FF"
+    },
+    {
+      "operation": "ERASE_BLOCK_64K",
+      "mutating": true,
+      "arguments": "65536_aligned_address",
+      "success": "complete 64 KiB range reads FF"
+    },
+    {
+      "operation": "GET_HEALTH",
+      "mutating": false,
+      "arguments": "NONE",
+      "success": "owner state counters last error and reset generation"
+    }
+  ],
+  "error_contract": [
+    "E_SPI_NOT_OWNER",
+    "E_SPI_QUEUE_FULL",
+    "E_SPI_POWER_UNSAFE",
+    "E_SPI_ID_MISMATCH",
+    "E_SPI_BUSY",
+    "E_SPI_BOUNDS",
+    "E_SPI_ALIGNMENT",
+    "E_SPI_PAGE_CROSS",
+    "E_SPI_WEL",
+    "E_SPI_TIMEOUT",
+    "E_SPI_VERIFY",
+    "E_SPI_RESET_UNSAFE",
+    "E_SPI_UNKNOWN_OUTCOME",
+    "E_SPI_FAULT_LOCKED"
+  ],
+  "observability_contract": {
+    "per_request_fields": [
+      "request_sequence",
+      "operation",
+      "address",
+      "length",
+      "start_us",
+      "end_us",
+      "status_before",
+      "status_after",
+      "result",
+      "reset_generation"
+    ],
+    "counters": [
+      "requests_completed",
+      "requests_rejected",
+      "program_timeouts",
+      "erase_timeouts",
+      "verification_failures",
+      "recoveries",
+      "unknown_outcomes",
+      "identity_mismatches"
+    ],
+    "payload_bytes_logged": false,
+    "raw_clock_rate_bytes_per_second": 3000000,
+    "calculated_full_scan_seconds": 11.184811,
+    "performance_evidence": "EXPECTED_NOT_MEASURED"
+  },
+  "host_implementation": {
+    "status": "HOST_TESTED_TRANSPORT_AGNOSTIC",
+    "service_header": "firmware/storage/include/storage/payload_storage_service.h",
+    "service_source": "firmware/storage/payload_storage_service.c",
+    "negative_test_suite": "firmware/storage/tests/host/test_payload_storage_service_negative.c",
+    "ctest_target": "payload_storage_service_host_tests",
+    "test_cases": 13,
+    "verified_properties": [
+      "OPAQUE_TYPED_REQUEST_BOUNDARY",
+      "QUEUE_DEPTH_8_AND_ONE_INFLIGHT",
+      "BOUNDS_OVERFLOW_ALIGNMENT_AND_PAGE_CROSS_REJECTION",
+      "EVERY_FORBIDDEN_OPCODE_REJECTED",
+      "POWER_BUSY_WEL_IDENTITY_AND_RESET_PRECONDITIONS",
+      "FULL_PROGRAM_AND_ERASE_READ_BACK",
+      "TIMEOUT_AND_RESET_UNKNOWN_OUTCOME",
+      "NO_AUTOMATIC_MUTATION_REPLAY",
+      "STRUCTURED_METADATA_WITHOUT_PAYLOAD_LOGGING"
+    ],
+    "hardware_adapter": "NOT_IMPLEMENTED_OR_ENABLED",
+    "physical_evidence": "NONE"
+  },
+  "evidence_claims": {
+    "FACT": "The cited RP2350 and W25Q256JV sources define SPI0 pin functions, SPI controller behavior, flash identity, geometry, opcodes, power-up delays, status semantics and maximum program/erase times used by this contract.",
+    "DECISION": "Proto-0 assigns SPI0 and manual payload chip-select exclusively to one serialized payload-storage service using standard SPI and dedicated four-byte opcodes.",
+    "EXPECTED": "A single blocking owner with bounded operations and no automatic mutation retry is expected to make command framing and unknown reset outcomes deterministic enough for later transaction recovery.",
+    "MEASURED": "NONE",
+    "UNKNOWN": "Actual clock, signal integrity, target scheduler latency, hardware queue behavior, timeout distributions, RUN-to-bus-quiescent timing, flash behavior during power cuts and all physical recovery results."
+  },
+  "blocking_validation": [
+    "implement the RP2354A SPI0 adapter and prohibit direct SPI0 access at link and review boundaries",
+    "capture logic-analyzer traces for every allowed command and prohibited command attempt",
+    "measure the actual SPI clock and verify mode zero timing at TP11 through TP14",
+    "prove chip select remains high during reset boot and power-fault entry",
+    "prove the 25 us maximum RUN-to-bus-quiescent allocation or revise Task 3 hold-up",
+    "inject reset during read program and erase and record unknown-outcome recovery",
+    "prove no mutation is automatically retried after timeout or reset",
+    "complete higher-level transaction and commit semantics before exposing payload data as committed",
+    "complete Task 5 USB power qualification before permitting payload mutation",
+    "complete Task 6 sourcing and signal-integrity review"
+  ],
+  "sources": [
+    {
+      "title": "RP2350 datasheet",
+      "url": "https://pip.raspberrypi.com/documents/RP-008373-DS-rp2350-datasheet.pdf",
+      "supports": "GPIO16 through GPIO19 SPI0 functions and controller/pin architecture",
+      "retrieved": "2026-07-28"
+    },
+    {
+      "title": "Raspberry Pi Pico SDK hardware SPI API",
+      "url": "https://www.raspberrypi.com/documentation/pico-sdk/hardware.html",
+      "supports": "two SPI instances, controller configuration, format and actual-baudrate APIs",
+      "retrieved": "2026-07-28"
+    },
+    {
+      "title": "Raspberry Pi Pico SDK hardware SPI implementation",
+      "url": "https://github.com/raspberrypi/pico-sdk/blob/master/src/rp2_common/hardware_spi/spi.c",
+      "supports": "actual baudrate does not exceed the request and blocking transfer completion behavior",
+      "retrieved": "2026-07-28"
+    },
+    {
+      "title": "W25Q256JV manufacturer documentation",
+      "url": "https://www.winbond.com/hq/support/documentation/?__locale=en&category=%2F.categories%2Fresources%2Fdatasheet%2F&family=%2Fproduct%2Fcode-storage-flash%2Fqspi-nor%2Findex.html&line=%2Fproduct%2Fcode-storage-flash%2Findex.html&pno=W25Q256JV",
+      "supports": "current manufacturer datasheet listing for the selected payload NOR",
+      "retrieved": "2026-07-28"
+    },
+    {
+      "title": "W25Q256JV SPI datasheet revision Q",
+      "url": "https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/908/W25Q256JV-SPI-RevQ-02072025-Plus.pdf",
+      "supports": "identity, command set, four-byte opcodes, geometry, status behavior, reset warnings and operation times",
+      "retrieved": "2026-07-28"
+    }
+  ]
+}
